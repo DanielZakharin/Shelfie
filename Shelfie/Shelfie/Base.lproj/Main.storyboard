@@ -12,15 +12,30 @@
         <!--Item 2-->
         <scene sceneID="iOg-b3-itW">
             <objects>
-                <viewController id="q47-vd-iCN" sceneMemberID="viewController">
+                <viewController id="q47-vd-iCN" customClass="BoxViewController" customModule="Shelfie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S2p-mk-hPp">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="xJO-ON-VCY" appends="YES" id="2Rm-Kd-TVD"/>
+                            <outletCollection property="gestureRecognizers" destination="G85-kb-dXT" appends="YES" id="dtX-Nb-tR3"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="Z9X-Xd-mSn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AUu-px-xt1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="xJO-ON-VCY">
+                    <connections>
+                        <action selector="tappedAnywhere:" destination="q47-vd-iCN" id="aiH-iG-K03"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="G85-kb-dXT">
+                    <connections>
+                        <action selector="handlePan:" destination="q47-vd-iCN" id="G0a-Uk-NUc"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="639" y="-197"/>
         </scene>
