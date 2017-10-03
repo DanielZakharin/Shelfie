@@ -11,7 +11,8 @@ import UIKit
 class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     let colorsList = [UIColor.red, UIColor.blue, UIColor.green, UIColor.brown];
-    
+    var selectedBoxView : BoxView?;
+    var parentCtrl : BoxViewController?;
     @IBOutlet weak var popoverTable: UITableView!
     @IBOutlet weak var delBtn: UIButton!
     override func viewDidLoad() {
@@ -39,12 +40,21 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if(selectedBoxView != nil){
+            selectedBoxView!.backgroundColor = colorsList[indexPath.row];
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        parentCtrl!.dismisstest(ctrl: self);
     }
 
     
     @IBAction func delBtnAction(_ sender: UIButton) {
         //delete the view from here
+        selectedBoxView!.removeFromSuperview();
+        selectedBoxView = nil;
+        parentCtrl?.dismisstest(ctrl: self);
     }
     /*
     // MARK: - Navigation

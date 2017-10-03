@@ -27,15 +27,19 @@ class BoxViewController: UIViewController {
     }
     
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        let destinationCtrl = segue.destination;
+        print("segue triggered");
      }
-     */
+    
+    
+    
     //MARK: Gesture Handlind
     //Pan gesture handling when touching empty space
     func handlePan(sender: UIPanGestureRecognizer!) {
@@ -92,19 +96,30 @@ class BoxViewController: UIViewController {
     
     func handleTap(sender: UITapGestureRecognizer) {
         print("tapped a box from VC");
-        showPopOver(sender: sender.view!);
+        if let v = sender.view as? BoxView{
+            showPopOver(sender: v);
+        }
     }
     
     //MARK: Methods
-    func showPopOver(sender: UIView) {
+    //shows popover view for picking color
+    func showPopOver(sender: BoxView) {
+        //init a view from the storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewCtrl = storyboard.instantiateViewController(withIdentifier: "BoxPopOverIdentifier")
         viewCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
-        
-        present(viewCtrl, animated: true, completion: nil)
-        
-        let popoverPresentationController = viewCtrl.popoverPresentationController
+        let popoverPresentationController = viewCtrl.popoverPresentationController;
         popoverPresentationController?.sourceView = sender
+        present(viewCtrl, animated: true, completion: nil);
+        //pass selected view to popover controller for manipulation
+        if let presentedCtrl = popoverPresentationController?.presentedViewController as? BoxPopoverViewController{
+            presentedCtrl.selectedBoxView = sender;
+            presentedCtrl.parentCtrl = self;
+        }
+    }
+    
+    func dismisstest(ctrl: BoxPopoverViewController) {
+        ctrl.dismiss(animated: false, completion: nil);
     }
     
     //MARK: Convenience

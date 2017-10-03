@@ -66,7 +66,6 @@ class BoxView: UIView {
     //Triggered on frame resize, move cornerDragView accordingly
     override var frame: CGRect{
         didSet{
-            print("Frame triggered");
             cornerDragView.frame.origin.x = self.frame.width-CGFloat(cornerSize);
             cornerDragView.frame.origin.y = self.frame.height-CGFloat(cornerSize);
         }
@@ -74,7 +73,6 @@ class BoxView: UIView {
     
     //MARK: Gestures
     func handleTap(action: UITapGestureRecognizer) {
-        print("tapped  a boxview");
     }
     
     func handleCornerPan(sender: UIPanGestureRecognizer) {
@@ -155,7 +153,7 @@ class BoxView: UIView {
     //TODO: DUPLICATE CODE FROM BOXVIEWCONTROLLER, MAKE A COMMON FUNCTIONS CLASS
     func roundToNearest(x : CGFloat) -> CGFloat {
         let jee = increment * CGFloat(round(x / increment));
-        print("Rounded \(x) to \(jee)");
+        //print("Rounded \(x) to \(jee)");
         return jee;
     }
     
