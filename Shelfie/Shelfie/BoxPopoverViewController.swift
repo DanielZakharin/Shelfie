@@ -9,7 +9,7 @@
 import UIKit
 
 class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-
+    
     let colorsList = [UIColor.red, UIColor.blue, UIColor.green, UIColor.brown];
     var selectedBoxView : BoxView?;
     var parentCtrl : BoxViewController?;
@@ -21,7 +21,7 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         popoverTable.delegate = self;
         popoverTable.dataSource = self;
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,7 +29,11 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //MARK: TableView methods
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: 200, height: 50));
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BoxPopoverTableCell", for: indexPath) as? BoxPopOverTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+        }
+        // Configure the cell...
+        cell.titleLabel.text = "Color \(indexPath.row)";
         cell.backgroundColor = colorsList[indexPath.row];
         return cell;
         
@@ -43,12 +47,10 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         if(selectedBoxView != nil){
             selectedBoxView!.backgroundColor = colorsList[indexPath.row];
         }
+        parentCtrl!.dismisstest(ctrl: self);
+        tableView.deselectRow(at: indexPath, animated: false);
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        parentCtrl!.dismisstest(ctrl: self);
-    }
-
     
     @IBAction func delBtnAction(_ sender: UIButton) {
         //delete the view from here
@@ -57,13 +59,13 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         parentCtrl?.dismisstest(ctrl: self);
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
