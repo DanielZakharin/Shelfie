@@ -55,11 +55,14 @@ class BoxView: UIView {
         //self.addGestureRecognizer(tapGesture);
         //add  pan gesture to box
         let boxPan : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleBoxPan(sender:)));
+        //need to set maximum number of touches so that scrolling of the scrollview can still occur when using two fingers on the box
+        boxPan.maximumNumberOfTouches = 1;
         self.addGestureRecognizer(boxPan);
         //add a pan gesture to cornerView
-        let panGesture : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleCornerPan(sender:)));
-        self.addGestureRecognizer(panGesture);
-        cornerDragView.addGestureRecognizer(panGesture);
+        let cornerPan : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleCornerPan(sender:)));
+        cornerPan.maximumNumberOfTouches = 1;
+        self.addGestureRecognizer(cornerPan);
+        cornerDragView.addGestureRecognizer(cornerPan);
     }
     
     //MARK: Resizing

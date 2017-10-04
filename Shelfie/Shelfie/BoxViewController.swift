@@ -17,16 +17,23 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     var currentTotalX: CGFloat = 0;
     var currentTotalY: CGFloat = 0;
     let increment: CGFloat = 50.0;
+    var svpgr : UIPanGestureRecognizer?;
     override func viewDidLoad() {
         super.viewDidLoad()
         //setup pan gesture recognizers for scrollview
+        //allow the scrollviews native gesture to only work with 2 finger pans
         scrollView.panGestureRecognizer.minimumNumberOfTouches = 2;
         let panGesture: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan(sender:)));
+        //set the pan gesture delegate to self so that failure dependancies can be set
         panGesture.delegate = self;
-        panGesture.require(toFail: scrollView.panGestureRecognizer);
+        //only allow 1 finger pans, so that when 2 finger pans are used, the recognizer fails and allows scrollviews own recognizer to
+        //handle the pan ie. scroll
+        panGesture.maximumNumberOfTouches = 1;
         scrollView.addGestureRecognizer(panGesture);
+        //tell the scrollviews gesturerecognizer that pangesture must first fail in order for it to be allowed to work
+        scrollView.panGestureRecognizer.require(toFail: panGesture);
         
-        //create a shelf for the background
+        //create a shelf for the background, change this later to be fetched from datasource
         makeBG(width: 9, height: 2);
     }
     
@@ -35,12 +42,30 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: PangestureRecognizerDelegate Methods
+    //tells the pangesturerecognizer to disallow detection of multiple recognizers, so when moving a box, a new one deosnt get created
+    //under it
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if(otherGestureRecognizer == scrollView.panGestureRecognizer){
+        if(otherGestureRecognizer.view == scrollView){
             return true;
         }
         return false;
     }
+    
+    /*func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if(otherGestureRecognizer.view == scrollView){
+            return true;
+        }
+        return false;
+    }*/
+    
+    //tells the pangesture that it must fail before another gesture recognizer can be activated, in this case we only care about the
+    //scrollviews built in one
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if(otherGestureRecognizer.view == scrollView){
+            return true;
+        }
+        return false;    }
     
     // MARK: - Navigation
     
@@ -56,7 +81,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     
     
     //MARK: Gesture Handlind
-    //Pan gesture handling when touching empty space
+    //Pan gesture handling when touching empty space on the scrollview
     func handlePan(sender: UIPanGestureRecognizer!) {
         switch sender.state{
         //state for when pan just started, create a new view to be maniuplated here
@@ -71,7 +96,6 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
             //add view to superview
             sender.view!.addSubview(newView);
             newestView = newView;
-            
             break;
             
         //state when a pan movement has occured
@@ -101,8 +125,12 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
             currentTotalX = 0;
             currentTotalY = 0;
             break;
-        default:
+        case .failed:
             print("Other state");
+            break;
+        default:
+            print("!");
+            break;
         }
         //reset translation so it doesn't accumulate
         sender.setTranslation(CGPoint.zero, in: scrollView);
@@ -156,7 +184,6 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     //round a float to nearest number defined by increment
     func roundToNearest(x : CGFloat) -> CGFloat {
         let jee = increment * CGFloat(round(x / increment));
-        print("Rounded \(x) to \(jee)");
         return jee;
     }
     
