@@ -9,7 +9,9 @@
 import UIKit
 import AVFoundation
 
-class BoxViewController: UIViewController {
+class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
+    
+    @IBOutlet var scrollView: UIScrollView!
     
     var newestView: UIView?;
     var currentTotalX: CGFloat = 0;
@@ -17,14 +19,15 @@ class BoxViewController: UIViewController {
     let increment: CGFloat = 50.0;
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //setup pan gesture recognizers for scrollview
+        scrollView.panGestureRecognizer.minimumNumberOfTouches = 2;
         let panGesture: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan(sender:)));
-        self.view.addGestureRecognizer(panGesture);
+        panGesture.delegate = self;
+        panGesture.require(toFail: scrollView.panGestureRecognizer);
+        scrollView.addGestureRecognizer(panGesture);
+        
         //create a shelf for the background
-        /*let shelfImage = stitchImages(cellCount: 4, isVertical: false);
-        let bgShelf = UIImageView(image: shelfImage);
-        self.view.addSubview(bgShelf);*/
-        makeBG(width: 3, height: 2);
+        makeBG(width: 9, height: 2);
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,7 +35,12 @@ class BoxViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if(otherGestureRecognizer == scrollView.panGestureRecognizer){
+            return true;
+        }
+        return false;
+    }
     
     // MARK: - Navigation
     
@@ -69,7 +77,7 @@ class BoxViewController: UIViewController {
         //state when a pan movement has occured
         case .changed:
             //translation is the amount of movement that occured
-            let translation = sender.translation(in: self.view)
+            let translation = sender.translation(in: scrollView)
             if newestView != nil {
                 //add to total amount moved
                 currentTotalX += translation.x;
@@ -97,7 +105,7 @@ class BoxViewController: UIViewController {
             print("Other state");
         }
         //reset translation so it doesn't accumulate
-        sender.setTranslation(CGPoint.zero, in: self.view);
+        sender.setTranslation(CGPoint.zero, in: scrollView);
         
     }
     
@@ -129,57 +137,19 @@ class BoxViewController: UIViewController {
         ctrl.dismiss(animated: false, completion: nil);
     }
     
-    //stiches multiple shelfCell images into a single row
-    /*func stitchImages(cellCount: Int, isVertical: Bool) -> UIImage {
-        var stitchedImages : UIImage!
-        var images : [UIImage] = [];
-        if cellCount > 0 {
-            var maxWidth = CGFloat(0), maxHeight = CGFloat(0)
-            for _ in 0..<cellCount {
-                print("looping images");
-                if let image = UIImage(named: "shelfCell"){
-                    if image.size.width > maxWidth {
-                        maxWidth = image.size.width
-                    }
-                    if image.size.height > maxHeight {
-                        maxHeight = image.size.height
-                    }
-                    images.append(image);
-                }
-            }
-            var totalSize : CGSize
-            let maxSize = CGSize(width: maxWidth, height: maxHeight)
-            if isVertical {
-                totalSize = CGSize(width: maxSize.width, height: maxSize.height * (CGFloat)(cellCount))
-            } else {
-                totalSize = CGSize(width: maxSize.width  * (CGFloat)(cellCount), height:  maxSize.height)
-            }
-            UIGraphicsBeginImageContext(totalSize)
-            for image in images {
-                print("looping images2");
-                let offset = (CGFloat)(images.index(of: image)!)
-                let rect =  AVMakeRect(aspectRatio: image.size, insideRect: isVertical ?
-                    CGRect(x: 0, y: maxSize.height * offset, width: maxSize.width, height: maxSize.height) :
-                    CGRect(x: maxSize.width * offset, y: 0, width: maxSize.width, height: maxSize.height))
-                image.draw(in: rect)
-            }
-            stitchedImages = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-        }
-        return stitchedImages
-    }*/
-    
-    
+    //makes a background for drawing boxes on
     func makeBG(width: Int, height: Int) {
-        var shelfCellWidth = increment*4;
+        let shelfCellWidth = increment*4;
         let cell = UIImage(named: "shelfCell");
         for h in 0..<height {
             for w in 0..<width{
                 let cellImgView = UIImageView(frame: CGRect(x: shelfCellWidth*CGFloat(w), y: shelfCellWidth*CGFloat(h), width: shelfCellWidth, height: shelfCellWidth));
                 cellImgView.image = cell;
-                self.view.addSubview(cellImgView);
+                scrollView.addSubview(cellImgView);
             }
         }
+        //SET CONTENTSIZE OF SCROLLVIEW, OTHERWISE IT WILL NOT SCROLL
+        scrollView.contentSize = CGSize(width: shelfCellWidth*CGFloat(width), height: shelfCellWidth*CGFloat(height));
     }
     
     //MARK: Convenience
