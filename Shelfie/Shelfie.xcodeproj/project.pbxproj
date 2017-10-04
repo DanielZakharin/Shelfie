@@ -11,6 +11,10 @@
 		6A14EC9A1F83DA3F00CF1B96 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC991F83DA3F00CF1B96 /* BoxView.swift */; };
 		6A14EC9C1F84109F00CF1B96 /* BoxPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC9B1F84109F00CF1B96 /* BoxPopoverViewController.swift */; };
 		6A14EC9E1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC9D1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift */; };
+		6A14ECA01F84B82D00CF1B96 /* BoxDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC9F1F84B82D00CF1B96 /* BoxDataItem.swift */; };
+		6A4631821F84C1C700928873 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631811F84C1C700928873 /* LoginViewController.swift */; };
+		6A4631851F84C72C00928873 /* BoxContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631841F84C72C00928873 /* BoxContainerViewController.swift */; };
+		6A4631881F84C82500928873 /* BoxStoreSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631871F84C82500928873 /* BoxStoreSelectTableViewCell.swift */; };
 		6A70BCE51F69181000AB4EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A70BCE41F69181000AB4EE0 /* AppDelegate.swift */; };
 		6A70BCE71F69181000AB4EE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A70BCE61F69181000AB4EE0 /* ViewController.swift */; };
 		6A70BCEA1F69181000AB4EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A70BCE81F69181000AB4EE0 /* Main.storyboard */; };
@@ -43,6 +47,10 @@
 		6A14EC991F83DA3F00CF1B96 /* BoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		6A14EC9B1F84109F00CF1B96 /* BoxPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxPopoverViewController.swift; sourceTree = "<group>"; };
 		6A14EC9D1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxPopOverTableViewCell.swift; sourceTree = "<group>"; };
+		6A14EC9F1F84B82D00CF1B96 /* BoxDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxDataItem.swift; sourceTree = "<group>"; };
+		6A4631811F84C1C700928873 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6A4631841F84C72C00928873 /* BoxContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxContainerViewController.swift; sourceTree = "<group>"; };
+		6A4631871F84C82500928873 /* BoxStoreSelectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxStoreSelectTableViewCell.swift; sourceTree = "<group>"; };
 		6A70BCE11F69181000AB4EE0 /* Shelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A70BCE41F69181000AB4EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A70BCE61F69181000AB4EE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +92,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A4631831F84C6DE00928873 /* BoxView */ = {
+			isa = PBXGroup;
+			children = (
+				6A4631861F84C7AA00928873 /* BoxDrawing */,
+				6A4631841F84C72C00928873 /* BoxContainerViewController.swift */,
+				6A4631871F84C82500928873 /* BoxStoreSelectTableViewCell.swift */,
+			);
+			name = BoxView;
+			sourceTree = "<group>";
+		};
+		6A4631861F84C7AA00928873 /* BoxDrawing */ = {
+			isa = PBXGroup;
+			children = (
+				6A14EC971F7E81AB00CF1B96 /* BoxViewController.swift */,
+				6A14EC991F83DA3F00CF1B96 /* BoxView.swift */,
+				6A14EC9B1F84109F00CF1B96 /* BoxPopoverViewController.swift */,
+				6A14EC9D1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift */,
+			);
+			name = BoxDrawing;
+			sourceTree = "<group>";
+		};
+		6A4631891F8532CD00928873 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6A4631811F84C1C700928873 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		6A70BCD81F69181000AB4EE0 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +144,8 @@
 		6A70BCE31F69181000AB4EE0 /* Shelfie */ = {
 			isa = PBXGroup;
 			children = (
+				6A4631891F8532CD00928873 /* Login */,
+				6A4631831F84C6DE00928873 /* BoxView */,
 				6A70BCE41F69181000AB4EE0 /* AppDelegate.swift */,
 				6A70BCE61F69181000AB4EE0 /* ViewController.swift */,
 				6A70BCE81F69181000AB4EE0 /* Main.storyboard */,
@@ -114,10 +153,7 @@
 				6A70BCF01F69181000AB4EE0 /* LaunchScreen.storyboard */,
 				6A70BCF31F69181000AB4EE0 /* Info.plist */,
 				6A70BCEB1F69181000AB4EE0 /* Shelfie.xcdatamodeld */,
-				6A14EC971F7E81AB00CF1B96 /* BoxViewController.swift */,
-				6A14EC991F83DA3F00CF1B96 /* BoxView.swift */,
-				6A14EC9B1F84109F00CF1B96 /* BoxPopoverViewController.swift */,
-				6A14EC9D1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift */,
+				6A14EC9F1F84B82D00CF1B96 /* BoxDataItem.swift */,
 			);
 			path = Shelfie;
 			sourceTree = "<group>";
@@ -274,12 +310,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A4631821F84C1C700928873 /* LoginViewController.swift in Sources */,
 				6A14EC9C1F84109F00CF1B96 /* BoxPopoverViewController.swift in Sources */,
 				6A14EC9E1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift in Sources */,
 				6A70BCE71F69181000AB4EE0 /* ViewController.swift in Sources */,
 				6A70BCE51F69181000AB4EE0 /* AppDelegate.swift in Sources */,
+				6A4631881F84C82500928873 /* BoxStoreSelectTableViewCell.swift in Sources */,
 				6A14EC9A1F83DA3F00CF1B96 /* BoxView.swift in Sources */,
+				6A4631851F84C72C00928873 /* BoxContainerViewController.swift in Sources */,
 				6A14EC981F7E81AB00CF1B96 /* BoxViewController.swift in Sources */,
+				6A14ECA01F84B82D00CF1B96 /* BoxDataItem.swift in Sources */,
 				6A70BCED1F69181000AB4EE0 /* Shelfie.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class BoxViewController: UIViewController {
     
@@ -19,6 +20,11 @@ class BoxViewController: UIViewController {
         // Do any additional setup after loading the view.
         let panGesture: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan(sender:)));
         self.view.addGestureRecognizer(panGesture);
+        //create a shelf for the background
+        /*let shelfImage = stitchImages(cellCount: 4, isVertical: false);
+        let bgShelf = UIImageView(image: shelfImage);
+        self.view.addSubview(bgShelf);*/
+        makeBG(width: 3, height: 2);
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,15 +34,16 @@ class BoxViewController: UIViewController {
     
     
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
         let destinationCtrl = segue.destination;
         print("segue triggered");
-     }
+    }*/
     
     
     
@@ -120,6 +127,59 @@ class BoxViewController: UIViewController {
     
     func dismisstest(ctrl: BoxPopoverViewController) {
         ctrl.dismiss(animated: false, completion: nil);
+    }
+    
+    //stiches multiple shelfCell images into a single row
+    /*func stitchImages(cellCount: Int, isVertical: Bool) -> UIImage {
+        var stitchedImages : UIImage!
+        var images : [UIImage] = [];
+        if cellCount > 0 {
+            var maxWidth = CGFloat(0), maxHeight = CGFloat(0)
+            for _ in 0..<cellCount {
+                print("looping images");
+                if let image = UIImage(named: "shelfCell"){
+                    if image.size.width > maxWidth {
+                        maxWidth = image.size.width
+                    }
+                    if image.size.height > maxHeight {
+                        maxHeight = image.size.height
+                    }
+                    images.append(image);
+                }
+            }
+            var totalSize : CGSize
+            let maxSize = CGSize(width: maxWidth, height: maxHeight)
+            if isVertical {
+                totalSize = CGSize(width: maxSize.width, height: maxSize.height * (CGFloat)(cellCount))
+            } else {
+                totalSize = CGSize(width: maxSize.width  * (CGFloat)(cellCount), height:  maxSize.height)
+            }
+            UIGraphicsBeginImageContext(totalSize)
+            for image in images {
+                print("looping images2");
+                let offset = (CGFloat)(images.index(of: image)!)
+                let rect =  AVMakeRect(aspectRatio: image.size, insideRect: isVertical ?
+                    CGRect(x: 0, y: maxSize.height * offset, width: maxSize.width, height: maxSize.height) :
+                    CGRect(x: maxSize.width * offset, y: 0, width: maxSize.width, height: maxSize.height))
+                image.draw(in: rect)
+            }
+            stitchedImages = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
+        return stitchedImages
+    }*/
+    
+    
+    func makeBG(width: Int, height: Int) {
+        var shelfCellWidth = increment*4;
+        let cell = UIImage(named: "shelfCell");
+        for h in 0..<height {
+            for w in 0..<width{
+                let cellImgView = UIImageView(frame: CGRect(x: shelfCellWidth*CGFloat(w), y: shelfCellWidth*CGFloat(h), width: shelfCellWidth, height: shelfCellWidth));
+                cellImgView.image = cell;
+                self.view.addSubview(cellImgView);
+            }
+        }
     }
     
     //MARK: Convenience

@@ -41,7 +41,7 @@ class BoxView: UIView {
         initialize();
     }
     
-    //initialize BoxView and add corderDragView to it
+    //initialize BoxView and add cornerDragView to it
     func initialize(){
         self.backgroundColor = UIColor.blue;
         cornerDragView=UIView(frame: CGRect(x: Int(self.frame.width-CGFloat(cornerSize)), y: Int(self.frame.height-CGFloat(cornerSize)), width: cornerSize, height: cornerSize));
@@ -125,13 +125,13 @@ class BoxView: UIView {
             let translation = sender.translation(in: self)                //add to total amount moved
             currentTotalX += translation.x;
             currentTotalY += translation.y;
-            //if total amount moved exceeds threshold, resize view, reset total moved when done
+            //if total amount moved exceeds threshold, move view, reset total moved when done
             if(abs(currentTotalX) > increment){
-                self.frame.origin.x += roundToNearest(x: currentTotalX);
+                self.frame.origin.x += roundToNearest(x: currentTotalX);//+(roundToNearest(x: currentTotalX)/4);
                 currentTotalX = 0;
             }
             if(abs(currentTotalY) > increment){
-                self.frame.origin.y += roundToNearest(x: currentTotalY);
+                self.frame.origin.y += roundToNearest(x: currentTotalY);//+(roundToNearest(x: currentTotalY)/4);
                 currentTotalY = 0;
                 
             }
@@ -147,6 +147,11 @@ class BoxView: UIView {
         //reset translation so it doesn't accumulate
         sender.setTranslation(CGPoint.zero, in: self);
 
+    }
+    
+    //MARK: Methods
+    func viewToData() {
+        
     }
     
     //MARK: Convenience

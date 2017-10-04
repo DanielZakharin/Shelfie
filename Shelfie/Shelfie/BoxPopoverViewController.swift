@@ -40,14 +40,17 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //temporary dataset, change to products / categories later
         return colorsList.count;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //change selected box color to matching color from list
         if(selectedBoxView != nil){
             selectedBoxView!.backgroundColor = colorsList[indexPath.row];
         }
         parentCtrl!.dismisstest(ctrl: self);
+        //need to manually deselect row
         tableView.deselectRow(at: indexPath, animated: false);
     }
     
