@@ -20,6 +20,8 @@
 		6A2E37081F86341F0045F6A9 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E37071F86341F0045F6A9 /* CreateViewController.swift */; };
 		6A2E370B1F8638CF0045F6A9 /* CreateStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E370A1F8638CF0045F6A9 /* CreateStoreViewController.swift */; };
 		6A2E370D1F8638DE0045F6A9 /* CreateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E370C1F8638DE0045F6A9 /* CreateProductViewController.swift */; };
+		6A2E37111F863E900045F6A9 /* BentonSans-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E370F1F863E900045F6A9 /* BentonSans-Black.otf */; };
+		6A2E37121F863E900045F6A9 /* BentonSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E37101F863E900045F6A9 /* BentonSans-Regular.otf */; };
 		6A4631821F84C1C700928873 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631811F84C1C700928873 /* LoginViewController.swift */; };
 		6A4631851F84C72C00928873 /* BoxContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631841F84C72C00928873 /* BoxContainerViewController.swift */; };
 		6A4631881F84C82500928873 /* BoxStoreSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631871F84C82500928873 /* BoxStoreSelectTableViewCell.swift */; };
@@ -64,6 +66,8 @@
 		6A2E37071F86341F0045F6A9 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		6A2E370A1F8638CF0045F6A9 /* CreateStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStoreViewController.swift; sourceTree = "<group>"; };
 		6A2E370C1F8638DE0045F6A9 /* CreateProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProductViewController.swift; sourceTree = "<group>"; };
+		6A2E370F1F863E900045F6A9 /* BentonSans-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BentonSans-Black.otf"; path = "../../../../Downloads/BentonSans Black/BentonSans-Black.otf"; sourceTree = "<group>"; };
+		6A2E37101F863E900045F6A9 /* BentonSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BentonSans-Regular.otf"; path = "../../../../Downloads/BentonSans Regular/BentonSans-Regular.otf"; sourceTree = "<group>"; };
 		6A4631811F84C1C700928873 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6A4631841F84C72C00928873 /* BoxContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxContainerViewController.swift; sourceTree = "<group>"; };
 		6A4631871F84C82500928873 /* BoxStoreSelectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxStoreSelectTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,6 +142,15 @@
 			name = Create;
 			sourceTree = "<group>";
 		};
+		6A2E370E1F863E590045F6A9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6A2E370F1F863E900045F6A9 /* BentonSans-Black.otf */,
+				6A2E37101F863E900045F6A9 /* BentonSans-Regular.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		6A4631831F84C6DE00928873 /* BoxView */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +203,7 @@
 		6A70BCE31F69181000AB4EE0 /* Shelfie */ = {
 			isa = PBXGroup;
 			children = (
+				6A2E370E1F863E590045F6A9 /* Fonts */,
 				6A2E37091F86362D0045F6A9 /* Create */,
 				6A2E36E41F862D0F0045F6A9 /* CoreDataClasses */,
 				6A2E36D91F8629670045F6A9 /* Singletons */,
@@ -332,9 +346,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A2E37121F863E900045F6A9 /* BentonSans-Regular.otf in Resources */,
 				6A70BCF21F69181000AB4EE0 /* LaunchScreen.storyboard in Resources */,
 				6A70BCEF1F69181000AB4EE0 /* Assets.xcassets in Resources */,
 				6A70BCEA1F69181000AB4EE0 /* Main.storyboard in Resources */,
+				6A2E37111F863E900045F6A9 /* BentonSans-Black.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
