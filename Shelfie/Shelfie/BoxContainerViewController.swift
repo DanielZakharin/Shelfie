@@ -18,6 +18,9 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         // Do any additional setup after loading the view.
         storeSelectTable.delegate = self;
         storeSelectTable.dataSource = self;
+        for tabBarItem:UITabBarItem in (self.tabBarController?.tabBar.items)!{
+            tabBarItem.imageInsets = UIEdgeInsetsMake(20, 20, 20, 20);
+        }
     }
 
     override func didReceiveMemoryWarning() {
