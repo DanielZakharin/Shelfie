@@ -54,10 +54,12 @@ class CoreDataSingleton {
         
     };
     
-    func createTestStore(name: String, address: String) {
+    func createTestStore(_ storeWrapper: StoreWrapper) {
         let testStore = NSEntityDescription.insertNewObject(forEntityName: "Store", into: managedObjectContext) as! Store;
-        testStore.storeName = name;
-        testStore.storeAddress = address;
+        testStore.storeName = storeWrapper.storeName;
+        testStore.storeAddress = storeWrapper.storeAddress;
+        testStore.contactPerson = storeWrapper.contactPerson;
+        testStore.contactNumber = storeWrapper.contactNumber;
         saveContext();
     }
     

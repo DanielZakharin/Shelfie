@@ -5,17 +5,17 @@
         <attribute name="logoString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Store" representedClassName=".Store" syncable="YES">
-        <attribute name="contactNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="contactPerson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactNumber" optional="YES" attributeType="String" defaultValueString="No Contact Number Found" syncable="YES"/>
+        <attribute name="contactPerson" optional="YES" attributeType="String" defaultValueString="No Contact Person Found" syncable="YES"/>
         <attribute name="shelfDepth" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="shelfHeight" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="shelfHeight" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="3" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="shelfWidth" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="storeAddress" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="storeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeAddress" optional="YES" attributeType="String" defaultValueString="No address given" syncable="YES"/>
+        <attribute name="storeName" attributeType="String" defaultValueString="Unnamed Store" syncable="YES"/>
         <relationship name="chain" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Chain" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Store" positionX="-254" positionY="-28" width="128" height="163"/>
         <element name="Chain" positionX="-54" positionY="18" width="128" height="73"/>
+        <element name="Store" positionX="-279" positionY="279" width="128" height="163"/>
     </elements>
 </model>

@@ -26,15 +26,15 @@ class TESTViewController: UIViewController {
     }
     
     @IBAction func testBtn1(_ sender: Any) {
-        let currentTime = CACurrentMediaTime();
-        coreSingleton.createTestStore(name: "Kauppa \(currentTime)", address: "CittarinKatu")
+        //let currentTime = CACurrentMediaTime();
+        //coreSingleton.createTestStore(name: "Kauppa \(currentTime)", address: "CittarinKatu")
     }
     
     @IBAction func testBtn2(_ sender: Any) {
         let stores = coreSingleton.getStoresTest();
         var testStr = "here is what i got:\n";
         for jee in stores!{
-            testStr += jee.storeName!+"\n";
+            testStr += "Name:\(jee.storeName!)\nAddress:\(jee.storeAddress!)\nContactPerson:\(jee.contactPerson!)\nContactNumber:\(jee.contactNumber!)\n\n";
         }
         testTxtField.text = testStr;
     }

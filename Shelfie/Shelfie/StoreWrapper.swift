@@ -6,7 +6,8 @@
 //  Copyright © 2017 Group-6. All rights reserved.
 //
 
-import Foundation
+import Foundation;
+import CoreData;
 
 class StoreWrapper {
     var storeName: String?;
@@ -16,6 +17,7 @@ class StoreWrapper {
     var shelfDepth: Int?;
     var contactPerson: String?;
     var contactNumber: String?;
+    var chainID: NSManagedObjectID?;
     
     public init(){
         

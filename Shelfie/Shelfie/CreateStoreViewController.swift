@@ -11,7 +11,15 @@ import CoreData
 
 class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var storeChainPickerView: UIPickerView!
+    //MARK: Data Fields
+    @IBOutlet weak var storeChainPickerView: UIPickerView!;
+    @IBOutlet weak var storeNameField: UITextField!
+    @IBOutlet weak var storeAddressField: UITextField!
+    @IBOutlet weak var storeContactPerson: UITextField!
+    @IBOutlet weak var storeContactNumber: UITextField!
+    
+    
+    
     let arr1 = ["Kesko", "S-ryhmä", "JokuViel"];
     let arr2 = [["CityMarket","SuperMarket"],["Prisma","Sale"],["Test1", "Test2"]];
     override func viewDidLoad() {
@@ -69,11 +77,43 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return 2;
     }
     
-    //MARK: adding entry to coreadata
-    func submitToCoreData() {
-        
+    @IBAction func submitButtonAction(_ sender: UIButton) {
+        addToCoreData();
     }
     
+    
+    //MARK: adding entry to coreadata
+    func addToCoreData() {
+        CoreDataSingleton.sharedInstance.createTestStore(constructNewStoreWrapper())
+    }
+    
+    //collect values from fields
+    func constructNewStoreWrapper() -> StoreWrapper{
+        let newStoreWrapper = StoreWrapper();
+        if(checkTextFieldValid(textField: storeNameField)){
+            newStoreWrapper.storeName = storeNameField.text!;
+        }
+        if(checkTextFieldValid(textField: storeAddressField)){
+            newStoreWrapper.storeAddress = storeAddressField.text!;
+        }
+        if(checkTextFieldValid(textField: storeContactPerson)){
+            newStoreWrapper.contactPerson = storeContactPerson.text!;
+        }
+        if(checkTextFieldValid(textField: storeContactNumber)){
+            newStoreWrapper.contactNumber = storeContactNumber.text!;
+        }
+        //TODO: make pickerview based on actual data, get id from chain object
+        //newStoreWrapper.chainID =
+        return newStoreWrapper;
+    }
+    
+    //TODO: move to common functions singleton
+    func checkTextFieldValid(textField: UITextField) -> Bool{
+        if((textField.text) != nil && !textField.text!.isEmpty){
+            return true;
+        }
+        return false;
+    }
 
     /*
     // MARK: - Navigation
