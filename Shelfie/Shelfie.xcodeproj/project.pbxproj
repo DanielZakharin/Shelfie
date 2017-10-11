@@ -11,7 +11,6 @@
 		6A14EC9A1F83DA3F00CF1B96 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC991F83DA3F00CF1B96 /* BoxView.swift */; };
 		6A14EC9C1F84109F00CF1B96 /* BoxPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC9B1F84109F00CF1B96 /* BoxPopoverViewController.swift */; };
 		6A14EC9E1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC9D1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift */; };
-		6A14ECA01F84B82D00CF1B96 /* BoxDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC9F1F84B82D00CF1B96 /* BoxDataItem.swift */; };
 		6A2E36DB1F8629840045F6A9 /* CoreDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E36DA1F8629840045F6A9 /* CoreDataSingleton.swift */; };
 		6A2E37031F8630370045F6A9 /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E36FF1F8630370045F6A9 /* Store+CoreDataClass.swift */; };
 		6A2E37041F8630370045F6A9 /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E37001F8630370045F6A9 /* Store+CoreDataProperties.swift */; };
@@ -22,11 +21,12 @@
 		6A2E370D1F8638DE0045F6A9 /* CreateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E370C1F8638DE0045F6A9 /* CreateProductViewController.swift */; };
 		6A2E37111F863E900045F6A9 /* BentonSans-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E370F1F863E900045F6A9 /* BentonSans-Black.otf */; };
 		6A2E37121F863E900045F6A9 /* BentonSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E37101F863E900045F6A9 /* BentonSans-Regular.otf */; };
+		6A38BCD21F8DFE0100233A3E /* TESTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A38BCD11F8DFE0100233A3E /* TESTViewController.swift */; };
+		6A38BCD51F8E2A7500233A3E /* StoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A38BCD41F8E2A7500233A3E /* StoreWrapper.swift */; };
 		6A4631821F84C1C700928873 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631811F84C1C700928873 /* LoginViewController.swift */; };
 		6A4631851F84C72C00928873 /* BoxContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631841F84C72C00928873 /* BoxContainerViewController.swift */; };
 		6A4631881F84C82500928873 /* BoxStoreSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631871F84C82500928873 /* BoxStoreSelectTableViewCell.swift */; };
 		6A70BCE51F69181000AB4EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A70BCE41F69181000AB4EE0 /* AppDelegate.swift */; };
-		6A70BCE71F69181000AB4EE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A70BCE61F69181000AB4EE0 /* ViewController.swift */; };
 		6A70BCEA1F69181000AB4EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A70BCE81F69181000AB4EE0 /* Main.storyboard */; };
 		6A70BCED1F69181000AB4EE0 /* Shelfie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A70BCEB1F69181000AB4EE0 /* Shelfie.xcdatamodeld */; };
 		6A70BCEF1F69181000AB4EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A70BCEE1F69181000AB4EE0 /* Assets.xcassets */; };
@@ -57,7 +57,6 @@
 		6A14EC991F83DA3F00CF1B96 /* BoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		6A14EC9B1F84109F00CF1B96 /* BoxPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxPopoverViewController.swift; sourceTree = "<group>"; };
 		6A14EC9D1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxPopOverTableViewCell.swift; sourceTree = "<group>"; };
-		6A14EC9F1F84B82D00CF1B96 /* BoxDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxDataItem.swift; sourceTree = "<group>"; };
 		6A2E36DA1F8629840045F6A9 /* CoreDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSingleton.swift; sourceTree = "<group>"; };
 		6A2E36FF1F8630370045F6A9 /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6A2E37001F8630370045F6A9 /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -68,12 +67,13 @@
 		6A2E370C1F8638DE0045F6A9 /* CreateProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProductViewController.swift; sourceTree = "<group>"; };
 		6A2E370F1F863E900045F6A9 /* BentonSans-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BentonSans-Black.otf"; path = "../../../../Downloads/BentonSans Black/BentonSans-Black.otf"; sourceTree = "<group>"; };
 		6A2E37101F863E900045F6A9 /* BentonSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BentonSans-Regular.otf"; path = "../../../../Downloads/BentonSans Regular/BentonSans-Regular.otf"; sourceTree = "<group>"; };
+		6A38BCD11F8DFE0100233A3E /* TESTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TESTViewController.swift; sourceTree = "<group>"; };
+		6A38BCD41F8E2A7500233A3E /* StoreWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreWrapper.swift; sourceTree = "<group>"; };
 		6A4631811F84C1C700928873 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6A4631841F84C72C00928873 /* BoxContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxContainerViewController.swift; sourceTree = "<group>"; };
 		6A4631871F84C82500928873 /* BoxStoreSelectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxStoreSelectTableViewCell.swift; sourceTree = "<group>"; };
 		6A70BCE11F69181000AB4EE0 /* Shelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A70BCE41F69181000AB4EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6A70BCE61F69181000AB4EE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6A70BCE91F69181000AB4EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6A70BCEC1F69181000AB4EE0 /* Shelfie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shelfie.xcdatamodel; sourceTree = "<group>"; };
 		6A70BCEE1F69181000AB4EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -151,6 +151,22 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		6A38BCD01F8DFDF300233A3E /* TEST */ = {
+			isa = PBXGroup;
+			children = (
+				6A38BCD11F8DFE0100233A3E /* TESTViewController.swift */,
+			);
+			name = TEST;
+			sourceTree = "<group>";
+		};
+		6A38BCD31F8E2A5A00233A3E /* WrapperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				6A38BCD41F8E2A7500233A3E /* StoreWrapper.swift */,
+			);
+			name = WrapperClasses;
+			sourceTree = "<group>";
+		};
 		6A4631831F84C6DE00928873 /* BoxView */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +219,8 @@
 		6A70BCE31F69181000AB4EE0 /* Shelfie */ = {
 			isa = PBXGroup;
 			children = (
+				6A38BCD31F8E2A5A00233A3E /* WrapperClasses */,
+				6A38BCD01F8DFDF300233A3E /* TEST */,
 				6A2E370E1F863E590045F6A9 /* Fonts */,
 				6A2E37091F86362D0045F6A9 /* Create */,
 				6A2E36E41F862D0F0045F6A9 /* CoreDataClasses */,
@@ -210,13 +228,11 @@
 				6A4631891F8532CD00928873 /* Login */,
 				6A4631831F84C6DE00928873 /* BoxView */,
 				6A70BCE41F69181000AB4EE0 /* AppDelegate.swift */,
-				6A70BCE61F69181000AB4EE0 /* ViewController.swift */,
 				6A70BCE81F69181000AB4EE0 /* Main.storyboard */,
 				6A70BCEE1F69181000AB4EE0 /* Assets.xcassets */,
 				6A70BCF01F69181000AB4EE0 /* LaunchScreen.storyboard */,
 				6A70BCF31F69181000AB4EE0 /* Info.plist */,
 				6A70BCEB1F69181000AB4EE0 /* Shelfie.xcdatamodeld */,
-				6A14EC9F1F84B82D00CF1B96 /* BoxDataItem.swift */,
 			);
 			path = Shelfie;
 			sourceTree = "<group>";
@@ -380,19 +396,19 @@
 				6A14EC9E1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift in Sources */,
 				6A2E37081F86341F0045F6A9 /* CreateViewController.swift in Sources */,
 				6A2E370B1F8638CF0045F6A9 /* CreateStoreViewController.swift in Sources */,
-				6A70BCE71F69181000AB4EE0 /* ViewController.swift in Sources */,
 				6A2E370D1F8638DE0045F6A9 /* CreateProductViewController.swift in Sources */,
 				6A2E36DB1F8629840045F6A9 /* CoreDataSingleton.swift in Sources */,
 				6A2E37051F8630370045F6A9 /* Chain+CoreDataClass.swift in Sources */,
+				6A38BCD51F8E2A7500233A3E /* StoreWrapper.swift in Sources */,
 				6A70BCE51F69181000AB4EE0 /* AppDelegate.swift in Sources */,
 				6A2E37061F8630370045F6A9 /* Chain+CoreDataProperties.swift in Sources */,
 				6A4631881F84C82500928873 /* BoxStoreSelectTableViewCell.swift in Sources */,
 				6A14EC9A1F83DA3F00CF1B96 /* BoxView.swift in Sources */,
 				6A4631851F84C72C00928873 /* BoxContainerViewController.swift in Sources */,
 				6A14EC981F7E81AB00CF1B96 /* BoxViewController.swift in Sources */,
-				6A14ECA01F84B82D00CF1B96 /* BoxDataItem.swift in Sources */,
 				6A2E37041F8630370045F6A9 /* Store+CoreDataProperties.swift in Sources */,
 				6A2E37031F8630370045F6A9 /* Store+CoreDataClass.swift in Sources */,
+				6A38BCD21F8DFE0100233A3E /* TESTViewController.swift in Sources */,
 				6A70BCED1F69181000AB4EE0 /* Shelfie.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

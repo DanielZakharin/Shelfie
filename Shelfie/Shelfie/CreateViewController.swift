@@ -8,70 +8,89 @@
 
 import UIKit
 
-class CreateViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateViewController: UIViewController {
     
+    @IBOutlet weak var storeProductSegment: UISegmentedControl!
     @IBOutlet weak var creationContainer: UIView!
-    @IBOutlet weak var pickerView: UIPickerView!
-    let pickerData = ["Store", "Product"];
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        pickerView.delegate = self;
-        pickerView.dataSource = self;
+        switchView(i: 0);
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: Delegate Methods
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1;
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count;
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row];
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switchView(i: row);
-    }
     
     //MARK: Methods
     func switchView(i:Int) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
         //removes all subviews from container
-        creationContainer.subviews.forEach { $0.removeFromSuperview() };
+        var viewCtrl: UIViewController? = nil;
         if(i == 0){
             //change to store creation view
-            let viewCtrl = storyboard.instantiateViewController(withIdentifier: "CreateStoreView");
-            self.addChildViewController(viewCtrl);
-            creationContainer.addSubview(viewCtrl.view);
+            viewCtrl = storyboard.instantiateViewController(withIdentifier: "CreateStoreView");
+            self.addChildViewController(viewCtrl!);
+            //creationContainer.addSubview(viewCtrl.view);
         }else if (i == 1){
             //change to product creation view
-            let viewCtrl = storyboard.instantiateViewController(withIdentifier: "CreateProductView");
-            self.addChildViewController(viewCtrl);
-            creationContainer.addSubview(viewCtrl.view);
+            viewCtrl = storyboard.instantiateViewController(withIdentifier: "CreateProductView");
+            self.addChildViewController(viewCtrl!);
+            //creationContainer.addSubview(viewCtrl.view);
         }else {
             
         }
+        addViewWithAnimation(viewNew: viewCtrl!.view);
+        
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    
+    @IBAction func storeProductSwitch(_ sender: UISegmentedControl) {
+        switchView(i: sender.selectedSegmentIndex);
+        
     }
-    */
-
+    
+    func addViewWithAnimation(viewNew: UIView) {
+        if (self.creationContainer.subviews.count > 0){
+            let viewInitial = self.creationContainer.subviews[0];
+            if viewInitial != nil{
+                // Fade out to set the text
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                    viewInitial.alpha = 0.0
+                }, completion: {
+                    (finished: Bool) -> Void in
+                    //When fully faded, remove the view
+                    viewInitial.removeFromSuperview();
+                });
+            }
+            
+        }
+        //add new view, set view to invisible
+        self.creationContainer.addSubview(viewNew);
+        viewNew.alpha = 0;
+        // Fade in new View
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            viewNew.alpha = 1.0
+        }, completion: nil);
+        
+    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }
+
+
