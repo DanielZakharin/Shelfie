@@ -15,7 +15,7 @@
         <attribute name="storeName" attributeType="String" defaultValueString="Unnamed Store" syncable="YES"/>
         <relationship name="storeChain" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StoreChain" inverseName="stores" inverseEntity="StoreChain" syncable="YES"/>
     </entity>
-    <entity name="StoreChain" representedClassName="StoreChain" syncable="YES" codeGenerationType="class">
+    <entity name="StoreChain" representedClassName=".StoreChain" syncable="YES">
         <attribute name="logoString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storeChainName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="chain" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chain" inverseName="storeChains" inverseEntity="Chain" syncable="YES"/>

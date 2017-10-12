@@ -1,5 +1,5 @@
 //
-//  Store+CoreDataClass.swift
+//  StoreChain+CoreDataProperties.swift
 //  Shelfie
 //
 //  Created by iosdev on 12.10.2017.
@@ -17,6 +17,15 @@ import CoreData
  #######################################################
  */
 
-public class Store: NSManagedObject {
+extension StoreChain {
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<StoreChain> {
+        return NSFetchRequest<StoreChain>(entityName: "StoreChain");
+    }
+
+    @NSManaged public var storeChainName: String?
+    @NSManaged public var logoString: String?
+    @NSManaged public var stores: Store?
+    @NSManaged public var chain: Chain?
 
 }

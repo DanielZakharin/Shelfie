@@ -13,6 +13,7 @@ class TESTViewController: UIViewController {
     
     let coreSingleton = CoreDataSingleton.sharedInstance;
     @IBOutlet weak var testTxtField: UITextView!
+    @IBOutlet weak var testTxtField2: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,14 +32,21 @@ class TESTViewController: UIViewController {
     }
     
     @IBAction func testBtn2(_ sender: Any) {
-        let stores = coreSingleton.getStoresTest();
+        let stores = coreSingleton.fetchEntitiesFromCoreData("Store") as! [Store];
         var testStr = "here is what i got:\n";
-        for jee in stores!{
+        for jee in stores{
             testStr += "Name:\(jee.storeName!)\nAddress:\(jee.storeAddress!)\nContactPerson:\(jee.contactPerson!)\nContactNumber:\(jee.contactNumber!)\n\n";
         }
         testTxtField.text = testStr;
     }
     
+    @IBAction func testBtn3(_ sender: UIButton) {
+        let chains = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Chain") as! [Chain];
+        testTxtField2.text! = "";
+        for chain in chains{
+            testTxtField2.text! += "Chain name: \(chain.chainName!)\nStoreChains: \(chain.storeChains!.count)\n\n"
+        }
+    }
     
     
     /*

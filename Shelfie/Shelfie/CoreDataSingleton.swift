@@ -13,6 +13,7 @@ class CoreDataSingleton {
     var persistentContainer : NSPersistentContainer?;
     var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType);
     
+    
     static let sharedInstance = CoreDataSingleton();
     
     private init(){
@@ -33,10 +34,9 @@ class CoreDataSingleton {
             fatalError("Error initializing mom from: \(modelURL)")
         }
         
-        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
+        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom);
         
-        
-        managedObjectContext.persistentStoreCoordinator = psc
+        managedObjectContext.persistentStoreCoordinator = psc;
         
         let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
         queue.async {
@@ -51,28 +51,41 @@ class CoreDataSingleton {
                 fatalError("Error migrating store: \(error)")
             }
         }
-        
+        //dummy fetch to activate coredata and avoid crashing
+        fetchEntitiesFromCoreData("Chain");
     };
     
-    func createTestStore(_ storeWrapper: StoreWrapper) {
+    //MARK: Adding entities to coredata
+    func createStore(_ fromStoreWrapper: StoreWrapper) {
         let testStore = NSEntityDescription.insertNewObject(forEntityName: "Store", into: managedObjectContext) as! Store;
-        testStore.storeName = storeWrapper.storeName;
-        testStore.storeAddress = storeWrapper.storeAddress;
-        testStore.contactPerson = storeWrapper.contactPerson;
-        testStore.contactNumber = storeWrapper.contactNumber;
+        testStore.storeName = fromStoreWrapper.storeName;
+        testStore.storeAddress = fromStoreWrapper.storeAddress;
+        testStore.contactPerson = fromStoreWrapper.contactPerson;
+        testStore.contactNumber = fromStoreWrapper.contactNumber;
         saveContext();
     }
     
-    func getStoresTest() -> [Store]?{
-        let employeesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Store");
+    func createStoreChain(_ withName: String){
+        let newStoreChain = NSEntityDescription.insertNewObject(forEntityName: "StoreChain", into: managedObjectContext) as! StoreChain;
+        newStoreChain.storeChainName = withName;
+        saveContext();
+    }
+    
+    func createChain(_ withName: String){
+        let newChain = NSEntityDescription.insertNewObject(forEntityName: "Chain", into: managedObjectContext) as! Chain;
+        newChain.chainName = withName;
+        saveContext();
+    }
+    
+    func fetchEntitiesFromCoreData(_ withEntityName: String) -> [NSManagedObject]{
+        let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: withEntityName);
         do {
-            let fetchedEmployees = try managedObjectContext.fetch(employeesFetch) as! [Store]
-            return fetchedEmployees;
+            let fetchrResult = try managedObjectContext.fetch(fetchrequest) as! [NSManagedObject];
+            return fetchrResult;
         } catch {
             fatalError("Failed to fetch employees: \(error)")
         }
     }
-    
     func saveContext(){
         do{
             try managedObjectContext.save()

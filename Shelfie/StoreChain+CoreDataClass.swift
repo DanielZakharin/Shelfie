@@ -1,5 +1,5 @@
 //
-//  Store+CoreDataClass.swift
+//  StoreChain+CoreDataClass.swift
 //  Shelfie
 //
 //  Created by iosdev on 12.10.2017.
@@ -17,6 +17,6 @@ import CoreData
  #######################################################
  */
 
-public class Store: NSManagedObject {
+public class StoreChain: NSManagedObject {
 
 }
