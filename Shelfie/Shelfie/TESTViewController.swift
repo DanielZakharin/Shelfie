@@ -27,15 +27,17 @@ class TESTViewController: UIViewController {
     }
     
     @IBAction func testBtn1(_ sender: Any) {
-        //let currentTime = CACurrentMediaTime();
-        //coreSingleton.createTestStore(name: "Kauppa \(currentTime)", address: "CittarinKatu")
+        coreSingleton.deleteAllData(entity: "Chain");
+        coreSingleton.deleteAllData(entity: "StoreChain");
+        coreSingleton.deleteAllData(entity: "Store");
+        
     }
     
     @IBAction func testBtn2(_ sender: Any) {
         let stores = coreSingleton.fetchEntitiesFromCoreData("Store") as! [Store];
         var testStr = "here is what i got:\n";
         for jee in stores{
-            testStr += "Name:\(jee.storeName!)\nAddress:\(jee.storeAddress!)\nContactPerson:\(jee.contactPerson!)\nContactNumber:\(jee.contactNumber!)\n\n";
+            testStr += "Name:\(jee.storeName!)\nAddress:\(jee.storeAddress!)\nContactPerson:\(jee.contactPerson!)\nContactNumber:\(jee.contactNumber!)\nStoreChain:\(jee.storeChain?.storeChainName)\n\n";
         }
         testTxtField.text = testStr;
     }

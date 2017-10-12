@@ -62,19 +62,23 @@ class CoreDataSingleton {
         testStore.storeAddress = fromStoreWrapper.storeAddress;
         testStore.contactPerson = fromStoreWrapper.contactPerson;
         testStore.contactNumber = fromStoreWrapper.contactNumber;
+        testStore.storeChain = fromStoreWrapper.storeChain;
         saveContext();
     }
     
-    func createStoreChain(_ withName: String){
+    func createStoreChain(_ withName: String, inChain: Chain?){
         let newStoreChain = NSEntityDescription.insertNewObject(forEntityName: "StoreChain", into: managedObjectContext) as! StoreChain;
         newStoreChain.storeChainName = withName;
+        newStoreChain.chain = inChain;
+        inChain?.addToStoreChains(newStoreChain);
         saveContext();
     }
     
-    func createChain(_ withName: String){
+    func createChain(_ withName: String, completion: (() -> Void)?){
         let newChain = NSEntityDescription.insertNewObject(forEntityName: "Chain", into: managedObjectContext) as! Chain;
         newChain.chainName = withName;
         saveContext();
+        completion?();
     }
     
     func fetchEntitiesFromCoreData(_ withEntityName: String) -> [NSManagedObject]{
@@ -91,6 +95,25 @@ class CoreDataSingleton {
             try managedObjectContext.save()
         } catch {
             fatalError("Failure to save context: \(error)")
+        }
+    }
+    
+    //MARK: DANGER ZONE
+    func deleteAllData(entity: String)
+    {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do
+        {
+            let results = try managedObjectContext.fetch(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                managedObjectContext.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
         }
     }
 }

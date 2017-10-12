@@ -19,10 +19,10 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var storeContactNumber: UITextField!
     
     
-    
+    //array containing all Chains, when values change, update all components of storechainpickerview, since  section 1 also depends on contents of section 0
+    //realoding of pickerview that is inside alert is not necessary, as it is remade each time the alert is presented
     var arr1 : [Chain] = [] {
         didSet {
-            print("chain value changed to:\(arr1)");
             if(arr1.count != 0){
                 let sc = arr1[storeChainPickerView.selectedRow(inComponent: 0)].storeChains;
                 arr2 = Array(sc!) as! [StoreChain];
@@ -38,12 +38,13 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        arr1 = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Chain") as! [Chain];
+        //first fetch of chains
+        fetchArrData();
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //arr1 needs to be loaded twice for some reason, set delegate only here, when the values are actually present
-        arr1 = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Chain") as! [Chain];
+        fetchArrData();
         storeChainPickerView.delegate = self;
         storeChainPickerView.dataSource = self;
     }
@@ -55,13 +56,15 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     
     //MARK: delegate methods
+    //all methods first check for which pickerview is selected, then if the pickerview is storechain... then check which section
+    //not much happens when selecting values in section 2 of storepicker, it is mostly used for reading when StoreWrapper is later constructed
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if(pickerView == storeChainPickerView){
             switch component {
             case 0:
                 return arr1.count;
             case 1:
-                return arr1[0].storeChains!.count;
+                return arr2.count;
             default:
                 return 0;
             }
@@ -88,11 +91,10 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if(pickerView == storeChainPickerView){
             switch component {
             case 0:
-                //update store being created
-                pickerView.reloadComponent(1);
+                arr2 = Array(arr1[row].storeChains!) as! [StoreChain];
+                storeChainPickerView.reloadComponent(1);
                 break;
             case 1:
-                //update store being created
                 break;
             default:
                 break;
@@ -109,8 +111,10 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return 1;
     }
     
+    
+    //MARK: Button actions
     @IBAction func submitButtonAction(_ sender: UIButton) {
-        addToCoreData();
+        addStoreToCoreData();
     }
     @IBAction func createChainAction(_ sender: UIButton) {
         showChainCreationDialog();
@@ -121,8 +125,8 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     
     //MARK: adding entry to coreadata
-    func addToCoreData() {
-        CoreDataSingleton.sharedInstance.createStore(constructNewStoreWrapper())
+    func addStoreToCoreData() {
+        CoreDataSingleton.sharedInstance.createStore(constructNewStoreWrapper());
     }
     
     //collect values from fields
@@ -140,45 +144,13 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if(checkTextFieldValid(textField: storeContactNumber)){
             newStoreWrapper.contactNumber = storeContactNumber.text!;
         }
-        //TODO: make pickerview based on actual data, get id from chain object
-        //newStoreWrapper.chainID =
+        newStoreWrapper.storeChain = arr2[storeChainPickerView.selectedRow(inComponent: 1)];
         return newStoreWrapper;
     }
     
     //MARK: Dialogs
-    func showStoreChainCreationDialog() {/*
-         //Creating UIAlertController and
-         //Setting title and message for the alert dialog
-         let alertController = UIAlertController(title: "Create a new Store Chain", message: "Enter a name for the store chain", preferredStyle: .alert);
-         alertController.isModalInPopover = true;
-         
-         //the confirm action taking the inputs
-         let confirmAction = UIAlertAction(title: "Create", style: .default) { (_) in
-         //Handle creating and submitting to coredata here
-         if let name = alertController.textFields?[0].text {
-         //CoreDataSingleton.sharedInstance.createStoreChain(name);
-         }
-         }
-         
-         //the cancel action doing nothing
-         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-         
-         //adding textfields to our dialog box
-         alertController.addTextField { (textField) in
-         textField.placeholder = "Enter Store Chain Name"
-         }
-         
-         //add a pickerview to the alert
-         let pickerFrame: CGRect = CGRect(x: 17, y: 52, width: 270, height: 100);// CGRectMake(left), top, width, height) - left and top are like margins
-         let picker: UIPickerView = UIPickerView(frame: pickerFrame);
-         alertController.view.addSubview(picker);
-         
-         //adding the action to dialogbox
-         alertController.addAction(confirmAction)
-         alertController.addAction(cancelAction)
-         
-         //finally presenting the dialog box
-         self.present(alertController, animated: true, completion: nil)*/
+    
+    func showStoreChainCreationDialog() {
         let vc = UIViewController()
         vc.preferredContentSize = CGSize(width: 250,height: 300)
         let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
@@ -190,7 +162,12 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
             textField.placeholder = "Enter Store Chain Name"
         }
         alert.setValue(vc, forKey: "contentViewController");
-        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Create", style: .default){(_) in
+            if let name  = alert.textFields?[0].text {
+                CoreDataSingleton.sharedInstance.createStoreChain(name, inChain: self.arr1[pickerView.selectedRow(inComponent: 0)]);
+                self.realodComponent1();
+            }
+        });
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
@@ -204,7 +181,9 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         let confirmAction = UIAlertAction(title: "Create", style: .default) { (_) in
             //Handle creating and submitting to coredata here
             if let name = alertController.textFields?[0].text {
-                CoreDataSingleton.sharedInstance.createChain(name);
+                CoreDataSingleton.sharedInstance.createChain(name) {() in
+                    self.fetchArrData();
+                };
             }
         }
         
@@ -233,6 +212,17 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
         return false;
     }
+    
+    func fetchArrData(){
+        arr1 = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Chain") as! [Chain];
+    }
+    
+    func realodComponent1(){
+        let sc = arr1[storeChainPickerView.selectedRow(inComponent: 0)].storeChains;
+        arr2 = Array(sc!) as! [StoreChain];
+        storeChainPickerView.reloadComponent(1);
+    }
+    
     
     /*
      // MARK: - Navigation

@@ -17,7 +17,7 @@ class StoreWrapper {
     var shelfDepth: Int?;
     var contactPerson: String?;
     var contactNumber: String?;
-    var chainID: NSManagedObjectID?;
+    var storeChain: StoreChain?;
     
     public init(){
         
