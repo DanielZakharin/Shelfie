@@ -80,7 +80,37 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func submitButtonAction(_ sender: UIButton) {
         addToCoreData();
     }
+    @IBAction func createChainAction(_ sender: UIButton) {
+        showStoreChainCreationDialog();
+    }
     
+    func showStoreChainCreationDialog() {
+        //Creating UIAlertController and
+        //Setting title and message for the alert dialog
+        let alertController = UIAlertController(title: "Create a new Chain", message: "Enter name for the chain", preferredStyle: .alert)
+        
+        //the confirm action taking the inputs
+        let confirmAction = UIAlertAction(title: "Create", style: .default) { (_) in
+            //Handle creating and submitting to coredata here
+            
+            
+        }
+        
+        //the cancel action doing nothing
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        //adding textfields to our dialog box
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter Chain Name"
+        }
+        
+        //adding the action to dialogbox
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        //finally presenting the dialog box
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     //MARK: adding entry to coreadata
     func addToCoreData() {

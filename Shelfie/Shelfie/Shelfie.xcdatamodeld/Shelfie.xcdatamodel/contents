@@ -3,6 +3,7 @@
     <entity name="Chain" representedClassName=".Chain" syncable="YES">
         <attribute name="chainName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logoString" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="storeChains" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoreChain" inverseName="chain" inverseEntity="StoreChain" syncable="YES"/>
     </entity>
     <entity name="Store" representedClassName=".Store" syncable="YES">
         <attribute name="contactNumber" optional="YES" attributeType="String" defaultValueString="No Contact Number Found" syncable="YES"/>
@@ -12,10 +13,17 @@
         <attribute name="shelfWidth" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="storeAddress" optional="YES" attributeType="String" defaultValueString="No address given" syncable="YES"/>
         <attribute name="storeName" attributeType="String" defaultValueString="Unnamed Store" syncable="YES"/>
-        <relationship name="chain" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Chain" syncable="YES"/>
+        <relationship name="storeChain" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StoreChain" inverseName="stores" inverseEntity="StoreChain" syncable="YES"/>
+    </entity>
+    <entity name="StoreChain" representedClassName="StoreChain" syncable="YES" codeGenerationType="class">
+        <attribute name="logoString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeChainName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chain" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chain" inverseName="storeChains" inverseEntity="Chain" syncable="YES"/>
+        <relationship name="stores" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="storeChain" inverseEntity="Store" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chain" positionX="-54" positionY="18" width="128" height="73"/>
+        <element name="Chain" positionX="-54" positionY="18" width="128" height="28"/>
         <element name="Store" positionX="-279" positionY="279" width="128" height="163"/>
+        <element name="StoreChain" positionX="-162" positionY="216" width="128" height="105"/>
     </elements>
 </model>
