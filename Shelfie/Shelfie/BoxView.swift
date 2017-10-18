@@ -43,7 +43,7 @@ class BoxView: UIView {
     
     //initialize BoxView and add cornerDragView to it
     func initialize(){
-        self.backgroundColor = UIColor.blue;
+        self.backgroundColor = UIColor(patternImage: UIImage(named: "roll1")!);
         cornerDragView=UIView(frame: CGRect(x: Int(self.frame.width-CGFloat(cornerSize)), y: Int(self.frame.height-CGFloat(cornerSize)), width: cornerSize, height: cornerSize));
         cornerDragView.backgroundColor = UIColor.cyan;
         self.addSubview(cornerDragView);

@@ -149,7 +149,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     //MARK: Methods
-    //shows popover view for picking color
+    //shows popover view for picking what the box represents
     func showPopOver(sender: BoxView) {
         //init a view from the storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -165,7 +165,8 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         }
     }
     
-    func dismisstest(ctrl: BoxPopoverViewController) {
+    //dismisses the tableview popover
+    func dismissPopOver(ctrl: BoxPopoverViewController) {
         ctrl.dismiss(animated: false, completion: nil);
     }
     
@@ -183,6 +184,8 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         //SET CONTENTSIZE OF SCROLLVIEW, OTHERWISE IT WILL NOT SCROLL
         scrollView.contentSize = CGSize(width: shelfCellWidth*CGFloat(width), height: shelfCellWidth*CGFloat(height));
     }
+    
+    
     
     //MARK: Convenience
     //round a float to nearest number defined by increment

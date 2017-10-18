@@ -19,6 +19,8 @@ class Tools{
         return false;
     }
     
+    static let categoryImageDict : [Int:UIImage] = [0:UIImage(named: "iconChart")!,1:UIImage(named: "roll1")!,2:UIImage(named: "roll2")!];
+    
     private init(){
         
     }

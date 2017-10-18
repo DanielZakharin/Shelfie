@@ -92,8 +92,10 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if(pickerView == storeChainPickerView){
             switch component {
             case 0:
-                arr2 = Array(arr1[row].storeChains!) as! [StoreChain];
-                storeChainPickerView.reloadComponent(1);
+                if(arr1.count > 0){
+                    arr2 = Array(arr1[row].storeChains!) as! [StoreChain];
+                    storeChainPickerView.reloadComponent(1);
+                }
                 break;
             case 1:
                 break;
@@ -134,12 +136,12 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func constructNewStoreWrapper() -> StoreWrapper{
         let newStoreWrapper = StoreWrapper();
         /*var checkBool = false;
-        for txtFld in textFieldArr {
-            if(!Tools.checkTextFieldValid(textField: txtFld)){
-                break;
-            }
-            checkBool = true;
-        }*/
+         for txtFld in textFieldArr {
+         if(!Tools.checkTextFieldValid(textField: txtFld)){
+         break;
+         }
+         checkBool = true;
+         }*/
         if(Tools.checkTextFieldValid(textField: storeNameField)){
             newStoreWrapper.storeName = storeNameField.text!;
         }

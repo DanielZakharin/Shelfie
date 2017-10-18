@@ -10,16 +10,21 @@ import UIKit
 
 class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    let colorsList = [UIColor.red, UIColor.blue, UIColor.green, UIColor.brown];
     var selectedBoxView : BoxView?;
     var parentCtrl : BoxViewController?;
     @IBOutlet weak var popoverTable: UITableView!
     @IBOutlet weak var delBtn: UIButton!
+    var productsArr : [Product] = [];
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         popoverTable.delegate = self;
         popoverTable.dataSource = self;
+        fetchProducts();
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchProducts();
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,23 +38,25 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         // Configure the cell...
-        cell.titleLabel.text = "Color \(indexPath.row)";
-        cell.backgroundColor = colorsList[indexPath.row];
+        cell.titleLabel.text = productsArr[indexPath.row].name;
+        let b = productsArr[indexPath.row].brand;
+        cell.subtitleLabel.text = b?.name;
         return cell;
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //temporary dataset, change to products / categories later
-        return colorsList.count;
+        return productsArr.count;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //change selected box color to matching color from list
         if(selectedBoxView != nil){
-            selectedBoxView!.backgroundColor = colorsList[indexPath.row];
+            let bg = UIColor(patternImage:Tools.categoryImageDict[Int(productsArr[indexPath.row].category)]!);
+            selectedBoxView!.backgroundColor = bg;
         }
-        parentCtrl!.dismisstest(ctrl: self);
+        parentCtrl!.dismissPopOver(ctrl: self);
         //need to manually deselect row
         tableView.deselectRow(at: indexPath, animated: false);
     }
@@ -59,8 +66,14 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         //delete the view from here
         selectedBoxView!.removeFromSuperview();
         selectedBoxView = nil;
-        parentCtrl?.dismisstest(ctrl: self);
+        parentCtrl?.dismissPopOver(ctrl: self);
     }
+    
+    func fetchProducts(){
+        productsArr = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Product") as! [Product];
+        popoverTable.reloadData();
+    }
+    
     /*
      // MARK: - Navigation
      

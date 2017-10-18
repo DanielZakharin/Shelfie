@@ -9,7 +9,7 @@
 import UIKit
 
 /*
- Container in which boxes get drawn
+ View Where BoxViewController is a subview, also has store selection
  */
 
 class BoxContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
