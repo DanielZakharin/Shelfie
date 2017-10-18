@@ -8,9 +8,14 @@
 
 import UIKit
 
+/*
+ Container in which boxes get drawn
+ */
+
 class BoxContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var storeSelectTable: UITableView!
+    var storesArray:[Store] = [];
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +26,15 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         for tabBarItem:UITabBarItem in (self.tabBarController?.tabBar.items)!{
             tabBarItem.imageInsets = UIEdgeInsetsMake(20, 20, 20, 20);
         }
+        storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
+        storeSelectTable.reloadData();
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
+        storeSelectTable.reloadData();
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,14 +46,18 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         // Configure the cell...
-        cell.labelUpper.text = "Store Name Here";
-        cell.labelLower.text = "Store Info Here";
+        cell.labelUpper.text = storesArray[indexPath.row].storeName;
+        var label2Text = "Unknown Store Chain";
+        if let storeChainForRow = storesArray[indexPath.row].storeChain {
+            label2Text = storeChainForRow.storeChainName!;
+        }
+        cell.labelLower.text = label2Text;
         
         return cell;
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4;
+        return storesArray.count;
     }
 
     /*

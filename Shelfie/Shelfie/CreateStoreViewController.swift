@@ -17,6 +17,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var storeAddressField: UITextField!
     @IBOutlet weak var storeContactPerson: UITextField!
     @IBOutlet weak var storeContactNumber: UITextField!
+    //var textFieldArr : [UITextField] = [];
     
     
     //array containing all Chains, when values change, update all components of storechainpickerview, since  section 1 also depends on contents of section 0
@@ -132,16 +133,23 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //collect values from fields
     func constructNewStoreWrapper() -> StoreWrapper{
         let newStoreWrapper = StoreWrapper();
-        if(checkTextFieldValid(textField: storeNameField)){
+        /*var checkBool = false;
+        for txtFld in textFieldArr {
+            if(!Tools.checkTextFieldValid(textField: txtFld)){
+                break;
+            }
+            checkBool = true;
+        }*/
+        if(Tools.checkTextFieldValid(textField: storeNameField)){
             newStoreWrapper.storeName = storeNameField.text!;
         }
-        if(checkTextFieldValid(textField: storeAddressField)){
+        if(Tools.checkTextFieldValid(textField: storeAddressField)){
             newStoreWrapper.storeAddress = storeAddressField.text!;
         }
-        if(checkTextFieldValid(textField: storeContactPerson)){
+        if(Tools.checkTextFieldValid(textField: storeContactPerson)){
             newStoreWrapper.contactPerson = storeContactPerson.text!;
         }
-        if(checkTextFieldValid(textField: storeContactNumber)){
+        if(Tools.checkTextFieldValid(textField: storeContactNumber)){
             newStoreWrapper.contactNumber = storeContactNumber.text!;
         }
         newStoreWrapper.storeChain = arr2[storeChainPickerView.selectedRow(inComponent: 1)];
@@ -205,14 +213,6 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     
-    //TODO: move to common functions singleton
-    func checkTextFieldValid(textField: UITextField) -> Bool{
-        if((textField.text) != nil && !textField.text!.isEmpty){
-            return true;
-        }
-        return false;
-    }
-    
     func fetchArrData(){
         arr1 = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Chain") as! [Chain];
     }
@@ -221,6 +221,10 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         let sc = arr1[storeChainPickerView.selectedRow(inComponent: 0)].storeChains;
         arr2 = Array(sc!) as! [StoreChain];
         storeChainPickerView.reloadComponent(1);
+    }
+    
+    func setup(){
+        //textFieldArr = [storeNameField,storeAddressField,storeContactNumber,storeContactPerson];
     }
     
     

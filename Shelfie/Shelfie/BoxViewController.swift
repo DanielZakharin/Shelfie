@@ -9,6 +9,9 @@
 import UIKit
 import AVFoundation
 
+/*
+ Controller for view where boxes and shelf get drawn.
+ */
 class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     
     @IBOutlet var scrollView: UIScrollView!
@@ -18,6 +21,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     var currentTotalY: CGFloat = 0;
     let increment: CGFloat = 50.0;
     var svpgr : UIPanGestureRecognizer?;
+    var boxesArr : [BoxView] = [];
     override func viewDidLoad() {
         super.viewDidLoad()
         //setup pan gesture recognizers for scrollview

@@ -66,6 +66,17 @@ class CoreDataSingleton {
         saveContext();
     }
     
+    func createProduct(_ fromProductWrapper: ProductWrapper){
+        let newProduct = NSEntityDescription.insertNewObject(forEntityName: "Product", into: managedObjectContext) as! Product;
+        newProduct.name = fromProductWrapper.name;
+        newProduct.category = Int16(fromProductWrapper.category!);
+        newProduct.brand = fromProductWrapper.brand;
+        newProduct.depth = Int16(fromProductWrapper.depth!);
+        newProduct.height = Int16(fromProductWrapper.height!);
+        newProduct.width = Int16(fromProductWrapper.width!);
+        saveContext();
+    }
+    
     func createStoreChain(_ withName: String, inChain: Chain?){
         let newStoreChain = NSEntityDescription.insertNewObject(forEntityName: "StoreChain", into: managedObjectContext) as! StoreChain;
         newStoreChain.storeChainName = withName;
@@ -77,6 +88,13 @@ class CoreDataSingleton {
     func createChain(_ withName: String, completion: (() -> Void)?){
         let newChain = NSEntityDescription.insertNewObject(forEntityName: "Chain", into: managedObjectContext) as! Chain;
         newChain.chainName = withName;
+        saveContext();
+        completion?();
+    }
+    
+    func createBrand(_ withName: String, completion: (() -> Void)?){
+        let newBrand = NSEntityDescription.insertNewObject(forEntityName: "ProductBrand", into: managedObjectContext) as! ProductBrand;
+        newBrand.name = withName;
         saveContext();
         completion?();
     }
