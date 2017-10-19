@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="gUZ-bK-unD">
-                                <rect key="frame" x="265" y="276" width="483" height="728"/>
+                                <rect key="frame" x="265" y="148" width="483" height="728"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="wD9-11-Ynh" kind="embed" id="ICy-An-TUH"/>
@@ -67,12 +67,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="XB0-7n-71I">
+                                <rect key="frame" x="468" y="112" width="280" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Categories Only"/>
+                                    <segment title="Products"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Editing Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vtZ-eb-cb6">
+                                <rect key="frame" x="265" y="116" width="148" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" id="RuY-ge-Xpw"/>
                     <connections>
+                        <outlet property="editingModeSelector" destination="XB0-7n-71I" id="IQD-Tl-3g3"/>
                         <outlet property="storeSelectTable" destination="ZzS-1B-kVM" id="6VX-Ub-aOL"/>
                     </connections>
                 </viewController>
@@ -759,9 +775,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="iconBooks" width="100" height="100"/>
-        <image name="iconChart" width="100" height="100"/>
-        <image name="iconCreate" width="96" height="96"/>
+        <image name="iconBooks" width="50" height="50"/>
+        <image name="iconChart" width="50" height="50"/>
+        <image name="iconCreate" width="48" height="48"/>
         <image name="metsaBG" width="3072" height="2304"/>
         <image name="metsaLogo" width="943" height="363"/>
     </resources>

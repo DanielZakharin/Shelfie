@@ -20,6 +20,7 @@ class BoxView: UIView {
     
     //MARK: Variables
     var cornerDragView: UIView;
+    var boxNameLabel: UILabel;
     let cornerSize = 15;
     var currentTotalX:CGFloat = 0;
     var currentTotalY:CGFloat = 0;
@@ -30,6 +31,7 @@ class BoxView: UIView {
     override init(frame: CGRect) {
         //programatically init
         cornerDragView = UIView();
+        boxNameLabel = UILabel();
         super.init(frame: frame);
         initialize();
     }
@@ -37,25 +39,23 @@ class BoxView: UIView {
     required init?(coder aDecoder: NSCoder) {
         //storyboard init
         cornerDragView = UIView();
+        boxNameLabel = UILabel();
         super.init(coder: aDecoder)
         initialize();
     }
     
     //initialize BoxView and add cornerDragView to it
     func initialize(){
-        self.backgroundColor = UIColor(patternImage: UIImage(named: "roll1")!);
-        cornerDragView=UIView(frame: CGRect(x: Int(self.frame.width-CGFloat(cornerSize)), y: Int(self.frame.height-CGFloat(cornerSize)), width: cornerSize, height: cornerSize));
-        cornerDragView.backgroundColor = UIColor.cyan;
+        self.backgroundColor = UIColor.darkGray;
+        cornerDragView.frame = CGRect(x: Int(self.frame.width-CGFloat(cornerSize)), y: Int(self.frame.height-CGFloat(cornerSize)), width: cornerSize, height: cornerSize);
+        cornerDragView.backgroundColor = UIColor.magenta;
         self.addSubview(cornerDragView);
         //bring views to front of the main view
         self.bringSubview(toFront: cornerDragView);
         self.superview?.bringSubview(toFront: self);
-        //add a tap gesture to main boxview
-        //let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(action:)));
-        //self.addGestureRecognizer(tapGesture);
         //add  pan gesture to box
         let boxPan : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleBoxPan(sender:)));
-        //need to set maximum number of touches so that scrolling of the scrollview can still occur when using two fingers on the box
+        //set maximum number of touches so that scrolling of the scrollview can still occur when using two fingers on the box
         boxPan.maximumNumberOfTouches = 1;
         self.addGestureRecognizer(boxPan);
         //add a pan gesture to cornerView
@@ -63,20 +63,31 @@ class BoxView: UIView {
         cornerPan.maximumNumberOfTouches = 1;
         self.addGestureRecognizer(cornerPan);
         cornerDragView.addGestureRecognizer(cornerPan);
+        //add label for product name
+        boxNameLabel.text = "Product";
+        boxNameLabel.textColor = UIColor.red;
+        boxNameLabel.adjustsFontSizeToFitWidth = true;
+        boxNameLabel.isUserInteractionEnabled = false;
+        boxNameLabel.textAlignment = .center;
+        self.addSubview(boxNameLabel);
+        boxNameLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100);
+        boxNameLabel.center = CGPoint(x: self.frame.width/2, y: self.frame.height/2);//self.convert(self.center, to: self.superview);
+        self.bringSubview(toFront: boxNameLabel);
     }
     
     //MARK: Resizing
-    //Triggered on frame resize, move cornerDragView accordingly
+    //Triggered on frame resize, move cornerDragView accordingly, redraw label to new center
     override var frame: CGRect{
         didSet{
             cornerDragView.frame.origin.x = self.frame.width-CGFloat(cornerSize);
             cornerDragView.frame.origin.y = self.frame.height-CGFloat(cornerSize);
+            //boxNameLabel.center = self.convert(self.center, to: self.superview);
+            boxNameLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 50);
+            boxNameLabel.center = CGPoint(x: self.frame.width/2, y: self.frame.height/2);
         }
     }
     
     //MARK: Gestures
-    func handleTap(action: UITapGestureRecognizer) {
-    }
     
     func handleCornerPan(sender: UIPanGestureRecognizer) {
         switch sender.state{

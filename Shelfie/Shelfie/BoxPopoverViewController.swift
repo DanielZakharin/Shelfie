@@ -55,6 +55,7 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         if(selectedBoxView != nil){
             let bg = UIColor(patternImage:Tools.categoryImageDict[Int(productsArr[indexPath.row].category)]!);
             selectedBoxView!.backgroundColor = bg;
+            selectedBoxView?.boxNameLabel.text = productsArr[indexPath.row].name;
         }
         parentCtrl!.dismissPopOver(ctrl: self);
         //need to manually deselect row

@@ -13,6 +13,7 @@ import UIKit
  */
 
 class BoxContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var editingModeSelector: UISegmentedControl!
 
     @IBOutlet weak var storeSelectTable: UITableView!
     var storesArray:[Store] = [];
