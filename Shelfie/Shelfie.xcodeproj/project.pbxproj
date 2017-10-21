@@ -25,6 +25,9 @@
 		6A3347A11F8F7AD3001789E0 /* Chain+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A33479B1F8F7AD3001789E0 /* Chain+CoreDataProperties.swift */; };
 		6A3347A41F979A5D001789E0 /* ProductWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3347A31F979A5D001789E0 /* ProductWrapper.swift */; };
 		6A3347A61F979BCB001789E0 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3347A51F979BCB001789E0 /* Tools.swift */; };
+		6A3347A81F9B92D3001789E0 /* BoxCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3347A71F9B92D3001789E0 /* BoxCategoryViewController.swift */; };
+		6A3347AB1F9B9A2A001789E0 /* BoxPopOverCategoryOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3347AA1F9B9A2A001789E0 /* BoxPopOverCategoryOnlyViewController.swift */; };
+		6A3347AD1F9B9AC7001789E0 /* Floating.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A3347AC1F9B9AC7001789E0 /* Floating.storyboard */; };
 		6A38BCD21F8DFE0100233A3E /* TESTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A38BCD11F8DFE0100233A3E /* TESTViewController.swift */; };
 		6A38BCD51F8E2A7500233A3E /* StoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A38BCD41F8E2A7500233A3E /* StoreWrapper.swift */; };
 		6A4631821F84C1C700928873 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631811F84C1C700928873 /* LoginViewController.swift */; };
@@ -75,6 +78,9 @@
 		6A33479B1F8F7AD3001789E0 /* Chain+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chain+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6A3347A31F979A5D001789E0 /* ProductWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductWrapper.swift; sourceTree = "<group>"; };
 		6A3347A51F979BCB001789E0 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		6A3347A71F9B92D3001789E0 /* BoxCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxCategoryViewController.swift; sourceTree = "<group>"; };
+		6A3347AA1F9B9A2A001789E0 /* BoxPopOverCategoryOnlyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxPopOverCategoryOnlyViewController.swift; sourceTree = "<group>"; };
+		6A3347AC1F9B9AC7001789E0 /* Floating.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Floating.storyboard; sourceTree = "<group>"; };
 		6A38BCD11F8DFE0100233A3E /* TESTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TESTViewController.swift; sourceTree = "<group>"; };
 		6A38BCD41F8E2A7500233A3E /* StoreWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreWrapper.swift; sourceTree = "<group>"; };
 		6A4631811F84C1C700928873 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +168,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		6A3347A91F9B99AF001789E0 /* CategoryOnly */ = {
+			isa = PBXGroup;
+			children = (
+				6A3347A71F9B92D3001789E0 /* BoxCategoryViewController.swift */,
+				6A3347AA1F9B9A2A001789E0 /* BoxPopOverCategoryOnlyViewController.swift */,
+			);
+			name = CategoryOnly;
+			sourceTree = "<group>";
+		};
 		6A38BCD01F8DFDF300233A3E /* TEST */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +207,7 @@
 		6A4631861F84C7AA00928873 /* BoxDrawing */ = {
 			isa = PBXGroup;
 			children = (
+				6A3347A91F9B99AF001789E0 /* CategoryOnly */,
 				6A14EC971F7E81AB00CF1B96 /* BoxViewController.swift */,
 				6A14EC991F83DA3F00CF1B96 /* BoxView.swift */,
 				6A14EC9B1F84109F00CF1B96 /* BoxPopoverViewController.swift */,
@@ -241,6 +257,7 @@
 				6A4631831F84C6DE00928873 /* BoxView */,
 				6A70BCE41F69181000AB4EE0 /* AppDelegate.swift */,
 				6A70BCE81F69181000AB4EE0 /* Main.storyboard */,
+				6A3347AC1F9B9AC7001789E0 /* Floating.storyboard */,
 				6A70BCEE1F69181000AB4EE0 /* Assets.xcassets */,
 				6A70BCF01F69181000AB4EE0 /* LaunchScreen.storyboard */,
 				6A70BCF31F69181000AB4EE0 /* Info.plist */,
@@ -376,6 +393,7 @@
 			files = (
 				6A2E37121F863E900045F6A9 /* BentonSans-Regular.otf in Resources */,
 				6A70BCF21F69181000AB4EE0 /* LaunchScreen.storyboard in Resources */,
+				6A3347AD1F9B9AC7001789E0 /* Floating.storyboard in Resources */,
 				6A70BCEF1F69181000AB4EE0 /* Assets.xcassets in Resources */,
 				6A70BCEA1F69181000AB4EE0 /* Main.storyboard in Resources */,
 				6A2E37111F863E900045F6A9 /* BentonSans-Black.otf in Resources */,
@@ -416,9 +434,11 @@
 				6A33479C1F8F7AD3001789E0 /* Store+CoreDataClass.swift in Sources */,
 				6A2E370D1F8638DE0045F6A9 /* CreateProductViewController.swift in Sources */,
 				6A33479D1F8F7AD3001789E0 /* Store+CoreDataProperties.swift in Sources */,
+				6A3347AB1F9B9A2A001789E0 /* BoxPopOverCategoryOnlyViewController.swift in Sources */,
 				6A2E36DB1F8629840045F6A9 /* CoreDataSingleton.swift in Sources */,
 				6A38BCD51F8E2A7500233A3E /* StoreWrapper.swift in Sources */,
 				6A70BCE51F69181000AB4EE0 /* AppDelegate.swift in Sources */,
+				6A3347A81F9B92D3001789E0 /* BoxCategoryViewController.swift in Sources */,
 				6A4631881F84C82500928873 /* BoxStoreSelectTableViewCell.swift in Sources */,
 				6A14EC9A1F83DA3F00CF1B96 /* BoxView.swift in Sources */,
 				6A3347A01F8F7AD3001789E0 /* Chain+CoreDataClass.swift in Sources */,

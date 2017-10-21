@@ -14,7 +14,6 @@ import AVFoundation
  */
 class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     
-    @IBOutlet var scrollView: UIScrollView!
     
     var newestView: UIView?;
     var currentTotalX: CGFloat = 0;
@@ -22,8 +21,14 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     let increment: CGFloat = 50.0;
     var svpgr : UIPanGestureRecognizer?;
     var boxesArr : [BoxView] = [];
+    var scrollView : UIScrollView = UIScrollView();
     override func viewDidLoad() {
         super.viewDidLoad()
+        //make scrollview the same size as container
+        let c = self.view!.frame;
+        let newFrame = CGRect(x: c.origin.x, y: c.origin.y, width: c.width, height: c.height);
+        scrollView.frame = newFrame;
+        self.view!.addSubview(scrollView);
         //setup pan gesture recognizers for scrollview
         //allow the scrollviews native gesture to only work with 2 finger pans
         scrollView.panGestureRecognizer.minimumNumberOfTouches = 2;
@@ -152,7 +157,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     //shows popover view for picking what the box represents
     func showPopOver(sender: BoxView) {
         //init a view from the storyboard
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Floating", bundle: nil)
         let viewCtrl = storyboard.instantiateViewController(withIdentifier: "BoxPopOverIdentifier")
         viewCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
         let popoverPresentationController = viewCtrl.popoverPresentationController;
@@ -166,7 +171,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     //dismisses the tableview popover
-    func dismissPopOver(ctrl: BoxPopoverViewController) {
+    func dismissPopOver(ctrl: UIViewController) {
         ctrl.dismiss(animated: false, completion: nil);
     }
     

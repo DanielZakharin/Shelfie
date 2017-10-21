@@ -64,7 +64,7 @@ class BoxView: UIView {
         self.addGestureRecognizer(cornerPan);
         cornerDragView.addGestureRecognizer(cornerPan);
         //add label for product name
-        boxNameLabel.text = "Product";
+        boxNameLabel.text = "Empty";
         boxNameLabel.textColor = UIColor.red;
         boxNameLabel.adjustsFontSizeToFitWidth = true;
         boxNameLabel.isUserInteractionEnabled = false;

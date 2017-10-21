@@ -28,7 +28,7 @@ class CreateViewController: UIViewController {
     
     //MARK: Methods
     func switchView(i:Int) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        let storyboard = UIStoryboard(name: "Floating", bundle: nil);
         //removes all subviews from container
         var viewCtrl: UIViewController? = nil;
         if(i == 0){
