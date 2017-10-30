@@ -24,7 +24,10 @@ class BoxView: UIView {
     let cornerSize = 15;
     var currentTotalX:CGFloat = 0;
     var currentTotalY:CGFloat = 0;
-    let increment:CGFloat = 50.0;
+    let increment:CGFloat = Tools.increment;
+    var incrementX : Int = 1;
+    var incrementY : Int = 1;
+    var product : Product?;
     
     //MARK: Init
     
@@ -63,8 +66,12 @@ class BoxView: UIView {
         cornerPan.maximumNumberOfTouches = 1;
         self.addGestureRecognizer(cornerPan);
         cornerDragView.addGestureRecognizer(cornerPan);
+        initLabel();
+    }
+    
+    func initLabel(){
         //add label for product name
-        boxNameLabel.text = "Empty";
+        boxNameLabel.text = "None";
         boxNameLabel.textColor = UIColor.red;
         boxNameLabel.adjustsFontSizeToFitWidth = true;
         boxNameLabel.isUserInteractionEnabled = false;
@@ -104,11 +111,21 @@ class BoxView: UIView {
             currentTotalY += translation.y;
             //if total amount moved exceeds threshold, resize view, reset total moved when done
             if(abs(currentTotalX) > increment && self.frame.size.width + currentTotalX > 0){
-                self.frame.size.width += roundToNearest(x: currentTotalX);
+                print("currentTotalX = \(currentTotalX)");
+                if(currentTotalX > 0){
+                    increaseSizeByX(1);
+                }else {
+                    increaseSizeByX(-1);
+                }
+                print("increment = \(incrementX)");
                 currentTotalX = 0;
             }
             if(abs(currentTotalY) > increment && self.frame.size.height + currentTotalY > 0){
-                self.frame.size.height += roundToNearest(x: currentTotalY);
+                if(currentTotalY > 0){
+                    increaseSizeByY(1);
+                }else {
+                    increaseSizeByY(-1);
+                }
                 currentTotalY = 0;
                 
             }
@@ -123,7 +140,6 @@ class BoxView: UIView {
         }
         //reset translation so it doesn't accumulate
         sender.setTranslation(CGPoint.zero, in: self);
-        
     }
     
     func handleBoxPan(sender: UIPanGestureRecognizer){
@@ -141,13 +157,12 @@ class BoxView: UIView {
             currentTotalY += translation.y;
             //if total amount moved exceeds threshold, move view, reset total moved when done
             if(abs(currentTotalX) > increment){
-                self.frame.origin.x += roundToNearest(x: currentTotalX);//+(roundToNearest(x: currentTotalX)/4);
+                self.frame.origin.x += Tools.roundToNearest(x: currentTotalX);//+(roundToNearest(x: currentTotalX)/4);
                 currentTotalX = 0;
             }
             if(abs(currentTotalY) > increment){
-                self.frame.origin.y += roundToNearest(x: currentTotalY);//+(roundToNearest(x: currentTotalY)/4);
+                self.frame.origin.y += Tools.roundToNearest(x: currentTotalY);//+(roundToNearest(x: currentTotalY)/4);
                 currentTotalY = 0;
-                
             }
             break;
             
@@ -164,21 +179,49 @@ class BoxView: UIView {
     }
     
     //MARK: Methods
-    func viewToData() {
-        
+    func boxToData() {
+        print("Size off this box is \(incrementX) x \(incrementY)");
     }
     
-    //MARK: Convenience
-    //TODO: DUPLICATE CODE FROM BOXVIEWCONTROLLER, MAKE A COMMON FUNCTIONS CLASS
-    func roundToNearest(x : CGFloat) -> CGFloat {
-        let jee = increment * CGFloat(round(x / increment));
-        //print("Rounded \(x) to \(jee)");
-        return jee;
+    func increaseSizeByX(_ xIncrements: CGFloat){
+        self.frame.size.width += CGFloat(xIncrements)*increment;
+        incrementX += Int(xIncrements);
+    }
+    
+    func increaseSizeByY(_ yIncrements: CGFloat){
+        self.frame.size.height += CGFloat(yIncrements)*increment;
+        incrementY += Int(yIncrements);
+    }
+    
+    func increaseSizeBy(_ xIncrements: CGFloat, _ yIncrements: CGFloat){
+        increaseSizeByX(xIncrements);
+        increaseSizeByY(yIncrements);
+        incrementY += Int(yIncrements);
+        incrementX += Int(xIncrements);
     }
     
     func resetXY() {
         currentTotalX = 0;
         currentTotalY = 0;
+    }
+    
+    func convertToWrapper(){
+        let wrapper = BoxWrapper();
+        wrapper.size = convertSizeToIncrements();
+        wrapper.product = product;
+        print("jee");
+    }
+    
+    func convertCoordinatesToIncrements() -> CGPoint{
+        let x = Int(self.frame.origin.x/increment);
+        let y = Int(self.frame.origin.y/increment);
+        return CGPoint(x: x, y: y);
+    }
+    
+    func convertSizeToIncrements() -> CGRect{
+        let w = Int(self.frame.width/increment);
+        let h = Int(self.frame.height/increment);
+        return CGRect(origin: convertCoordinatesToIncrements(), size: CGSize(width: w, height: h));
     }
     
 }

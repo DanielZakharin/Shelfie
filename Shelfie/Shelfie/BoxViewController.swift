@@ -15,10 +15,10 @@ import AVFoundation
 class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     
     
-    var newestView: UIView?;
+    var newestView: BoxView?;
     var currentTotalX: CGFloat = 0;
     var currentTotalY: CGFloat = 0;
-    let increment: CGFloat = 50.0;
+    let increment: CGFloat = Tools.increment;
     var svpgr : UIPanGestureRecognizer?;
     var boxesArr : [BoxView] = [];
     var scrollView : UIScrollView = UIScrollView();
@@ -44,6 +44,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         
         //create a shelf for the background, change this later to be fetched from datasource
         makeBG(width: 9, height: 2);
+        self.view.backgroundColor=UIColor.gray;
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,19 +76,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
             return true;
         }
         return false;    }
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        let destinationCtrl = segue.destination;
-        print("segue triggered");
-    }*/
-    
-    
+  
     
     //MARK: Gesture Handlind
     //Pan gesture handling when touching empty space on the scrollview
@@ -98,7 +87,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
             //get coordinate on screen where pan began
             let coord = sender.location(in: sender.view);
             //create new view
-            let newView=BoxView(frame: CGRect(x: roundToNearest(x:coord.x), y: roundToNearest(x:coord.y), width: increment, height: increment));
+            let newView = BoxView(frame: CGRect(x: Tools.roundToNearest(x:coord.x), y: Tools.roundToNearest(x:coord.y), width: increment, height: increment));
             //add a tap gesture recognizer
             let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)));
             newView.addGestureRecognizer(tapGesture);
@@ -117,11 +106,20 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
                 currentTotalY += translation.y;
                 //if total amount moved exceeds threshold, resize view, reset total moved when done
                 if(abs(currentTotalX) > increment && newestView!.frame.size.width + currentTotalX > 0){
-                    newestView!.frame.size.width += roundToNearest(x: currentTotalX);
+                    //newestView!.frame.size.width += roundToNearest(x: currentTotalX);
+                    if(currentTotalX > 0){
+                        newestView!.increaseSizeByX(1);
+                    }else {
+                        newestView!.increaseSizeByX(-1);
+                    }
                     currentTotalX = 0;
                 }
                 if(abs(currentTotalY) > increment && newestView!.frame.size.height + currentTotalY > 0){
-                    newestView!.frame.size.height += roundToNearest(x: currentTotalY);
+                    if(currentTotalY > 0){
+                        newestView!.increaseSizeByY(1);
+                    }else {
+                        newestView!.increaseSizeByY(-1);
+                    }
                     currentTotalY = 0;
                 }
             }
@@ -150,6 +148,8 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         print("tapped a box from VC");
         if let v = sender.view as? BoxView{
             showPopOver(sender: v);
+            v.boxToData();
+            v.convertToWrapper();
         }
     }
     
@@ -188,15 +188,6 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         }
         //SET CONTENTSIZE OF SCROLLVIEW, OTHERWISE IT WILL NOT SCROLL
         scrollView.contentSize = CGSize(width: shelfCellWidth*CGFloat(width), height: shelfCellWidth*CGFloat(height));
-    }
-    
-    
-    
-    //MARK: Convenience
-    //round a float to nearest number defined by increment
-    func roundToNearest(x : CGFloat) -> CGFloat {
-        let jee = increment * CGFloat(round(x / increment));
-        return jee;
     }
     
 }

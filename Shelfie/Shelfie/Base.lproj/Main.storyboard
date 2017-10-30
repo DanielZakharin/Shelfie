@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES" initialViewController="8q6-a6-KAe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES" initialViewController="8q6-a6-KAe">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -41,7 +41,7 @@
                                         <rect key="frame" x="0.0" y="28" width="237" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pw0-1Q-rRa" id="Xfd-2h-0FQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XhV-l4-Tyo">
@@ -255,7 +255,7 @@
                                         <rect key="frame" x="0.0" y="28" width="237" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9D4-zj-Le8" id="4rs-Dd-e8h">
-                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qyf-JK-aWt">
@@ -396,7 +396,7 @@
         <scene sceneID="MZL-dh-yVo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zKR-cl-3lY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" image="iconCreate" id="E0L-n8-a66">
+                    <tabBarItem key="tabBarItem" title="Create" id="E0L-n8-a66">
                         <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -417,7 +417,7 @@
         <scene sceneID="Qeg-0Y-VxQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w3D-so-8wH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Shelf View" image="iconBooks" id="Z9X-Xd-mSn">
+                    <tabBarItem key="tabBarItem" title="Shelf View" id="Z9X-Xd-mSn">
                         <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -438,7 +438,7 @@
         <scene sceneID="UI3-hw-fG6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CD7-Pm-aE4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Data" image="iconChart" id="6y7-lb-bce">
+                    <tabBarItem key="tabBarItem" title="Data" id="6y7-lb-bce">
                         <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -471,9 +471,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="iconBooks" width="50" height="50"/>
-        <image name="iconChart" width="50" height="50"/>
-        <image name="iconCreate" width="48" height="48"/>
         <image name="metsaBG" width="3072" height="2304"/>
         <image name="metsaLogo" width="943" height="363"/>
     </resources>
@@ -483,6 +480,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aKr-LT-KrA"/>
+        <segue reference="1l8-pj-dCq"/>
     </inferredMetricsTieBreakers>
 </document>

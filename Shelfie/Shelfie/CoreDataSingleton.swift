@@ -99,6 +99,16 @@ class CoreDataSingleton {
         completion?();
     }
     
+    func createShelfBox(_ fromShelfBoxWrapper: BoxWrapper){
+        let newBox = NSEntityDescription.insertNewObject(forEntityName: "ShelfBox", into: managedObjectContext) as! ShelfBox;
+        newBox.coordX = Int16(fromShelfBoxWrapper.size.origin.x);
+        newBox.coordY = Int16(fromShelfBoxWrapper.size.origin.y);
+        newBox.height = Int16(fromShelfBoxWrapper.size.height);
+        newBox.width = Int16(fromShelfBoxWrapper.size.width);
+        newBox.product = fromShelfBoxWrapper.product;
+        saveContext();
+    }
+    
     func fetchEntitiesFromCoreData(_ withEntityName: String) -> [NSManagedObject]{
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: withEntityName);
         do {
