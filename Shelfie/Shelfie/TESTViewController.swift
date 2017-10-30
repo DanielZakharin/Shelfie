@@ -14,6 +14,7 @@ class TESTViewController: UIViewController {
     let coreSingleton = CoreDataSingleton.sharedInstance;
     @IBOutlet weak var testTxtField: UITextView!
     @IBOutlet weak var testTxtField2: UITextView!
+    @IBOutlet weak var testTxtField3: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +31,8 @@ class TESTViewController: UIViewController {
         coreSingleton.deleteAllData(entity: "Chain");
         coreSingleton.deleteAllData(entity: "StoreChain");
         coreSingleton.deleteAllData(entity: "Store");
-        
+        coreSingleton.deleteAllData(entity: "ShelfPlan");
+        coreSingleton.deleteAllData(entity: "ShelfBox");
     }
     
     @IBAction func testBtn2(_ sender: Any) {
@@ -49,6 +51,15 @@ class TESTViewController: UIViewController {
             testTxtField2.text! += "Chain name: \(chain.chainName!)\nStoreChains: \(chain.storeChains!.count)\n\n"
         }
     }
+    
+    @IBAction func testBtn4(_ sender: UIButton) {
+        let sps = coreSingleton.fetchEntitiesFromCoreData("ShelfPlan") as! [ShelfPlan];
+        testTxtField3.text = "";
+        for sp in sps {
+            testTxtField3.text! += "ShelfPlan: \nstore:\(sp.store?.storeName)\nboxes: \(sp.boxes?.count) \n\n"
+        }
+    }
+    
     
     
     /*

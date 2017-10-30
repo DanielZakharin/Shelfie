@@ -14,6 +14,7 @@ import UIKit
 
 class BoxContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var editingModeSelector: UISegmentedControl!
+    @IBOutlet weak var boxCtrlView: UIView!
 
     @IBOutlet weak var storeSelectTable: UITableView!
     var storesArray:[Store] = [];
@@ -59,6 +60,10 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return storesArray.count;
+    }
+    
+    func saveShelf(){
+        
     }
 
     /*

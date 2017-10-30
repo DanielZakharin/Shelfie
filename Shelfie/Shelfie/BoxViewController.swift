@@ -190,4 +190,18 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         scrollView.contentSize = CGSize(width: shelfCellWidth*CGFloat(width), height: shelfCellWidth*CGFloat(height));
     }
     
+    func convertAllBoxesToWrappers() -> [BoxWrapper]{
+        var wrapperArr: [BoxWrapper] = [];
+        for box in boxesArr {
+            wrapperArr.append(box.convertToWrapper());
+        }
+        return wrapperArr;
+    }
+    
+    func convertSelfToWrapper(store: Store) -> ShelfWrapper{
+        let shelfWrapper = ShelfWrapper(stoure: store);
+        shelfWrapper.boxes = convertAllBoxesToWrappers();
+        return shelfWrapper;
+    }
+    
 }

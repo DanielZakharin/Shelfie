@@ -99,7 +99,7 @@ class CoreDataSingleton {
         completion?();
     }
     
-    func createShelfBox(_ fromShelfBoxWrapper: BoxWrapper){
+    func createShelfBox(_ fromShelfBoxWrapper: BoxWrapper) -> ShelfBox{
         let newBox = NSEntityDescription.insertNewObject(forEntityName: "ShelfBox", into: managedObjectContext) as! ShelfBox;
         newBox.coordX = Int16(fromShelfBoxWrapper.size.origin.x);
         newBox.coordY = Int16(fromShelfBoxWrapper.size.origin.y);
@@ -107,6 +107,23 @@ class CoreDataSingleton {
         newBox.width = Int16(fromShelfBoxWrapper.size.width);
         newBox.product = fromShelfBoxWrapper.product;
         saveContext();
+        return newBox;
+    }
+    
+    func createShelfBoxes(_ fromBoxWrapperArray: [BoxWrapper]) -> [ShelfBox]{
+        var shelfBoxes: [ShelfBox] = [];
+        for boxWrpr in fromBoxWrapperArray{
+            shelfBoxes.append(createShelfBox(boxWrpr));
+        }
+        return shelfBoxes;
+    }
+    
+    func createShelfPlan(_ fromShelfWrapper: ShelfWrapper){
+        let newShelf = NSEntityDescription.insertNewObject(forEntityName: "ShelfPlan", into: managedObjectContext) as! ShelfPlan;
+        newShelf.boxes = NSSet(array: createShelfBoxes(fromShelfWrapper.boxes));
+        newShelf.date = fromShelfWrapper.date as NSDate?;
+        newShelf.store = fromShelfWrapper.store;
+        newShelf.verticalSize = fromShelfWrapper.shelfHeight;
     }
     
     func fetchEntitiesFromCoreData(_ withEntityName: String) -> [NSManagedObject]{

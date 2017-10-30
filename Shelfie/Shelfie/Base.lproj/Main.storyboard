@@ -41,7 +41,7 @@
                                         <rect key="frame" x="0.0" y="28" width="237" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pw0-1Q-rRa" id="Xfd-2h-0FQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XhV-l4-Tyo">
@@ -82,12 +82,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qFP-fD-uN3">
+                                <rect key="frame" x="20" y="626" width="237" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="SAVE"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" id="RuY-ge-Xpw"/>
                     <connections>
+                        <outlet property="boxCtrlView" destination="gUZ-bK-unD" id="gza-Qt-KAT"/>
                         <outlet property="editingModeSelector" destination="XB0-7n-71I" id="IQD-Tl-3g3"/>
                         <outlet property="storeSelectTable" destination="ZzS-1B-kVM" id="6VX-Ub-aOL"/>
                     </connections>
@@ -255,7 +261,7 @@
                                         <rect key="frame" x="0.0" y="28" width="237" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9D4-zj-Le8" id="4rs-Dd-e8h">
-                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qyf-JK-aWt">
@@ -366,14 +372,30 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="16H-G1-G5I">
-                                <rect key="frame" x="31" y="399" width="613" height="533"/>
+                                <rect key="frame" x="31" y="811" width="395" height="121"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="9eb-zK-jK0" kind="embed" id="R4c-rQ-31e"/>
                                 </connections>
                             </containerView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" id="vni-hs-vq8">
+                                <rect key="frame" x="20" y="359" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4LN-nb-8sV">
+                                <rect key="frame" x="20" y="321" width="258" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Fetch ShelfPlans"/>
+                                <connections>
+                                    <action selector="testBtn4:" destination="gWS-4O-bSR" eventType="touchUpInside" id="xuO-FO-EFY"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7mx-oN-IO4">
-                                <rect key="frame" x="312" y="304" width="166" height="30"/>
+                                <rect key="frame" x="20" y="954" width="166" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="DELETE ALL COREDATA"/>
                                 <connections>
@@ -386,6 +408,7 @@
                     <connections>
                         <outlet property="testTxtField" destination="oZQ-Or-Hml" id="enP-go-r0p"/>
                         <outlet property="testTxtField2" destination="3Bu-yF-GTX" id="c5s-V8-eKn"/>
+                        <outlet property="testTxtField3" destination="vni-hs-vq8" id="La0-mF-9bn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FK6-Fw-7fD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -480,6 +503,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1l8-pj-dCq"/>
+        <segue reference="aKr-LT-KrA"/>
     </inferredMetricsTieBreakers>
 </document>

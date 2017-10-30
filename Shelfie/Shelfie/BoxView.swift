@@ -205,11 +205,11 @@ class BoxView: UIView {
         currentTotalY = 0;
     }
     
-    func convertToWrapper(){
+    func convertToWrapper() -> BoxWrapper{
         let wrapper = BoxWrapper();
         wrapper.size = convertSizeToIncrements();
         wrapper.product = product;
-        print("jee");
+        return wrapper;
     }
     
     func convertCoordinatesToIncrements() -> CGPoint{

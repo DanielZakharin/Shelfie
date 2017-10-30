@@ -47,6 +47,7 @@
 		6A9CD4021FA7711100816FC9 /* ShelfBox+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD3FE1FA7711100816FC9 /* ShelfBox+CoreDataProperties.swift */; };
 		6A9CD4051FA7714F00816FC9 /* ProductBrand+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD4031FA7714F00816FC9 /* ProductBrand+CoreDataClass.swift */; };
 		6A9CD4061FA7714F00816FC9 /* ProductBrand+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD4041FA7714F00816FC9 /* ProductBrand+CoreDataProperties.swift */; };
+		6A9CD4081FA77BD900816FC9 /* ShelfWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD4071FA77BD900816FC9 /* ShelfWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		6A9CD3FE1FA7711100816FC9 /* ShelfBox+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShelfBox+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6A9CD4031FA7714F00816FC9 /* ProductBrand+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProductBrand+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6A9CD4041FA7714F00816FC9 /* ProductBrand+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProductBrand+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6A9CD4071FA77BD900816FC9 /* ShelfWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelfWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				6A38BCD41F8E2A7500233A3E /* StoreWrapper.swift */,
 				6A3347A31F979A5D001789E0 /* ProductWrapper.swift */,
 				6A9CD3F11FA76C4500816FC9 /* BoxWrapper.swift */,
+				6A9CD4071FA77BD900816FC9 /* ShelfWrapper.swift */,
 			);
 			name = WrapperClasses;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				6A14EC981F7E81AB00CF1B96 /* BoxViewController.swift in Sources */,
 				6A9CD4001FA7711100816FC9 /* ShelfPlan+CoreDataProperties.swift in Sources */,
 				6A38BCD21F8DFE0100233A3E /* TESTViewController.swift in Sources */,
+				6A9CD4081FA77BD900816FC9 /* ShelfWrapper.swift in Sources */,
 				6A70BCED1F69181000AB4EE0 /* Shelfie.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
