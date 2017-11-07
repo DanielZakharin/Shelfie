@@ -12,12 +12,14 @@ class CreateViewController: UIViewController {
     
     @IBOutlet weak var storeProductSegment: UISegmentedControl!
     @IBOutlet weak var creationContainer: UIView!
+    var currentView: UIView?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         switchView(i: 0);
+        currentView = creationContainer;
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,7 +58,7 @@ class CreateViewController: UIViewController {
         
     }
     
-    func addViewWithAnimation(viewNew: UIView) {
+    func addViewWithAnimation(viewNew: UIView) {/*
         if (self.creationContainer.subviews.count > 0){
             let viewInitial = self.creationContainer.subviews[0];
             if viewInitial != nil{
@@ -73,11 +75,18 @@ class CreateViewController: UIViewController {
         }
         //add new view, set view to invisible
         self.creationContainer.addSubview(viewNew);
+        viewNew.frame = CGRect(x: 0, y: 0, width: 100, height: 100);//self.creationContainer.frame;
         viewNew.alpha = 0;
         // Fade in new View
         UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             viewNew.alpha = 1.0
-        }, completion: nil);
+        }, completion: nil);*/
+        if let oldView = currentView{
+            self.view.addSubview(viewNew);
+            viewNew.frame = oldView.frame;
+            oldView.removeFromSuperview();
+            currentView = viewNew;
+        }
         
     }
     
