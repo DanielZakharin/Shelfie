@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES" initialViewController="8q6-a6-KAe">
-    <device id="ipad9_7" orientation="portrait">
+    <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -22,26 +22,19 @@
             <objects>
                 <viewController id="q47-vd-iCN" customClass="BoxContainerViewController" customModule="Shelfie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S2p-mk-hPp">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="gUZ-bK-unD">
-                                <rect key="frame" x="265" y="148" width="483" height="728"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="wD9-11-Ynh" kind="embed" id="ICy-An-TUH"/>
-                                </connections>
-                            </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZzS-1B-kVM">
-                                <rect key="frame" x="20" y="67" width="237" height="551"/>
+                                <rect key="frame" x="20" y="67" width="171" height="461"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoxStoreSelect" id="pw0-1Q-rRa" customClass="BoxStoreSelectTableViewCell" customModule="Shelfie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="237" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="171" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pw0-1Q-rRa" id="Xfd-2h-0FQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="171" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XhV-l4-Tyo">
@@ -68,32 +61,45 @@
                                 </prototypes>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="XB0-7n-71I">
-                                <rect key="frame" x="468" y="112" width="280" height="29"/>
+                                <rect key="frame" x="471" y="95" width="280" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Categories Only"/>
                                     <segment title="Products"/>
                                 </segments>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qFP-fD-uN3">
+                                <rect key="frame" x="795" y="82" width="171" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="SAVE"/>
+                                <connections>
+                                    <action selector="saveButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="gYi-HC-Cst"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" id="x72-wc-ES8" customClass="BoxViewController" customModule="Shelfie" customModuleProvider="target">
+                                <rect key="frame" x="199" y="145" width="825" height="564"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <pickerView contentMode="scaleToFill" misplaced="YES" id="hqt-ed-Mm2">
+                                <rect key="frame" x="20" y="536" width="171" height="173"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Editing Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vtZ-eb-cb6">
-                                <rect key="frame" x="265" y="116" width="148" height="21"/>
+                                <rect key="frame" x="266" y="99" width="148" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qFP-fD-uN3">
-                                <rect key="frame" x="20" y="626" width="237" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="SAVE"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" id="RuY-ge-Xpw"/>
                     <connections>
-                        <outlet property="boxCtrlView" destination="gUZ-bK-unD" id="gza-Qt-KAT"/>
+                        <outlet property="boxViewCont" destination="x72-wc-ES8" id="tPc-2h-gvq"/>
+                        <outlet property="datesPickerView" destination="hqt-ed-Mm2" id="f6I-ed-xzL"/>
                         <outlet property="editingModeSelector" destination="XB0-7n-71I" id="IQD-Tl-3g3"/>
                         <outlet property="storeSelectTable" destination="ZzS-1B-kVM" id="6VX-Ub-aOL"/>
                     </connections>
@@ -107,15 +113,15 @@
             <objects>
                 <viewController id="l5X-1i-3ey" customClass="CreateViewController" customModule="Shelfie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="34X-WG-afm">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="zqk-uM-Gz7">
-                                <rect key="frame" x="0.0" y="116" width="768" height="888"/>
+                                <rect key="frame" x="0.0" y="-140" width="1024" height="888"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="F9c-lj-fjz">
-                                <rect key="frame" x="234" y="80" width="300" height="29"/>
+                                <rect key="frame" x="362" y="70" width="300" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Create Store"/>
@@ -142,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F8c-5V-GHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2599" y="-1040"/>
+            <point key="canvasLocation" x="2754" y="-1040"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3SY-Cj-qh5">
@@ -169,15 +175,15 @@
             <objects>
                 <viewController id="APq-p3-zcN" customClass="LoginViewController" customModule="Shelfie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iYY-A3-ypG">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="metsaBG" id="RoQ-eJ-vEN">
-                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                                <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" id="TIo-sC-jFT">
-                                <rect key="frame" x="184" y="572" width="400" height="40"/>
+                                <rect key="frame" x="312" y="378" width="400" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="textColor"/>
@@ -185,7 +191,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" id="t4O-eU-3jR">
-                                <rect key="frame" x="184" y="674" width="400" height="40"/>
+                                <rect key="frame" x="312" y="480" width="400" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="textColor"/>
@@ -193,21 +199,21 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="by" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qHD-an-q8y">
-                                <rect key="frame" x="352" y="368" width="64" height="45"/>
+                                <rect key="frame" x="480" y="174" width="64" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="25"/>
                                 <color key="textColor" red="0.21176470589999999" green="0.20784313730000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Shelfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x99-F7-C7G">
-                                <rect key="frame" x="153" y="263" width="463" height="105"/>
+                                <rect key="frame" x="281" y="69" width="463" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BentonSans-Black" family="BentonSans" pointSize="100"/>
                                 <color key="textColor" red="0.21176470588235294" green="0.20784313725490194" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MGn-MS-6J0">
-                                <rect key="frame" x="311" y="752" width="147" height="35"/>
+                                <rect key="frame" x="439" y="558" width="147" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.56078431370000004" green="0.82745098039999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="25"/>
@@ -221,11 +227,11 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="metsaLogo" id="xHH-X5-APv">
-                                <rect key="frame" x="264" y="390" width="240" height="128"/>
+                                <rect key="frame" x="392" y="196" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1T7-lu-Ddx">
-                                <rect key="frame" x="361" y="932" width="46" height="30"/>
+                                <rect key="frame" x="489" y="738" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="TestButton"/>
                                 <connections>
@@ -242,14 +248,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Dt-ah-jE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-932" y="-613"/>
+            <point key="canvasLocation" x="-1051" y="-613"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pax-fr-don">
             <objects>
                 <viewController id="yFw-8I-ALR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qag-Te-9ec">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oU2-Fo-Mes">
@@ -297,14 +303,6 @@
             </objects>
             <point key="canvasLocation" x="2599" y="1035"/>
         </scene>
-        <!--Box View Controller-->
-        <scene sceneID="Ayp-PI-38p">
-            <objects>
-                <viewController id="wD9-11-Ynh" customClass="BoxViewController" customModule="Shelfie" customModuleProvider="target" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tqs-wA-5H3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3518" y="101"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="tCC-el-hcx">
             <objects>
@@ -321,14 +319,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boj-CG-Gg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1912" y="-613"/>
+            <point key="canvasLocation" x="-2313" y="-613"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lvv-Mr-saz">
             <objects>
                 <viewController id="gWS-4O-bSR" customClass="TESTViewController" customModule="Shelfie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6mt-Gc-hkc">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zgX-IY-ZnT">
@@ -371,13 +369,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="16H-G1-G5I">
-                                <rect key="frame" x="31" y="811" width="395" height="121"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="9eb-zK-jK0" kind="embed" id="R4c-rQ-31e"/>
-                                </connections>
-                            </containerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" id="vni-hs-vq8">
                                 <rect key="frame" x="20" y="359" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -478,20 +469,6 @@
             </objects>
             <point key="canvasLocation" x="1619" y="1035"/>
         </scene>
-        <!--Box Category View Controller-->
-        <scene sceneID="jNs-y9-JCh">
-            <objects>
-                <viewController id="9eb-zK-jK0" customClass="BoxCategoryViewController" customModule="Shelfie" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YIf-il-biB">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GCq-Et-yxC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1745" y="-2564"/>
-        </scene>
     </scenes>
     <resources>
         <image name="metsaBG" width="3072" height="2304"/>
@@ -499,10 +476,10 @@
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aKr-LT-KrA"/>
+        <segue reference="1l8-pj-dCq"/>
     </inferredMetricsTieBreakers>
 </document>

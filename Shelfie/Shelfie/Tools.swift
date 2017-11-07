@@ -27,6 +27,10 @@ class Tools{
         return jee;
     }
     
+    static func intToIncrement(int: Int16) -> CGFloat {
+        return CGFloat(int)*increment;
+    }
+    
     static let categoryImageDict : [Int:UIImage] = [0:UIImage(named: "iconChart")!,1:UIImage(named: "roll1")!,2:UIImage(named: "roll2")!];
     static let categoryNameDict : [Int: String] = [0:"Tissue", 1:"WC-Paper",2:"Kitchen Paper"];
     static let categoryColorDict : [Int: UIColor] = [0:UIColor.yellow,1:UIColor.green,2:UIColor.brown];

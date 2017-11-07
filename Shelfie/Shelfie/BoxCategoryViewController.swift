@@ -10,16 +10,6 @@ import UIKit
 
 class BoxCategoryViewController: BoxViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func showPopOver(sender: BoxView) {
         //init a view from the storyboard
@@ -28,7 +18,7 @@ class BoxCategoryViewController: BoxViewController {
         viewCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
         let popoverPresentationController = viewCtrl.popoverPresentationController;
         popoverPresentationController?.sourceView = sender
-        present(viewCtrl, animated: true, completion: nil);
+        //present(viewCtrl, animated: true, completion: nil);
         //pass selected view to popover controller for manipulation
         if let presentedCtrl = popoverPresentationController?.presentedViewController as? BoxPopOverCategoryOnlyViewController{
             presentedCtrl.selectedBoxView = sender;

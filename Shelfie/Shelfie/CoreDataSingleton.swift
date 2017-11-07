@@ -124,6 +124,8 @@ class CoreDataSingleton {
         newShelf.date = fromShelfWrapper.date as NSDate?;
         newShelf.store = fromShelfWrapper.store;
         newShelf.verticalSize = fromShelfWrapper.shelfHeight;
+        print("Created a shelfplan!");
+        saveContext();
     }
     
     func fetchEntitiesFromCoreData(_ withEntityName: String) -> [NSManagedObject]{

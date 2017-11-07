@@ -2,20 +2,13 @@
 //  Store+CoreDataProperties.swift
 //  Shelfie
 //
-//  Created by iosdev on 12.10.2017.
+//  Created by iosdev on 30.10.2017.
 //  Copyright © 2017 Group-6. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-/*
- #######################################################
- #               FOR FUTURE KNOWLEDGE                  #
- #    to get correct coredata classes, set module to   #
- #      current project and codegen to manual/none     #
- #######################################################
- */
 
 extension Store {
 
@@ -31,5 +24,23 @@ extension Store {
     @NSManaged public var storeAddress: String?
     @NSManaged public var storeName: String?
     @NSManaged public var storeChain: StoreChain?
+    @NSManaged public var shelfPlans: NSSet?
+
+}
+
+// MARK: Generated accessors for shelfPlans
+extension Store {
+
+    @objc(addShelfPlansObject:)
+    @NSManaged public func addToShelfPlans(_ value: ShelfPlan)
+
+    @objc(removeShelfPlansObject:)
+    @NSManaged public func removeFromShelfPlans(_ value: ShelfPlan)
+
+    @objc(addShelfPlans:)
+    @NSManaged public func addToShelfPlans(_ values: NSSet)
+
+    @objc(removeShelfPlans:)
+    @NSManaged public func removeFromShelfPlans(_ values: NSSet)
 
 }

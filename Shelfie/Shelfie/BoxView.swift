@@ -111,13 +111,13 @@ class BoxView: UIView {
             currentTotalY += translation.y;
             //if total amount moved exceeds threshold, resize view, reset total moved when done
             if(abs(currentTotalX) > increment && self.frame.size.width + currentTotalX > 0){
-                print("currentTotalX = \(currentTotalX)");
+//                print("currentTotalX = \(currentTotalX)");
                 if(currentTotalX > 0){
                     increaseSizeByX(1);
                 }else {
                     increaseSizeByX(-1);
                 }
-                print("increment = \(incrementX)");
+                //print("increment = \(incrementX)");
                 currentTotalX = 0;
             }
             if(abs(currentTotalY) > increment && self.frame.size.height + currentTotalY > 0){

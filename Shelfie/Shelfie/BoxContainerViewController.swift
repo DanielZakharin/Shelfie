@@ -12,24 +12,26 @@ import UIKit
  View Where BoxViewController is a subview, also has store selection
  */
 
-class BoxContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BoxContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var editingModeSelector: UISegmentedControl!
-    @IBOutlet weak var boxCtrlView: UIView!
+    @IBOutlet weak var boxViewCont: BoxViewController!
 
     @IBOutlet weak var storeSelectTable: UITableView!
+    @IBOutlet weak var datesPickerView: UIPickerView!
     var storesArray:[Store] = [];
-    
+    var shelfPlans:[ShelfPlan] = [];
+    var lastSelectedRow: Int = 0;
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        boxViewCont.parentCtrl = self;
         storeSelectTable.delegate = self;
         storeSelectTable.dataSource = self;
-        for tabBarItem:UITabBarItem in (self.tabBarController?.tabBar.items)!{
-            tabBarItem.imageInsets = UIEdgeInsetsMake(20, 20, 20, 20);
-        }
-        storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
-        storeSelectTable.reloadData();
+        datesPickerView.delegate = self;
+        datesPickerView.dataSource = self;
+        fetchData();
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -62,10 +64,51 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         return storesArray.count;
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        lastSelectedRow = indexPath.row;
+        //TODO: load selected stores shelfplans
+    }
+    
+    //MARK: PickerView Methods
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let formatter = DateFormatter();
+        let format = "dd.MM.yyyy hh.mm";
+        formatter.dateFormat = format;
+        let date = shelfPlans[row].date! as Date;
+        return formatter.string(from: date);
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return shelfPlans.count;
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedPlan = shelfPlans[row];
+        boxViewCont.populateShelfFromPlan(selectedPlan);
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1;
+    }
+    
     func saveShelf(){
-        
+        let shelfWrapper = boxViewCont.convertSelfToWrapper(store: storesArray[lastSelectedRow]);
+        CoreDataSingleton.sharedInstance.createShelfPlan(shelfWrapper);
     }
 
+    @IBAction func saveButtonAction(_ sender: UIButton) {
+        saveShelf();
+    }
+    
+    func fetchData(){
+        storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
+        storeSelectTable.reloadData();
+        let s = storesArray[lastSelectedRow];
+        if s.shelfPlans != nil {
+            shelfPlans = Array(s.shelfPlans!) as! [ShelfPlan];
+        }
+        datesPickerView.reloadAllComponents();
+    }
     /*
     // MARK: - Navigation
 

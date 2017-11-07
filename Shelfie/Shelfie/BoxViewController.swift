@@ -12,7 +12,7 @@ import AVFoundation
 /*
  Controller for view where boxes and shelf get drawn.
  */
-class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
+class BoxViewController: UIView, UIGestureRecognizerDelegate{
     
     
     var newestView: BoxView?;
@@ -22,13 +22,24 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     var svpgr : UIPanGestureRecognizer?;
     var boxesArr : [BoxView] = [];
     var scrollView : UIScrollView = UIScrollView();
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var parentCtrl: UIViewController?;
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame);
+        initialize();
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+        initialize();
+    }
+    
+    func initialize(){
         //make scrollview the same size as container
-        let c = self.view!.frame;
-        let newFrame = CGRect(x: c.origin.x, y: c.origin.y, width: c.width, height: c.height);
+        let c = self.frame;
+        let newFrame = CGRect(x: 0, y: 0, width: c.width, height: c.height);
         scrollView.frame = newFrame;
-        self.view!.addSubview(scrollView);
+        self.addSubview(scrollView);
         //setup pan gesture recognizers for scrollview
         //allow the scrollviews native gesture to only work with 2 finger pans
         scrollView.panGestureRecognizer.minimumNumberOfTouches = 2;
@@ -44,12 +55,6 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         
         //create a shelf for the background, change this later to be fetched from datasource
         makeBG(width: 9, height: 2);
-        self.view.backgroundColor=UIColor.gray;
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //MARK: PangestureRecognizerDelegate Methods
@@ -63,11 +68,11 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     /*func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if(otherGestureRecognizer.view == scrollView){
-            return true;
-        }
-        return false;
-    }*/
+     if(otherGestureRecognizer.view == scrollView){
+     return true;
+     }
+     return false;
+     }*/
     
     //tells the pangesture that it must fail before another gesture recognizer can be activated, in this case we only care about the
     //scrollviews built in one
@@ -76,7 +81,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
             return true;
         }
         return false;    }
-  
+    
     
     //MARK: Gesture Handlind
     //Pan gesture handling when touching empty space on the scrollview
@@ -86,14 +91,7 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         case .began:
             //get coordinate on screen where pan began
             let coord = sender.location(in: sender.view);
-            //create new view
-            let newView = BoxView(frame: CGRect(x: Tools.roundToNearest(x:coord.x), y: Tools.roundToNearest(x:coord.y), width: increment, height: increment));
-            //add a tap gesture recognizer
-            let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)));
-            newView.addGestureRecognizer(tapGesture);
-            //add view to superview
-            sender.view!.addSubview(newView);
-            newestView = newView;
+            makeBoxAtLocation(coord.x, coord.y);
             break;
             
         //state when a pan movement has occured
@@ -145,11 +143,8 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
-        print("tapped a box from VC");
         if let v = sender.view as? BoxView{
             showPopOver(sender: v);
-            v.boxToData();
-            v.convertToWrapper();
         }
     }
     
@@ -161,8 +156,8 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         let viewCtrl = storyboard.instantiateViewController(withIdentifier: "BoxPopOverIdentifier")
         viewCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
         let popoverPresentationController = viewCtrl.popoverPresentationController;
-        popoverPresentationController?.sourceView = sender
-        present(viewCtrl, animated: true, completion: nil);
+        popoverPresentationController?.sourceView = sender;
+        parentCtrl?.present(viewCtrl, animated: true, completion: nil);
         //pass selected view to popover controller for manipulation
         if let presentedCtrl = popoverPresentationController?.presentedViewController as? BoxPopoverViewController{
             presentedCtrl.selectedBoxView = sender;
@@ -202,6 +197,37 @@ class BoxViewController: UIViewController, UIGestureRecognizerDelegate{
         let shelfWrapper = ShelfWrapper(stoure: store);
         shelfWrapper.boxes = convertAllBoxesToWrappers();
         return shelfWrapper;
+    }
+    
+    func makeBoxAtLocation(_ x : CGFloat, _ y : CGFloat, width:CGFloat = Tools.increment, height: CGFloat = Tools.increment){
+        //create new view
+        let newView = BoxView(frame: CGRect(x: Tools.roundToNearest(x:x), y: Tools.roundToNearest(x:y), width: width, height: height));
+        //add a tap gesture recognizer
+        let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)));
+        newView.addGestureRecognizer(tapGesture);
+        //add view to superview
+        scrollView.addSubview(newView);
+        newestView = newView;
+        boxesArr.append(newView);
+    }
+    
+    func populateShelfFromPlan(_ shelf: ShelfPlan){
+        clearShelf();
+        let boxes:[ShelfBox] = Array(shelf.boxes!) as! [ShelfBox];
+        print("Boxes in plan: \(boxes.count)");
+        for sb in boxes {
+            print("making a box:\n   x:\(sb.coordX)\n   y:\(sb.coordY)\n   w:\(sb.width)\n   h:\(sb.height)\n\n")
+            makeBoxAtLocation(Tools.intToIncrement(int: sb.coordX), Tools.intToIncrement(int: sb.coordY), width: Tools.intToIncrement(int: sb.width), height: Tools.intToIncrement(int: sb.height));
+        }
+    }
+    
+    func clearShelf(){
+        for v in scrollView.subviews{
+            if(v is BoxView){
+                v.removeFromSuperview();
+            }
+        }
+        boxesArr = [];
     }
     
 }
