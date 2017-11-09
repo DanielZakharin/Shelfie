@@ -18,8 +18,8 @@ class CreateViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        switchView(i: 0);
         currentView = creationContainer;
+        switchView(i: 0);
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,7 +31,6 @@ class CreateViewController: UIViewController {
     //MARK: Methods
     func switchView(i:Int) {
         let storyboard = UIStoryboard(name: "Floating", bundle: nil);
-        //removes all subviews from container
         var viewCtrl: UIViewController? = nil;
         if(i == 0){
             //change to store creation view
@@ -47,10 +46,47 @@ class CreateViewController: UIViewController {
             
         }
         addViewWithAnimation(viewNew: viewCtrl!.view);
+        print(self.childViewControllers.count);
         
     }
     
-    
+    func addViewWithAnimation(viewNew: UIView) {/*
+         if (self.creationContainer.subviews.count > 0){
+         let viewInitial = self.creationContainer.subviews[0];
+         if viewInitial != nil{
+         // Fade out to set the text
+         UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+         viewInitial.alpha = 0.0
+         }, completion: {
+         (finished: Bool) -> Void in
+         //When fully faded, remove the view
+         viewInitial.removeFromSuperview();
+         });
+         }
+         
+         }
+         //add new view, set view to invisible
+         self.creationContainer.addSubview(viewNew);
+         viewNew.frame = CGRect(x: 0, y: 0, width: 100, height: 100);//self.creationContainer.frame;
+         viewNew.alpha = 0;
+         // Fade in new View
+         UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+         viewNew.alpha = 1.0
+         }, completion: nil);*/
+        if let oldView = currentView{
+            self.view.addSubview(viewNew);
+            /*viewNew.addConstraints([
+                NSLayoutConstraint(item: viewNew, attribute: .top, relatedBy: .equal, toItem: storeProductSegment, attribute: .bottom, multiplier: 1.0, constant: 16),
+                NSLayoutConstraint(item: viewNew, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottomMargin, multiplier: 1.0, constant: 8),
+                NSLayoutConstraint(item: viewNew, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 8),
+                NSLayoutConstraint(item: viewNew, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 8)
+                ]);*/
+            viewNew.frame = oldView.frame;
+            oldView.removeFromSuperview();
+            currentView = viewNew;
+        }
+        
+    }
     
     
     @IBAction func storeProductSwitch(_ sender: UISegmentedControl) {
@@ -58,37 +94,7 @@ class CreateViewController: UIViewController {
         
     }
     
-    func addViewWithAnimation(viewNew: UIView) {/*
-        if (self.creationContainer.subviews.count > 0){
-            let viewInitial = self.creationContainer.subviews[0];
-            if viewInitial != nil{
-                // Fade out to set the text
-                UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                    viewInitial.alpha = 0.0
-                }, completion: {
-                    (finished: Bool) -> Void in
-                    //When fully faded, remove the view
-                    viewInitial.removeFromSuperview();
-                });
-            }
-            
-        }
-        //add new view, set view to invisible
-        self.creationContainer.addSubview(viewNew);
-        viewNew.frame = CGRect(x: 0, y: 0, width: 100, height: 100);//self.creationContainer.frame;
-        viewNew.alpha = 0;
-        // Fade in new View
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-            viewNew.alpha = 1.0
-        }, completion: nil);*/
-        if let oldView = currentView{
-            self.view.addSubview(viewNew);
-            viewNew.frame = oldView.frame;
-            oldView.removeFromSuperview();
-            currentView = viewNew;
-        }
-        
-    }
+    
     
     
     /*

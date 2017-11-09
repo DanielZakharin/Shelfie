@@ -199,7 +199,7 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         return shelfWrapper;
     }
     
-    func makeBoxAtLocation(_ x : CGFloat, _ y : CGFloat, width:CGFloat = Tools.increment, height: CGFloat = Tools.increment){
+    func makeBoxAtLocation(_ x : CGFloat, _ y : CGFloat, width:CGFloat = Tools.increment, height: CGFloat = Tools.increment) -> BoxView{
         //create new view
         let newView = BoxView(frame: CGRect(x: Tools.roundToNearest(x:x), y: Tools.roundToNearest(x:y), width: width, height: height));
         //add a tap gesture recognizer
@@ -209,6 +209,7 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         scrollView.addSubview(newView);
         newestView = newView;
         boxesArr.append(newView);
+        return newView;
     }
     
     func populateShelfFromPlan(_ shelf: ShelfPlan){
@@ -217,7 +218,10 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         print("Boxes in plan: \(boxes.count)");
         for sb in boxes {
             print("making a box:\n   x:\(sb.coordX)\n   y:\(sb.coordY)\n   w:\(sb.width)\n   h:\(sb.height)\n\n")
-            makeBoxAtLocation(Tools.intToIncrement(int: sb.coordX), Tools.intToIncrement(int: sb.coordY), width: Tools.intToIncrement(int: sb.width), height: Tools.intToIncrement(int: sb.height));
+            let newBox = makeBoxAtLocation(Tools.intToIncrement(int: sb.coordX), Tools.intToIncrement(int: sb.coordY), width: Tools.intToIncrement(int: sb.width), height: Tools.intToIncrement(int: sb.height));
+            if let p = sb.product{
+                newBox.setProducForBox(p);
+            }
         }
     }
     

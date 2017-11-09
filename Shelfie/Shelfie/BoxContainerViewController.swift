@@ -67,6 +67,8 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         lastSelectedRow = indexPath.row;
         //TODO: load selected stores shelfplans
+        shelfPlans = Array(storesArray[lastSelectedRow].shelfPlans!) as! [ShelfPlan];
+        datesPickerView.reloadAllComponents();
     }
     
     //MARK: PickerView Methods
@@ -83,12 +85,15 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedPlan = shelfPlans[row];
-        boxViewCont.populateShelfFromPlan(selectedPlan);
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;
+    }
+    @IBAction func loadButtonAction(_ sender: UIButton) {
+        let selectedPlan = shelfPlans[datesPickerView.selectedRow(inComponent: 0)];
+        boxViewCont.populateShelfFromPlan(selectedPlan);
     }
     
     func saveShelf(){
@@ -99,13 +104,17 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func saveButtonAction(_ sender: UIButton) {
         saveShelf();
     }
+    @IBAction func newButtonAction(_ sender: UIButton) {
+        boxViewCont.clearShelf();
+    }
     
     func fetchData(){
         storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
         storeSelectTable.reloadData();
         let s = storesArray[lastSelectedRow];
-        if s.shelfPlans != nil {
-            shelfPlans = Array(s.shelfPlans!) as! [ShelfPlan];
+        if let plansArray = s.shelfPlans{
+            let sortedarr = plansArray.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as! [ShelfPlan];
+            shelfPlans = sortedarr;//Array(plansArray) as! [ShelfPlan];
         }
         datesPickerView.reloadAllComponents();
     }
