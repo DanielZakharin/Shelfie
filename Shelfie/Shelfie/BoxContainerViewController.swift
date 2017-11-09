@@ -15,7 +15,7 @@ import UIKit
 class BoxContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var editingModeSelector: UISegmentedControl!
     @IBOutlet weak var boxViewCont: BoxViewController!
-
+    
     @IBOutlet weak var storeSelectTable: UITableView!
     @IBOutlet weak var datesPickerView: UIPickerView!
     var storesArray:[Store] = [];
@@ -23,7 +23,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     var lastSelectedRow: Int = 0;
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         boxViewCont.parentCtrl = self;
         storeSelectTable.delegate = self;
@@ -33,7 +33,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         fetchData();
         
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
         storeSelectTable.reloadData();
@@ -67,7 +67,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         lastSelectedRow = indexPath.row;
         //TODO: load selected stores shelfplans
-        shelfPlans = Array(storesArray[lastSelectedRow].shelfPlans!) as! [ShelfPlan];
+        loadShelfPlansIntoPicker();
         datesPickerView.reloadAllComponents();
     }
     
@@ -96,36 +96,55 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         boxViewCont.populateShelfFromPlan(selectedPlan);
     }
     
-    func saveShelf(){
-        let shelfWrapper = boxViewCont.convertSelfToWrapper(store: storesArray[lastSelectedRow]);
-        CoreDataSingleton.sharedInstance.createShelfPlan(shelfWrapper);
-    }
-
+    
     @IBAction func saveButtonAction(_ sender: UIButton) {
         saveShelf();
+        fetchData();
     }
     @IBAction func newButtonAction(_ sender: UIButton) {
         boxViewCont.clearShelf();
     }
     
+    func saveShelf(){
+        if(boxViewCont.boxesArr.count > 0){
+            let shelfWrapper = boxViewCont.convertSelfToWrapper(store: storesArray[lastSelectedRow]);
+            CoreDataSingleton.sharedInstance.createShelfPlan(shelfWrapper);
+        }else {
+            let confirmAlert = UIAlertController(title: "Shelf is empty", message: "The shelf is empty, save anyway?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            confirmAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                let shelfWrapper = self.boxViewCont.convertSelfToWrapper(store: self.storesArray[self.lastSelectedRow]);
+                CoreDataSingleton.sharedInstance.createShelfPlan(shelfWrapper);
+            }))
+            
+            confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil));
+            
+            present(confirmAlert, animated: true, completion: nil)
+        }
+    }
+    
     func fetchData(){
         storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
         storeSelectTable.reloadData();
+        loadShelfPlansIntoPicker();
+    }
+    
+    func loadShelfPlansIntoPicker(){
         let s = storesArray[lastSelectedRow];
         if let plansArray = s.shelfPlans{
             let sortedarr = plansArray.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as! [ShelfPlan];
-            shelfPlans = sortedarr;//Array(plansArray) as! [ShelfPlan];
+            self.shelfPlans = sortedarr;//Array(plansArray) as! [ShelfPlan];
         }
         datesPickerView.reloadAllComponents();
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
