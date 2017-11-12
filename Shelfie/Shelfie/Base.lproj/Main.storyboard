@@ -51,7 +51,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="251" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pw0-1Q-rRa" id="Xfd-2h-0FQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="251" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="251" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhV-l4-Tyo">
@@ -79,14 +79,14 @@
                                         </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnY-aq-cnz">
-                                        <rect key="frame" x="108.5" y="609" width="34" height="30"/>
+                                        <rect key="frame" x="109" y="609" width="34" height="30"/>
                                         <state key="normal" title="Load"/>
                                         <connections>
                                             <action selector="loadButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="NO8-Uh-VFb"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT4-Ea-GEp">
-                                        <rect key="frame" x="0.0" y="8" width="251" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="8" width="251" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -200,10 +200,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="F9c-lj-fjz" firstAttribute="width" secondItem="34X-WG-afm" secondAttribute="width" multiplier="0.4" id="Al3-d6-T44"/>
+                            <constraint firstItem="biB-Tv-3xe" firstAttribute="top" secondItem="p9r-Nf-Chk" secondAttribute="bottom" constant="60" id="ZTb-NF-bjM"/>
                             <constraint firstAttribute="trailing" secondItem="biB-Tv-3xe" secondAttribute="trailing" id="a7W-fK-aBq"/>
                             <constraint firstItem="F9c-lj-fjz" firstAttribute="centerX" secondItem="34X-WG-afm" secondAttribute="centerX" id="cZn-ZQ-zL4"/>
                             <constraint firstItem="u3y-o0-uF8" firstAttribute="top" secondItem="biB-Tv-3xe" secondAttribute="bottom" id="d3j-5B-fON"/>
-                            <constraint firstItem="biB-Tv-3xe" firstAttribute="top" secondItem="F9c-lj-fjz" secondAttribute="bottom" constant="16" id="e1e-pw-Ec0"/>
                             <constraint firstItem="F9c-lj-fjz" firstAttribute="top" secondItem="p9r-Nf-Chk" secondAttribute="bottom" constant="16" id="iqL-qu-hwk"/>
                             <constraint firstItem="biB-Tv-3xe" firstAttribute="leading" secondItem="34X-WG-afm" secondAttribute="leading" id="mAt-FA-030"/>
                         </constraints>
@@ -266,7 +266,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="qHD-an-q8y">
-                                <rect key="frame" x="498" y="210" width="28.5" height="23.5"/>
+                                <rect key="frame" x="498" y="210" width="29" height="24"/>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="25"/>
                                 <color key="textColor" red="0.21176470589999999" green="0.20784313730000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -312,7 +312,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metsaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="xHH-X5-APv">
-                                <rect key="frame" x="204.5" y="265.5" width="614" height="192"/>
+                                <rect key="frame" x="205" y="266" width="614" height="192"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -367,7 +367,7 @@
                                         <rect key="frame" x="0.0" y="28" width="237" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9D4-zj-Le8" id="4rs-Dd-e8h">
-                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="237" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyf-JK-aWt">
@@ -408,7 +408,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8q6-a6-KAe" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FpG-1m-A1w">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FpG-1m-A1w">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -518,7 +518,7 @@
                         <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qct-tp-Ene">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qct-tp-Ene">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -539,7 +539,7 @@
                         <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zyw-J2-GXU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zyw-J2-GXU">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -560,7 +560,7 @@
                         <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="EDb-Fo-xaf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EDb-Fo-xaf">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
