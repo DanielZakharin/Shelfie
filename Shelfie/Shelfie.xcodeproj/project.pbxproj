@@ -48,6 +48,7 @@
 		6A9CD4081FA77BD900816FC9 /* ShelfWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD4071FA77BD900816FC9 /* ShelfWrapper.swift */; };
 		6A9CD40B1FA7B37900816FC9 /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD4091FA7B37900816FC9 /* Store+CoreDataClass.swift */; };
 		6A9CD40C1FA7B37900816FC9 /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD40A1FA7B37900816FC9 /* Store+CoreDataProperties.swift */; };
+		6AE368111FB8D1950057FA89 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE368101FB8D1950057FA89 /* DataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		6A9CD4071FA77BD900816FC9 /* ShelfWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelfWrapper.swift; sourceTree = "<group>"; };
 		6A9CD4091FA7B37900816FC9 /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6A9CD40A1FA7B37900816FC9 /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6AE368101FB8D1950057FA89 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 		6A70BCE31F69181000AB4EE0 /* Shelfie */ = {
 			isa = PBXGroup;
 			children = (
+				6AE3680F1FB8D1810057FA89 /* DataView */,
 				6A38BCD31F8E2A5A00233A3E /* WrapperClasses */,
 				6A38BCD01F8DFDF300233A3E /* TEST */,
 				6A2E370E1F863E590045F6A9 /* Fonts */,
@@ -306,6 +309,14 @@
 				6A70BD091F69181000AB4EE0 /* Info.plist */,
 			);
 			path = ShelfieUITests;
+			sourceTree = "<group>";
+		};
+		6AE3680F1FB8D1810057FA89 /* DataView */ = {
+			isa = PBXGroup;
+			children = (
+				6AE368101FB8D1950057FA89 /* DataViewController.swift */,
+			);
+			name = DataView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,6 +485,7 @@
 				6A9CD4011FA7711100816FC9 /* ShelfBox+CoreDataClass.swift in Sources */,
 				6A3347A01F8F7AD3001789E0 /* Chain+CoreDataClass.swift in Sources */,
 				6A4631851F84C72C00928873 /* BoxContainerViewController.swift in Sources */,
+				6AE368111FB8D1950057FA89 /* DataViewController.swift in Sources */,
 				6A14EC981F7E81AB00CF1B96 /* BoxViewController.swift in Sources */,
 				6A9CD4001FA7711100816FC9 /* ShelfPlan+CoreDataProperties.swift in Sources */,
 				6A38BCD21F8DFE0100233A3E /* TESTViewController.swift in Sources */,

@@ -13,7 +13,6 @@ import UIKit
  */
 
 class BoxContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
-    @IBOutlet weak var editingModeSelector: UISegmentedControl!
     @IBOutlet weak var boxViewCont: BoxViewController!
     
     @IBOutlet weak var storeSelectTable: UITableView!
@@ -68,7 +67,6 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         lastSelectedRow = indexPath.row;
         //TODO: load selected stores shelfplans
         loadShelfPlansIntoPicker();
-        datesPickerView.reloadAllComponents();
     }
     
     //MARK: PickerView Methods
@@ -130,12 +128,14 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func loadShelfPlansIntoPicker(){
-        let s = storesArray[lastSelectedRow];
-        if let plansArray = s.shelfPlans{
-            let sortedarr = plansArray.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as! [ShelfPlan];
-            self.shelfPlans = sortedarr;//Array(plansArray) as! [ShelfPlan];
+        if storesArray.count > 0{
+            let s = storesArray[lastSelectedRow];
+            if let plansArray = s.shelfPlans{
+                let sortedarr = plansArray.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as! [ShelfPlan];
+                self.shelfPlans = sortedarr;//Array(plansArray) as! [ShelfPlan];
+            }
+            datesPickerView.reloadAllComponents();
         }
-        datesPickerView.reloadAllComponents();
     }
     /*
      // MARK: - Navigation

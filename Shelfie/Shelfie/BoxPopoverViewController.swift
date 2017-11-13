@@ -8,18 +8,22 @@
 
 import UIKit
 
-class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
     var selectedBoxView : BoxView?;
     var parentCtrl : BoxViewController?;
     @IBOutlet weak var popoverTable: UITableView!
     @IBOutlet weak var delBtn: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     var productsArr : [Product] = [];
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         popoverTable.delegate = self;
         popoverTable.dataSource = self;
+        searchBar.delegate = self;
+        searchBar.returnKeyType = .search;
+        searchBar.showsCancelButton = true;
         fetchProducts();
     }
     
@@ -60,6 +64,24 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRow(at: indexPath, animated: false);
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searching");
+        fetchProductsWithSearch(searchBar.text!);
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("clear");
+        searchBar.text = "";
+        fetchProducts();
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("jee \(searchBar.text)");
+        if(searchBar.text?.isEmpty)!{
+            print("clear search");
+        }
+    }
+    
     
     @IBAction func delBtnAction(_ sender: UIButton) {
         //delete the view from here
@@ -70,6 +92,11 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func fetchProducts(){
         productsArr = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Product") as! [Product];
+        popoverTable.reloadData();
+    }
+    
+    func fetchProductsWithSearch(_ searchTerm: String){
+        productsArr = Array(CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Product", withSearchTerm: searchTerm, forVariable: "name")) as! [Product];
         popoverTable.reloadData();
     }
     

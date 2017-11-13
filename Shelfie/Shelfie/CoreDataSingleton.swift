@@ -128,8 +128,11 @@ class CoreDataSingleton {
         saveContext();
     }
     
-    func fetchEntitiesFromCoreData(_ withEntityName: String) -> [NSManagedObject]{
+    func fetchEntitiesFromCoreData(_ withEntityName: String, withSearchTerm: String? = nil, forVariable: String? = nil) -> [NSManagedObject]{
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: withEntityName);
+        if((withSearchTerm != nil) && (forVariable != nil)){
+            fetchrequest.predicate = NSPredicate(format: "\(forVariable!) contains [c] %@", withSearchTerm!);
+        }
         do {
             let fetchrResult = try managedObjectContext.fetch(fetchrequest) as! [NSManagedObject];
             return fetchrResult;
@@ -144,6 +147,7 @@ class CoreDataSingleton {
             fatalError("Failure to save context: \(error)")
         }
     }
+    
     
     //MARK: DANGER ZONE
     func deleteAllData(entity: String)
