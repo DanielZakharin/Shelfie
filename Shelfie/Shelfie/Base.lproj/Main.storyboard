@@ -266,13 +266,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="qHD-an-q8y">
-                                <rect key="frame" x="498" y="210" width="29" height="24"/>
+                                <rect key="frame" x="498.5" y="210" width="28.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="25"/>
                                 <color key="textColor" red="0.21176470589999999" green="0.20784313730000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="0eW-AH-4g8">
-                                <rect key="frame" x="307" y="490" width="410" height="172"/>
+                                <rect key="frame" x="307" y="489.5" width="410" height="172"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-sC-jFT">
                                         <rect key="frame" x="0.0" y="0.0" width="410" height="36"/>
@@ -312,7 +312,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metsaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="xHH-X5-APv">
-                                <rect key="frame" x="205" y="266" width="614" height="192"/>
+                                <rect key="frame" x="205" y="265.5" width="614" height="192"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -392,19 +392,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3j7-ah-WfY">
+                                <rect key="frame" x="307" y="64" width="697" height="655"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="3j7-ah-WfY" firstAttribute="leading" secondItem="oU2-Fo-Mes" secondAttribute="trailing" id="8Kx-Zl-HZw"/>
                             <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="oU2-Fo-Mes" secondAttribute="bottom" id="AOw-AJ-JMk"/>
                             <constraint firstItem="oU2-Fo-Mes" firstAttribute="leading" secondItem="qag-Te-9ec" secondAttribute="leading" id="C7s-Bz-ZEI"/>
+                            <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="3j7-ah-WfY" secondAttribute="bottom" id="Own-vl-GFX"/>
                             <constraint firstItem="oU2-Fo-Mes" firstAttribute="width" secondItem="qag-Te-9ec" secondAttribute="width" multiplier="0.3" id="Uh3-gJ-Fyf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3j7-ah-WfY" secondAttribute="trailing" id="gMO-BF-Z7w"/>
                             <constraint firstItem="oU2-Fo-Mes" firstAttribute="top" secondItem="qag-Te-9ec" secondAttribute="top" id="m0t-nw-ZFP"/>
+                            <constraint firstItem="3j7-ah-WfY" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" id="teH-Lg-mBs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BqQ-37-RPU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="storesTableView" destination="oU2-Fo-Mes" id="rcg-0Q-0Q8"/>
+                        <outlet property="testTextView" destination="3j7-ah-WfY" id="AjY-w9-e1R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qhv-6O-7KK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -416,7 +428,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8q6-a6-KAe" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FpG-1m-A1w">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FpG-1m-A1w">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -526,7 +538,7 @@
                         <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qct-tp-Ene">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qct-tp-Ene">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -547,7 +559,7 @@
                         <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zyw-J2-GXU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zyw-J2-GXU">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -568,7 +580,7 @@
                         <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EDb-Fo-xaf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="EDb-Fo-xaf">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

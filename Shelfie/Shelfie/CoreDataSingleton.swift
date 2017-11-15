@@ -63,6 +63,7 @@ class CoreDataSingleton {
         testStore.contactPerson = fromStoreWrapper.contactPerson;
         testStore.contactNumber = fromStoreWrapper.contactNumber;
         testStore.storeChain = fromStoreWrapper.storeChain;
+        testStore.shelfWidth = Int16(fromStoreWrapper.shelfWidth!);
         saveContext();
     }
     

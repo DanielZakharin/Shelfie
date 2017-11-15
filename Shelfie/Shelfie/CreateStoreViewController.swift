@@ -17,6 +17,9 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var storeAddressField: UITextField!
     @IBOutlet weak var storeContactPerson: UITextField!
     @IBOutlet weak var storeContactNumber: UITextField!
+    @IBOutlet weak var nomberOfModulesLabel: UILabel!
+    @IBOutlet weak var numberOfModulesStepper: UIStepper!
+    
     //var textFieldArr : [UITextField] = [];
     
     
@@ -125,6 +128,9 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func createStoreChain(_ sender: UIButton) {
         showStoreChainCreationDialog();
     }
+    @IBAction func numberOfModulesChanged(_ sender: UIStepper) {
+        nomberOfModulesLabel.text = "\(nomberOfModulesLabel.text!.substring(to: nomberOfModulesLabel.text!.index(before: nomberOfModulesLabel.text!.endIndex)))\(Int(sender.value))";
+    }
     
     
     //MARK: adding entry to coreadata
@@ -154,6 +160,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if(Tools.checkTextFieldValid(textField: storeContactNumber)){
             newStoreWrapper.contactNumber = storeContactNumber.text!;
         }
+        newStoreWrapper.shelfWidth = Int(numberOfModulesStepper.value);
         newStoreWrapper.storeChain = arr2[storeChainPickerView.selectedRow(inComponent: 1)];
         return newStoreWrapper;
     }

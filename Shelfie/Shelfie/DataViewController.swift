@@ -11,10 +11,12 @@ import CoreData
 
 class DataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var testTextView: UITextView!
     @IBOutlet weak var storesTableView: UITableView!
     var storesArray: [Store] = [];
     var productCountDict: [Product: Int] = [:];
     var emptiesCount: Int = 0;
+    var totalShelfSpace = 0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +53,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let shelp = Array(storesArray[indexPath.row].shelfPlans!) as? [ShelfPlan]{
-            calcTest(shelp[0]);
+            //calcTest(shelp[0]);
         }
     }
     
@@ -60,7 +62,12 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         storesTableView.reloadData();
     }
     
-    func calcTest(_ shelfPlan: ShelfPlan){
+    //MARK: Calculations
+    func calcTotalSpaceOnShelf(){
+        
+    }
+    
+    /*func calcTest(_ shelfPlan: ShelfPlan){
         //convert nsset to array of type Shelfbox
         if let boxes = Array(shelfPlan.boxes!) as? [ShelfBox]{
             //loop through all boxes
@@ -83,7 +90,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         print("CALCS DONE!");
-    }
+    }*/
     
     
     /*

@@ -54,7 +54,7 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         scrollView.panGestureRecognizer.require(toFail: panGesture);
         
         //create a shelf for the background, change this later to be fetched from datasource
-        makeBG(width: 9, height: 2);
+        //makeBG(width: 9, height: 2);
     }
     
     //MARK: PangestureRecognizerDelegate Methods
@@ -172,13 +172,20 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     
     //makes a background for drawing boxes on
     func makeBG(width: Int, height: Int) {
-        let shelfCellWidth = increment*4;
+        for v in scrollView.subviews{
+            if(v is UIImageView){
+                v.removeFromSuperview();
+            }
+        }
+        let shelfCellWidth = increment*8;
+        let shelfCellHeight = increment*4;
         let cell = UIImage(named: "shelfCell");
         for h in 0..<height {
             for w in 0..<width{
-                let cellImgView = UIImageView(frame: CGRect(x: shelfCellWidth*CGFloat(w), y: shelfCellWidth*CGFloat(h), width: shelfCellWidth, height: shelfCellWidth));
+                let cellImgView = UIImageView(frame: CGRect(x: shelfCellWidth*CGFloat(w), y: shelfCellHeight*CGFloat(h), width: shelfCellWidth, height: shelfCellHeight));
                 cellImgView.image = cell;
                 scrollView.addSubview(cellImgView);
+                sendSubview(toBack: cellImgView);
             }
         }
         //SET CONTENTSIZE OF SCROLLVIEW, OTHERWISE IT WILL NOT SCROLL
@@ -215,7 +222,6 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     func populateShelfFromPlan(_ shelf: ShelfPlan){
         clearShelf();
         let boxes:[ShelfBox] = Array(shelf.boxes!) as! [ShelfBox];
-        print("Boxes in plan: \(boxes.count)");
         for sb in boxes {
             print("making a box:\n   x:\(sb.coordX)\n   y:\(sb.coordY)\n   w:\(sb.width)\n   h:\(sb.height)\n\n")
             let newBox = makeBoxAtLocation(Tools.intToIncrement(int: sb.coordX), Tools.intToIncrement(int: sb.coordY), width: Tools.intToIncrement(int: sb.width), height: Tools.intToIncrement(int: sb.height));

@@ -12,7 +12,7 @@ class Tools{
     
     let sharedInstance = Tools();
     
-    static let increment : CGFloat = 50.0;
+    static let increment : CGFloat = UIScreen.main.bounds.width/30;
     
     static func checkTextFieldValid(textField: UITextField) -> Bool{
         if((textField.text) != nil && !textField.text!.isEmpty){

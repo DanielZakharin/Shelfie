@@ -20,6 +20,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     var storesArray:[Store] = [];
     var shelfPlans:[ShelfPlan] = [];
     var lastSelectedRow: Int = 0;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,6 +68,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         lastSelectedRow = indexPath.row;
         //TODO: load selected stores shelfplans
         loadShelfPlansIntoPicker();
+        boxViewCont.makeBG(width: Int(storesArray[indexPath.row].shelfWidth), height: 3);
     }
     
     //MARK: PickerView Methods
@@ -125,6 +127,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
         storeSelectTable.reloadData();
         loadShelfPlansIntoPicker();
+        boxViewCont.makeBG(width: Int(storesArray[0].shelfWidth), height: 3);
     }
     
     func loadShelfPlansIntoPicker(){
