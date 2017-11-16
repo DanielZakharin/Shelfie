@@ -14,9 +14,11 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var testTextView: UITextView!
     @IBOutlet weak var storesTableView: UITableView!
     var storesArray: [Store] = [];
-    var productCountDict: [Product: Int] = [:];
-    var emptiesCount: Int = 0;
+    var productAreaDict: [Product: Int] = [:];
+    var fairShare: [Product: Double] = [:];
+    var emptiesArea: Int = 0;
     var totalShelfSpace = 0;
+    var totalProductsArea = 0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,22 +53,14 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return storesArray.count;
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         /*if let shelp = Array(storesArray[indexPath.row].shelfPlans!) as? [ShelfPlan]{
-            
-        }*/
+         
+         }*/
         let selectedStore = storesArray[indexPath.row];
         calcTotalSpaceOnShelf(selectedStore);
-        if let shelfPlans = Array(selectedStore.shelfPlans!) as? [ShelfPlan]{
-            for shelp in shelfPlans {
-                calcTest(shelp);
-            }
-            dump(productCountDict);
-            print("totalshelf = \(totalShelfSpace)");
-            for (prod,cnt) in productCountDict {
-                print("\(prod.name):\(cnt)");
-            }
-        }
+        calcNumberOfProducts(selectedStore);
+        calcFairShare();
     }
     
     func fetchData(){
@@ -80,26 +74,50 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         totalShelfSpace = Int(store.shelfWidth) * 8 * 4 * 3;
     }
     
-    func calcTest(_ shelfPlan: ShelfPlan){
+    func calcNumberOfProducts(_ store: Store){
+        //sort shelfplans by newest
+        if let shelfPlans = store.shelfPlans!.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as? [ShelfPlan]{
+            if shelfPlans.count > 0{
+                calcAreaOfProductsIn(shelfPlans[0]);
+            }
+        }
+    }
+    
+    func calcFairShare(){
+        print("TotalAreaOfProducts: \(totalProductsArea)");
+        for (prod,area) in productAreaDict {
+            let shareOfTotalProductSpace = Double(Double(area) / Double(totalProductsArea));
+            print("Area: \(area))");
+            fairShare[prod] = shareOfTotalProductSpace;
+            print("Fairshare for \(prod.name): \(shareOfTotalProductSpace*100)%");
+        }
+    }
+    
+    func calcAreaOfProductsIn(_ shelfPlan: ShelfPlan){
+        //empty the dict and reset emptiescount & totalProductsArea
+        productAreaDict = [:];
+        emptiesArea = 0;
+        totalProductsArea = 0;
         //convert nsset to array of type Shelfbox
         if let boxes = Array(shelfPlan.boxes!) as? [ShelfBox]{
             //loop through all boxes
             for sb in boxes {
                 //if the box has a product, proceed
                 if let prod = sb.product{
-                    //if the product has been encountered before, increase count
-                    if let val = productCountDict[prod]{
-                        productCountDict[prod] = val + 1;
+                    //if the product has been encountered before, increase the area it takes up on the shelf
+                    if let val = productAreaDict[prod]{
+                        productAreaDict[prod] = val + Int(sb.width*sb.height);
                     }
-                    //if product has not been encountered before, make a new entry and set amount to 1
+                        //if product has not been encountered before, make a new entry and set amount to its area
                     else {
-                        productCountDict[prod] = 1;
+                        productAreaDict[prod] = Int(sb.width*sb.height);
                     }
                 }
-                //if box doesnt have a product, it is an empty space, increase empty counter
+                    //if box doesnt have a product, it is an empty space, increase empty counter
                 else{
-                    emptiesCount+=1;
+                    emptiesArea = emptiesArea + Int(sb.width*sb.height);
                 }
+                totalProductsArea = totalProductsArea + Int(sb.width*sb.height);
             }
         }
         print("CALCS DONE!");

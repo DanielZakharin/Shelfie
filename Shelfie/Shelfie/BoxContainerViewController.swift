@@ -134,6 +134,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         if storesArray.count > 0{
             let s = storesArray[lastSelectedRow];
             if let plansArray = s.shelfPlans{
+                //sorts array with NSSORTDESCRIPTOR by date
                 let sortedarr = plansArray.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as! [ShelfPlan];
                 self.shelfPlans = sortedarr;//Array(plansArray) as! [ShelfPlan];
             }

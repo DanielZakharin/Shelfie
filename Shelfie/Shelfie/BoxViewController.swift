@@ -223,7 +223,6 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         clearShelf();
         let boxes:[ShelfBox] = Array(shelf.boxes!) as! [ShelfBox];
         for sb in boxes {
-            print("making a box:\n   x:\(sb.coordX)\n   y:\(sb.coordY)\n   w:\(sb.width)\n   h:\(sb.height)\n\n")
             let newBox = makeBoxAtLocation(Tools.intToIncrement(int: sb.coordX), Tools.intToIncrement(int: sb.coordY), width: Tools.intToIncrement(int: sb.width), height: Tools.intToIncrement(int: sb.height));
             if let p = sb.product{
                 newBox.setProducForBox(p);
