@@ -52,8 +52,20 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let shelp = Array(storesArray[indexPath.row].shelfPlans!) as? [ShelfPlan]{
-            //calcTest(shelp[0]);
+        /*if let shelp = Array(storesArray[indexPath.row].shelfPlans!) as? [ShelfPlan]{
+            
+        }*/
+        let selectedStore = storesArray[indexPath.row];
+        calcTotalSpaceOnShelf(selectedStore);
+        if let shelfPlans = Array(selectedStore.shelfPlans!) as? [ShelfPlan]{
+            for shelp in shelfPlans {
+                calcTest(shelp);
+            }
+            dump(productCountDict);
+            print("totalshelf = \(totalShelfSpace)");
+            for (prod,cnt) in productCountDict {
+                print("\(prod.name):\(cnt)");
+            }
         }
     }
     
@@ -63,11 +75,12 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //MARK: Calculations
-    func calcTotalSpaceOnShelf(){
-        
+    func calcTotalSpaceOnShelf(_ store: Store){
+        //module width * single shelf height * number of shelves on module
+        totalShelfSpace = Int(store.shelfWidth) * 8 * 4 * 3;
     }
     
-    /*func calcTest(_ shelfPlan: ShelfPlan){
+    func calcTest(_ shelfPlan: ShelfPlan){
         //convert nsset to array of type Shelfbox
         if let boxes = Array(shelfPlan.boxes!) as? [ShelfBox]{
             //loop through all boxes
@@ -90,7 +103,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         print("CALCS DONE!");
-    }*/
+    }
     
     
     /*
