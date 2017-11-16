@@ -392,30 +392,70 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3j7-ah-WfY">
-                                <rect key="frame" x="307" y="64" width="697" height="655"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6KX-4A-BkO">
+                                <rect key="frame" x="315" y="64" width="681" height="655"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yo-8u-OzM" customClass="PieChart" customModule="PieCharts">
+                                        <rect key="frame" x="0.0" y="0.0" width="340.5" height="295"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="innerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="outerRadius">
+                                                <real key="value" value="80"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p56-iq-nls" customClass="PieChart" customModule="PieCharts">
+                                        <rect key="frame" x="187.5" y="319" width="306" height="328"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daZ-Ai-kLi" customClass="PieChart" customModule="PieCharts">
+                                        <rect key="frame" x="348.5" y="8" width="340.5" height="295"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="daZ-Ai-kLi" secondAttribute="trailing" id="7vJ-KU-W6l"/>
+                                    <constraint firstItem="9yo-8u-OzM" firstAttribute="height" secondItem="6KX-4A-BkO" secondAttribute="height" multiplier="0.45" id="EgI-fm-kTM"/>
+                                    <constraint firstItem="9yo-8u-OzM" firstAttribute="width" secondItem="6KX-4A-BkO" secondAttribute="width" multiplier="0.5" id="HVO-Fx-JhF"/>
+                                    <constraint firstItem="9yo-8u-OzM" firstAttribute="top" secondItem="6KX-4A-BkO" secondAttribute="top" id="Mi0-A4-oq8"/>
+                                    <constraint firstAttribute="bottom" secondItem="p56-iq-nls" secondAttribute="bottom" constant="8" id="ODs-o7-AkO"/>
+                                    <constraint firstItem="daZ-Ai-kLi" firstAttribute="width" secondItem="6KX-4A-BkO" secondAttribute="width" multiplier="0.5" id="RWM-Nx-Z19"/>
+                                    <constraint firstItem="p56-iq-nls" firstAttribute="width" secondItem="6KX-4A-BkO" secondAttribute="width" multiplier="0.45" id="XP5-Zg-Xtc"/>
+                                    <constraint firstItem="daZ-Ai-kLi" firstAttribute="leading" secondItem="9yo-8u-OzM" secondAttribute="trailing" constant="8" id="XaH-7u-fIz"/>
+                                    <constraint firstItem="p56-iq-nls" firstAttribute="top" secondItem="daZ-Ai-kLi" secondAttribute="bottom" constant="16" id="gFY-Yw-lAa"/>
+                                    <constraint firstItem="p56-iq-nls" firstAttribute="centerX" secondItem="6KX-4A-BkO" secondAttribute="centerX" id="gVP-D3-1Mo"/>
+                                    <constraint firstItem="9yo-8u-OzM" firstAttribute="leading" secondItem="6KX-4A-BkO" secondAttribute="leading" id="ip6-Ba-Vpx"/>
+                                    <constraint firstItem="daZ-Ai-kLi" firstAttribute="height" secondItem="6KX-4A-BkO" secondAttribute="height" multiplier="0.45" id="kPQ-Hc-Ppb"/>
+                                    <constraint firstItem="daZ-Ai-kLi" firstAttribute="top" secondItem="6KX-4A-BkO" secondAttribute="top" constant="8" id="otw-7S-NgH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3j7-ah-WfY" firstAttribute="leading" secondItem="oU2-Fo-Mes" secondAttribute="trailing" id="8Kx-Zl-HZw"/>
                             <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="oU2-Fo-Mes" secondAttribute="bottom" id="AOw-AJ-JMk"/>
                             <constraint firstItem="oU2-Fo-Mes" firstAttribute="leading" secondItem="qag-Te-9ec" secondAttribute="leading" id="C7s-Bz-ZEI"/>
-                            <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="3j7-ah-WfY" secondAttribute="bottom" id="Own-vl-GFX"/>
                             <constraint firstItem="oU2-Fo-Mes" firstAttribute="width" secondItem="qag-Te-9ec" secondAttribute="width" multiplier="0.3" id="Uh3-gJ-Fyf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="3j7-ah-WfY" secondAttribute="trailing" id="gMO-BF-Z7w"/>
+                            <constraint firstItem="6KX-4A-BkO" firstAttribute="leading" secondItem="oU2-Fo-Mes" secondAttribute="trailing" constant="8" id="Vy0-PB-JJE"/>
+                            <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="6KX-4A-BkO" secondAttribute="bottom" id="Ytc-Re-7t9"/>
+                            <constraint firstItem="6KX-4A-BkO" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" id="iLg-Ak-YMJ"/>
                             <constraint firstItem="oU2-Fo-Mes" firstAttribute="top" secondItem="qag-Te-9ec" secondAttribute="top" id="m0t-nw-ZFP"/>
-                            <constraint firstItem="3j7-ah-WfY" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" id="teH-Lg-mBs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6KX-4A-BkO" secondAttribute="trailing" constant="8" id="pJy-XC-C6o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BqQ-37-RPU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="pie1" destination="9yo-8u-OzM" id="rz1-vd-PJn"/>
+                        <outlet property="pie2" destination="daZ-Ai-kLi" id="nyN-f0-oVW"/>
+                        <outlet property="pie3" destination="p56-iq-nls" id="8r8-uI-s2z"/>
                         <outlet property="storesTableView" destination="oU2-Fo-Mes" id="rcg-0Q-0Q8"/>
-                        <outlet property="testTextView" destination="3j7-ah-WfY" id="AjY-w9-e1R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qhv-6O-7KK" userLabel="First Responder" sceneMemberID="firstResponder"/>

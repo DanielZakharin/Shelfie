@@ -8,10 +8,15 @@
 
 import UIKit
 import CoreData
+import PieCharts
 
 class DataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var testTextView: UITextView!
+    @IBOutlet weak var pie1: PieChart!
+    @IBOutlet weak var pie2: PieChart!
+    @IBOutlet weak var pie3: PieChart!
+    
+    
     @IBOutlet weak var storesTableView: UITableView!
     var storesArray: [Store] = [];
     var productAreaDict: [Product: Int] = [:];
@@ -26,6 +31,12 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         storesTableView.delegate = self;
         storesTableView.dataSource = self;
         fetchData();
+        pie1.models = [
+            PieSliceModel(value: 2.1, color: UIColor.yellow),
+            PieSliceModel(value: 3, color: UIColor.blue),
+            PieSliceModel(value: 1, color: UIColor.green)
+        ]
+        pie2.models = [];
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,7 +83,6 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func calcTotalSpaceOnShelf(_ store: Store){
         //module width * single shelf height * number of shelves on module
         totalShelfSpace = Int(store.shelfWidth) * 8 * 4 * 3;
-        testTextView.text = testTextView.text + "Shelf is the size of: \(totalShelfSpace)\n\n";
     }
     
     func calcNumberOfProducts(_ store: Store){
@@ -86,12 +96,16 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func calcFairShare(){
         print("TotalAreaOfProducts: \(totalProductsArea)");
+        var col = [UIColor.blue, UIColor.red, UIColor.yellow, UIColor.brown];
+        var i = 0;
         for (prod,area) in productAreaDict {
             let shareOfTotalProductSpace = Double(Double(area) / Double(totalProductsArea));
-            print("Area: \(area))");
+            //print("Area: \(area))");
             fairShare[prod] = shareOfTotalProductSpace;
-            testTextView.text = testTextView.text + "Fairshare for \(prod.name!): \(shareOfTotalProductSpace*100)%, with area of \(area)\n";
+            pie2.models.append(PieSliceModel(value: shareOfTotalProductSpace, color: col[i]));
+            i += 1;
         }
+        
     }
     
     
@@ -124,7 +138,6 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         print("CALCS DONE!");
-        testTextView.text = testTextView.text + "Total area of products: \(totalProductsArea)\n\n";
     }
     
     
