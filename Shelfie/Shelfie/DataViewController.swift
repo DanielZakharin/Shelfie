@@ -72,6 +72,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func calcTotalSpaceOnShelf(_ store: Store){
         //module width * single shelf height * number of shelves on module
         totalShelfSpace = Int(store.shelfWidth) * 8 * 4 * 3;
+        testTextView.text = testTextView.text + "Shelf is the size of: \(totalShelfSpace)\n\n";
     }
     
     func calcNumberOfProducts(_ store: Store){
@@ -89,9 +90,11 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let shareOfTotalProductSpace = Double(Double(area) / Double(totalProductsArea));
             print("Area: \(area))");
             fairShare[prod] = shareOfTotalProductSpace;
-            print("Fairshare for \(prod.name): \(shareOfTotalProductSpace*100)%");
+            testTextView.text = testTextView.text + "Fairshare for \(prod.name!): \(shareOfTotalProductSpace*100)%, with area of \(area)\n";
         }
     }
+    
+    
     
     func calcAreaOfProductsIn(_ shelfPlan: ShelfPlan){
         //empty the dict and reset emptiescount & totalProductsArea
@@ -121,6 +124,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         print("CALCS DONE!");
+        testTextView.text = testTextView.text + "Total area of products: \(totalProductsArea)\n\n";
     }
     
     

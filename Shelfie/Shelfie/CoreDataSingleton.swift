@@ -107,7 +107,7 @@ class CoreDataSingleton {
         newBox.height = Int16(fromShelfBoxWrapper.size.height);
         newBox.width = Int16(fromShelfBoxWrapper.size.width);
         newBox.product = fromShelfBoxWrapper.product;
-        saveContext();
+        //saveContext();
         return newBox;
     }
     
@@ -120,11 +120,17 @@ class CoreDataSingleton {
     }
     
     func createShelfPlan(_ fromShelfWrapper: ShelfWrapper){
+        print(1);
         let newShelf = NSEntityDescription.insertNewObject(forEntityName: "ShelfPlan", into: managedObjectContext) as! ShelfPlan;
+        print(2);
         newShelf.boxes = NSSet(array: createShelfBoxes(fromShelfWrapper.boxes));
+        print(3);
         newShelf.date = fromShelfWrapper.date as NSDate?;
+        print(4);
         newShelf.store = fromShelfWrapper.store;
+        print(5);
         newShelf.verticalSize = fromShelfWrapper.shelfHeight;
+        print(6);
         print("Created a shelfplan!");
         saveContext();
     }
@@ -141,7 +147,8 @@ class CoreDataSingleton {
             fatalError("Failed to fetch employees: \(error)")
         }
     }
-    func saveContext(){
+    private func saveContext(){
+        print(999);
         do{
             try managedObjectContext.save()
         } catch {
