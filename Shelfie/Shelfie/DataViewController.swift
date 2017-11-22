@@ -9,21 +9,27 @@
 import UIKit
 import CoreData
 import PieCharts
+import ChartLegends
 
-class DataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PieChartDelegate{
     
     @IBOutlet weak var pie1: PieChart!
     @IBOutlet weak var pie2: PieChart!
     @IBOutlet weak var pie3: PieChart!
     
+    @IBOutlet weak var pietestlegend: ChartLegendsView!
     
     @IBOutlet weak var storesTableView: UITableView!
     var storesArray: [Store] = [];
-    var productAreaDict: [Product: Int] = [:];
-    var fairShare: [Product: Double] = [:];
-    var emptiesArea: Int = 0;
+    //    var productAreaDict: [Product: Int] = [:];
+    //    var fairShare: [Product: Double] = [:];
+    //    var emptiesArea: Int = 0;
     var totalShelfSpace = 0;
-    var totalProductsArea = 0;
+    //    var totalProductsArea = 0;
+    
+    var wcPapers: [ShelfBox] = [];
+    var hoPapers: [ShelfBox] = [];
+    var hankies: [ShelfBox] = [];
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +37,12 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         storesTableView.delegate = self;
         storesTableView.dataSource = self;
         fetchData();
-        pie1.models = [
-            PieSliceModel(value: 2.1, color: UIColor.yellow),
-            PieSliceModel(value: 3, color: UIColor.blue),
-            PieSliceModel(value: 1, color: UIColor.green)
-        ]
-        pie2.models = [];
+        
+        formatPieChart(pie1);
+        formatPieChart(pie2);
+        formatPieChart(pie3);
+        
+        //pietestlegend.setLegends([("jeeben",UIColor.red)]);
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,18 +71,80 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*if let shelp = Array(storesArray[indexPath.row].shelfPlans!) as? [ShelfPlan]{
-         
-         }*/
         let selectedStore = storesArray[indexPath.row];
-        calcTotalSpaceOnShelf(selectedStore);
-        calcNumberOfProducts(selectedStore);
-        calcFairShare();
+        configPieCharts(selectedStore);
     }
     
     func fetchData(){
         storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
         storesTableView.reloadData();
+    }
+    
+    func configPieCharts(_ selectedStore: Store){
+        calcTotalSpaceOnShelf(selectedStore);
+        //sort by type of product
+        sortByCategories(selectedStore);
+        //sort by brand
+        //populate pies with sorted arrays
+        populatePieChart(wcPapers, pie: pie1);
+        for i in wcPapers {
+            print(i.product?.brand?.name);
+        }
+        populatePieChart(hoPapers, pie: pie2);
+        populatePieChart(hankies, pie: pie3);
+    }
+    
+    func sortByCategories(_ store: Store){
+        if let shelfPlans = store.shelfPlans!.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as? [ShelfPlan]{
+            if shelfPlans.count > 0{
+                if let boxes = Array(shelfPlans[0].boxes!) as? [ShelfBox]{
+                    for box in boxes {
+                        if let product = box.product{
+                            switch product.category {
+                            case 0:
+                                hankies.append(box);
+                                break;
+                            case 1:
+                                wcPapers.append(box);
+                                break;
+                            case 2:
+                                hoPapers.append(box);
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+//        print("Hankies \(hankies.count) ho: \(hoPapers.count) wc: \(wcPapers.count)");
+    }
+    
+    func sortByBrand(_ boxes: [ShelfBox]) -> [ProductBrand:Double] {
+        var tempDict : [ProductBrand:Double] = [:];
+        for box in boxes {
+            if let prod = box.product {
+                if let brand = box.product?.brand {
+                    if var i = tempDict[brand] {
+                        i += 1;
+                    }else {
+                        tempDict[brand] = 1;
+                    }
+                }
+            }
+        }
+        return tempDict;
+    }
+    
+    func populatePieChart(_ boxes : [ShelfBox], pie: PieChart){
+        let dict = sortByBrand(boxes);
+        var models: [PieSliceModel] = []
+        for (brand, value) in dict {
+            models.append(PieSliceModel(value: value, color: UIColor.red))
+            //todo make legend for each brand
+        }
+        pie.models = models;
     }
     
     //MARK: Calculations
@@ -85,59 +153,94 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         totalShelfSpace = Int(store.shelfWidth) * 8 * 4 * 3;
     }
     
-    func calcNumberOfProducts(_ store: Store){
-        //sort shelfplans by newest
-        if let shelfPlans = store.shelfPlans!.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as? [ShelfPlan]{
-            if shelfPlans.count > 0{
-                calcAreaOfProductsIn(shelfPlans[0]);
-            }
-        }
-    }
+    //    func calcNumberOfProducts(_ store: Store){
+    //        //sort shelfplans by newest
+    //        if let shelfPlans = store.shelfPlans!.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as? [ShelfPlan]{
+    //            if shelfPlans.count > 0{
+    //                calcAreaOfProductsIn(shelfPlans[0]);
+    //            }
+    //        }
+    //    }
     
-    func calcFairShare(){
-        print("TotalAreaOfProducts: \(totalProductsArea)");
-        var col = [UIColor.blue, UIColor.red, UIColor.yellow, UIColor.brown];
-        var i = 0;
-        for (prod,area) in productAreaDict {
-            let shareOfTotalProductSpace = Double(Double(area) / Double(totalProductsArea));
-            //print("Area: \(area))");
-            fairShare[prod] = shareOfTotalProductSpace;
-            pie2.models.append(PieSliceModel(value: shareOfTotalProductSpace, color: col[i]));
-            i += 1;
-        }
+    func calcFairShare(_ boxes : [ShelfBox]){
+        //        print("TotalAreaOfProducts: \(totalProductsArea)");
+        //        var col = [UIColor.blue, UIColor.red, UIColor.yellow, UIColor.brown];
+        //        var i = 0;
+        //        var
+        //        var modelData: [PieSliceModel] = [];
+        //        for (prod,area) in productAreaDict {
+        //            let shareOfTotalProductSpace = Double(Double(area) / Double(totalProductsArea));
+        //            print("Area: \(area)) + \(i)");
+        //            fairShare[prod] = shareOfTotalProductSpace;
+        //            modelData.append(PieSliceModel(value: shareOfTotalProductSpace, color: col[i]));
+        //            i = i + 1;
+        //        }
+        //        pie2.models = modelData;
+        let totalArea = calcAreaOfBoxes(boxes);
         
     }
     
     
     
-    func calcAreaOfProductsIn(_ shelfPlan: ShelfPlan){
-        //empty the dict and reset emptiescount & totalProductsArea
-        productAreaDict = [:];
-        emptiesArea = 0;
-        totalProductsArea = 0;
-        //convert nsset to array of type Shelfbox
-        if let boxes = Array(shelfPlan.boxes!) as? [ShelfBox]{
-            //loop through all boxes
-            for sb in boxes {
-                //if the box has a product, proceed
-                if let prod = sb.product{
-                    //if the product has been encountered before, increase the area it takes up on the shelf
-                    if let val = productAreaDict[prod]{
-                        productAreaDict[prod] = val + Int(sb.width*sb.height);
-                    }
-                        //if product has not been encountered before, make a new entry and set amount to its area
-                    else {
-                        productAreaDict[prod] = Int(sb.width*sb.height);
-                    }
-                }
-                    //if box doesnt have a product, it is an empty space, increase empty counter
-                else{
-                    emptiesArea = emptiesArea + Int(sb.width*sb.height);
-                }
-                totalProductsArea = totalProductsArea + Int(sb.width*sb.height);
-            }
+    //    func calcAreaOfProducts(_ boxes: [ShelfBox]) -> [Product:Int]{
+    //        //empty the dict and reset emptiescount & totalProductsArea
+    //        var productAreaDictionary:[Product:Int] = [:];
+    //        emptiesArea = 0;
+    //        var totalProductsArea = 0;
+    //        //loop through all boxes
+    //        for sb in boxes {
+    //            //if the box has a product, proceed
+    //            if let prod = sb.product{
+    //                //if the product has been encountered before, increase the area it takes up on the shelf
+    //                if let val = productAreaDict[prod]{
+    //                    productAreaDictionary[prod] = val + Int(sb.width*sb.height);
+    //                }
+    //                    //if product has not been encountered before, make a new entry and set amount to its area
+    //                else {
+    //                    productAreaDictionary[prod] = Int(sb.width*sb.height);
+    //                }
+    //            }
+    //                //if box doesnt have a product, it is an empty space, increase empty counter
+    //            else{
+    //                emptiesArea = emptiesArea + Int(sb.width*sb.height);
+    //            }
+    //            totalProductsArea = totalProductsArea + Int(sb.width*sb.height);
+    //        }
+    //
+    //    }
+    
+    func calcAreaOfBoxes(_ boxes : [ShelfBox]) -> Double{
+        var area:Double = 0;
+        for box in boxes {
+            area += Double(box.width * box.height);
         }
-        print("CALCS DONE!");
+        return area;
+    }
+    
+    func formatPieChart(_ pieChart: PieChart) {
+        pieChart.outerRadius = (min(pieChart.frame.height, pieChart.frame.width) - 10)/2.2;
+        pieChart.innerRadius = 0;
+        let textLayerSettings = PiePlainTextLayerSettings();
+        textLayerSettings.viewRadius = pie2.outerRadius/2;
+        textLayerSettings.hideOnOverflow = false;
+        
+        let formatter = NumberFormatter();
+        formatter.maximumFractionDigits = 0;
+        textLayerSettings.label.textGenerator = {slice in
+            return formatter.string(from: slice.data.percentage * 100 as NSNumber).map{"\($0)%"} ?? ""
+        }
+        
+        let textLayer = PiePlainTextLayer();
+        //textLayer.animator = AlphaPieViewLayerAnimator();
+        textLayer.settings = textLayerSettings;
+        pieChart.layers = [textLayer];
+        pieChart.setNeedsDisplay();
+        pieChart.delegate = self;
+    }
+    
+    //MARK: pie delegate
+    func onSelected(slice: PieSlice, selected: Bool) {
+        print(slice.data.percentage);
     }
     
     

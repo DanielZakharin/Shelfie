@@ -156,6 +156,22 @@ class CoreDataSingleton {
         }
     }
     
+    func fetchWithMultipleConditions(_ entityName: String , searchterms: [String:String]) -> [NSManagedObject]{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName);
+        var subPredicates : [NSPredicate] = [];
+        for (key,value) in searchterms {
+            let subPredicate = NSPredicate(format: "%K == %@", key, value);
+            subPredicates.append(subPredicate);
+        }
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates);
+        do {
+            let fetchrResult = try managedObjectContext.fetch(fetchRequest) as! [NSManagedObject];
+            return fetchrResult;
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+    }
+    
     
     //MARK: DANGER ZONE
     func deleteAllData(entity: String)

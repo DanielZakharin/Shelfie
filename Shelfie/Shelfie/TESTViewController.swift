@@ -10,13 +10,17 @@ import UIKit
 import CoreData
 import SwiftCharts
 import PieCharts
+import ChartLegends
 
 class TESTViewController: UIViewController {
-    
     let coreSingleton = CoreDataSingleton.sharedInstance;
     @IBOutlet weak var testTxtField: UITextView!
     @IBOutlet weak var testTxtField2: UITextView!
     @IBOutlet weak var testTxtField3: UITextView!
+    
+    @IBOutlet weak var testCont: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,7 +50,19 @@ class TESTViewController: UIViewController {
         
         self.view.addSubview(chart.view)
        // self.chart = chart
-    
+        
+        let legetest = ChartLegendsView();
+        
+        testCont.addSubview(legetest);
+        legetest.frame = testCont.bounds;
+        /*
+        legetest.setLegends(.circle(radius: 7), [
+            (text: "Chemicals", color: UIColor.orange),
+            (text: "Forestry", color: UIColor.green)
+            ])
+ */
+        
+        
         
     }
     

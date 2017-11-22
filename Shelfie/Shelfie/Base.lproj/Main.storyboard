@@ -397,6 +397,13 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yo-8u-OzM" customClass="PieChart" customModule="PieCharts">
                                         <rect key="frame" x="0.0" y="0.0" width="340.5" height="295"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qjj-3w-WCz" customClass="ChartLegendsView" customModule="ChartLegends">
+                                                <rect key="frame" x="50" y="241" width="240" height="38"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="innerRadius">
@@ -417,6 +424,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daZ-Ai-kLi" customClass="PieChart" customModule="PieCharts">
                                         <rect key="frame" x="348.5" y="8" width="340.5" height="295"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedOffset">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="innerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -556,10 +571,21 @@
                                     <action selector="testBtn1:" destination="gWS-4O-bSR" eventType="touchUpInside" id="sIB-i0-UWM"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fs3-fs-6DC">
+                                <rect key="frame" x="562" y="495" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NHD-ux-fIj" customClass="ChartLegendsView" customModule="ChartLegends">
+                                <rect key="frame" x="177" y="562" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="testCont" destination="fs3-fs-6DC" id="GLK-Jr-s0k"/>
                         <outlet property="testTxtField" destination="oZQ-Or-Hml" id="enP-go-r0p"/>
                         <outlet property="testTxtField2" destination="3Bu-yF-GTX" id="c5s-V8-eKn"/>
                         <outlet property="testTxtField3" destination="vni-hs-vq8" id="La0-mF-9bn"/>
@@ -643,6 +669,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1l8-pj-dCq"/>
+        <segue reference="aKr-LT-KrA"/>
     </inferredMetricsTieBreakers>
 </document>

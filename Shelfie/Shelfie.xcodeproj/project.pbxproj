@@ -33,6 +33,7 @@
 		6A4631821F84C1C700928873 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631811F84C1C700928873 /* LoginViewController.swift */; };
 		6A4631851F84C72C00928873 /* BoxContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631841F84C72C00928873 /* BoxContainerViewController.swift */; };
 		6A4631881F84C82500928873 /* BoxStoreSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4631871F84C82500928873 /* BoxStoreSelectTableViewCell.swift */; };
+		6A6531151FC44E0200A827C3 /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6531141FC44E0200A827C3 /* TestCollectionViewCell.swift */; };
 		6A70BCE51F69181000AB4EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A70BCE41F69181000AB4EE0 /* AppDelegate.swift */; };
 		6A70BCEA1F69181000AB4EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A70BCE81F69181000AB4EE0 /* Main.storyboard */; };
 		6A70BCED1F69181000AB4EE0 /* Shelfie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A70BCEB1F69181000AB4EE0 /* Shelfie.xcdatamodeld */; };
@@ -99,6 +100,7 @@
 		6A4631811F84C1C700928873 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6A4631841F84C72C00928873 /* BoxContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxContainerViewController.swift; sourceTree = "<group>"; };
 		6A4631871F84C82500928873 /* BoxStoreSelectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxStoreSelectTableViewCell.swift; sourceTree = "<group>"; };
+		6A6531141FC44E0200A827C3 /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
 		6A70BCE11F69181000AB4EE0 /* Shelfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shelfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A70BCE41F69181000AB4EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A70BCE91F69181000AB4EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				6A38BCD11F8DFE0100233A3E /* TESTViewController.swift */,
+				6A6531141FC44E0200A827C3 /* TestCollectionViewCell.swift */,
 			);
 			name = TEST;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				6A14EC9E1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift in Sources */,
 				6A33479E1F8F7AD3001789E0 /* StoreChain+CoreDataClass.swift in Sources */,
 				6A3347A61F979BCB001789E0 /* Tools.swift in Sources */,
+				6A6531151FC44E0200A827C3 /* TestCollectionViewCell.swift in Sources */,
 				6A2E37081F86341F0045F6A9 /* CreateViewController.swift in Sources */,
 				6A33479F1F8F7AD3001789E0 /* StoreChain+CoreDataProperties.swift in Sources */,
 				6A2E370B1F8638CF0045F6A9 /* CreateStoreViewController.swift in Sources */,
