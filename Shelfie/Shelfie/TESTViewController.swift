@@ -49,23 +49,18 @@ class TESTViewController: UIViewController {
         )
         
         self.view.addSubview(chart.view)
-       // self.chart = chart
+        // self.chart = chart
         
         let legetest = ChartLegendsView();
         
         testCont.addSubview(legetest);
         legetest.frame = testCont.bounds;
-        /*
-        legetest.setLegends(.circle(radius: 7), [
-            (text: "Chemicals", color: UIColor.orange),
-            (text: "Forestry", color: UIColor.green)
-            ])
- */
         
-        
-        
+//        legetest.setLegends(.circle(radius: 7), [
+//            (text: "Chemicals", color: UIColor.orange),
+//            (text: "Forestry", color: UIColor.green)
+//            ])
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

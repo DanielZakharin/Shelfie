@@ -243,6 +243,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: pie delegate
     func onSelected(slice: PieSlice, selected: Bool) {
         print(slice.data.percentage);
+        performSegue(withIdentifier: "BarChartsSegue", sender: self);
     }
     
     func clearCharts(){

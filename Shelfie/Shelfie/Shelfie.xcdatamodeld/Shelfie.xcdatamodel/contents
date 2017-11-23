@@ -5,6 +5,10 @@
         <attribute name="logoString" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="storeChains" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoreChain" inverseName="chain" inverseEntity="StoreChain" syncable="YES"/>
     </entity>
+    <entity name="Manufacturer" representedClassName=".Manufacturer" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="brands" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="ProductBrand" inverseName="manufacturer" inverseEntity="ProductBrand" syncable="YES"/>
+    </entity>
     <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
         <attribute name="category" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="depth" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="8" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -15,6 +19,7 @@
     </entity>
     <entity name="ProductBrand" representedClassName=".ProductBrand" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="manufacturer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manufacturer" inverseName="brands" inverseEntity="Manufacturer" syncable="YES"/>
         <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="brand" inverseEntity="Product" syncable="YES"/>
     </entity>
     <entity name="ShelfBox" representedClassName=".ShelfBox" syncable="YES">
@@ -49,8 +54,9 @@
     </entity>
     <elements>
         <element name="Chain" positionX="-54" positionY="18" width="128" height="88"/>
+        <element name="Manufacturer" positionX="-162" positionY="171" width="128" height="75"/>
         <element name="Product" positionX="-153" positionY="180" width="128" height="133"/>
-        <element name="ProductBrand" positionX="-135" positionY="198" width="128" height="75"/>
+        <element name="ProductBrand" positionX="-135" positionY="198" width="128" height="90"/>
         <element name="ShelfBox" positionX="-153" positionY="225" width="128" height="118"/>
         <element name="ShelfPlan" positionX="-162" positionY="216" width="128" height="103"/>
         <element name="Store" positionX="-279" positionY="279" width="128" height="178"/>

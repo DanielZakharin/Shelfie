@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgE-zq-ddH" userLabel="BSContainer">
-                                <rect key="frame" x="20" y="76" width="251" height="635"/>
+                                <rect key="frame" x="20" y="72" width="251" height="639"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Entries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hz-mR-etw">
                                         <rect key="frame" x="8" y="394.5" width="235" height="20.5"/>
@@ -41,10 +41,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-ed-Mm2">
-                                        <rect key="frame" x="0.0" y="381" width="251" height="216"/>
+                                        <rect key="frame" x="0.0" y="385" width="251" height="216"/>
                                     </pickerView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZzS-1B-kVM">
-                                        <rect key="frame" x="0.0" y="36.5" width="251" height="308"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="251" height="312"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoxStoreSelect" id="pw0-1Q-rRa" customClass="BoxStoreSelectTableViewCell" customModule="Shelfie" customModuleProvider="target">
@@ -79,7 +79,7 @@
                                         </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnY-aq-cnz">
-                                        <rect key="frame" x="109" y="605" width="34" height="30"/>
+                                        <rect key="frame" x="109" y="609" width="34" height="30"/>
                                         <state key="normal" title="Load"/>
                                         <connections>
                                             <action selector="loadButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="NO8-Uh-VFb"/>
@@ -116,17 +116,17 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="0.4610445205479452" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KkX-II-Twp" userLabel="SaveNewContainer">
-                                <rect key="frame" x="287" y="76" width="729" height="59"/>
+                                <rect key="frame" x="287" y="72" width="729" height="63"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0f-Ru-4gm">
-                                        <rect key="frame" x="16" y="14" width="34" height="30"/>
+                                        <rect key="frame" x="16" y="16" width="34" height="30"/>
                                         <state key="normal" title="NEW"/>
                                         <connections>
                                             <action selector="newButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="Fw2-jv-jFO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFP-fD-uN3">
-                                        <rect key="frame" x="676" y="14" width="37" height="30"/>
+                                        <rect key="frame" x="676" y="16" width="37" height="30"/>
                                         <state key="normal" title="SAVE"/>
                                         <connections>
                                             <action selector="saveButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="gYi-HC-Cst"/>
@@ -183,7 +183,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="F9c-lj-fjz">
-                                <rect key="frame" x="307" y="84" width="410" height="29"/>
+                                <rect key="frame" x="307" y="80" width="410" height="29"/>
                                 <segments>
                                     <segment title="Create Store"/>
                                     <segment title="Create Product"/>
@@ -193,7 +193,7 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biB-Tv-3xe">
-                                <rect key="frame" x="0.0" y="128" width="1024" height="591"/>
+                                <rect key="frame" x="0.0" y="124" width="1024" height="595"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -415,11 +415,22 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
                                                 <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedOffset">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p56-iq-nls" customClass="PieChart" customModule="PieCharts">
-                                        <rect key="frame" x="187.5" y="319" width="306" height="328"/>
+                                        <rect key="frame" x="102" y="319" width="477" height="328"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedOffset">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="innerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daZ-Ai-kLi" customClass="PieChart" customModule="PieCharts">
                                         <rect key="frame" x="348.5" y="8" width="340.5" height="295"/>
@@ -442,7 +453,7 @@
                                     <constraint firstItem="9yo-8u-OzM" firstAttribute="top" secondItem="6KX-4A-BkO" secondAttribute="top" id="Mi0-A4-oq8"/>
                                     <constraint firstAttribute="bottom" secondItem="p56-iq-nls" secondAttribute="bottom" constant="8" id="ODs-o7-AkO"/>
                                     <constraint firstItem="daZ-Ai-kLi" firstAttribute="width" secondItem="6KX-4A-BkO" secondAttribute="width" multiplier="0.5" id="RWM-Nx-Z19"/>
-                                    <constraint firstItem="p56-iq-nls" firstAttribute="width" secondItem="6KX-4A-BkO" secondAttribute="width" multiplier="0.45" id="XP5-Zg-Xtc"/>
+                                    <constraint firstItem="p56-iq-nls" firstAttribute="width" secondItem="6KX-4A-BkO" secondAttribute="width" multiplier="0.7" id="XP5-Zg-Xtc"/>
                                     <constraint firstItem="daZ-Ai-kLi" firstAttribute="leading" secondItem="9yo-8u-OzM" secondAttribute="trailing" constant="8" id="XaH-7u-fIz"/>
                                     <constraint firstItem="p56-iq-nls" firstAttribute="top" secondItem="daZ-Ai-kLi" secondAttribute="bottom" constant="16" id="gFY-Yw-lAa"/>
                                     <constraint firstItem="p56-iq-nls" firstAttribute="centerX" secondItem="6KX-4A-BkO" secondAttribute="centerX" id="gVP-D3-1Mo"/>
@@ -471,11 +482,31 @@
                         <outlet property="pie2" destination="daZ-Ai-kLi" id="nyN-f0-oVW"/>
                         <outlet property="pie3" destination="p56-iq-nls" id="8r8-uI-s2z"/>
                         <outlet property="storesTableView" destination="oU2-Fo-Mes" id="rcg-0Q-0Q8"/>
+                        <segue destination="Shl-7A-CcG" kind="push" identifier="BarChartsSegue" id="SOD-MD-atl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qhv-6O-7KK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2867" y="1035"/>
+            <point key="canvasLocation" x="3840" y="1035"/>
+        </scene>
+        <!--Data Bar Chart View Controller-->
+        <scene sceneID="e0V-Av-nu7">
+            <objects>
+                <viewController id="Shl-7A-CcG" customClass="DataBarChartViewController" customModule="Shelfie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NbL-9e-ELE"/>
+                        <viewControllerLayoutGuide type="bottom" id="ncv-cy-owi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aGl-n7-s1j">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="R8p-oZ-wE6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JyE-Fh-wu2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5222" y="1035"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tCC-el-hcx">
@@ -483,7 +514,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8q6-a6-KAe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FpG-1m-A1w">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="48"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -604,7 +635,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qct-tp-Ene">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="48"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -625,7 +656,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zyw-J2-GXU">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="48"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -646,7 +677,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="EDb-Fo-xaf">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="48"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
