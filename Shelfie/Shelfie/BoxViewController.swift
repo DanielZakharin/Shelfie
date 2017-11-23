@@ -85,7 +85,7 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     
     //MARK: Gesture Handlind
     //Pan gesture handling when touching empty space on the scrollview
-    func handlePan(sender: UIPanGestureRecognizer!) {
+    @objc func handlePan(sender: UIPanGestureRecognizer!) {
         switch sender.state{
         //state for when pan just started, create a new view to be maniuplated here
         case .began:
@@ -142,7 +142,7 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         
     }
     
-    func handleTap(sender: UITapGestureRecognizer) {
+    @objc func handleTap(sender: UITapGestureRecognizer) {
         if let v = sender.view as? BoxView{
             showPopOver(sender: v);
         }

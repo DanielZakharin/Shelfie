@@ -43,6 +43,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         formatPieChart(pie3);
         
         //pietestlegend.setLegends([("jeeben",UIColor.red)]);
+        clearCharts();
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,6 +73,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedStore = storesArray[indexPath.row];
+        clearCharts();
         configPieCharts(selectedStore);
     }
     
@@ -137,8 +139,11 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func populatePieChart(_ boxes : [ShelfBox], pie: PieChart){
         let dict = sortByBrand(boxes);
         var models: [PieSliceModel] = []
+        var cols = [UIColor.red,UIColor.blue, UIColor.green, UIColor.brown, UIColor.yellow, UIColor.cyan];
+        var i = 0;
         for (brand, value) in dict {
-            models.append(PieSliceModel(value: value, color: UIColor.red))
+            models.append(PieSliceModel(value: value, color: cols[i]))
+            i += 1;
             //todo make legend for each brand
         }
         pie.models = models;
@@ -238,6 +243,16 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: pie delegate
     func onSelected(slice: PieSlice, selected: Bool) {
         print(slice.data.percentage);
+    }
+    
+    func clearCharts(){
+        pie1.models = [];
+        pie2.models = [];
+        pie3.models = [];
+        
+        pie1.removeSlices();
+        pie2.removeSlices();
+        pie3.removeSlices();
     }
     
     /*

@@ -60,7 +60,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         }
     }
     
-    func stepperValueChanged(_ sender: UIStepper){
+    @objc func stepperValueChanged(_ sender: UIStepper){
         let label = stepperDict[sender]!;
         label.text = "\(label.text!.substring(to: label.text!.index(before: label.text!.endIndex)))\(Int(sender.value))"
     }

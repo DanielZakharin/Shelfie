@@ -98,7 +98,7 @@ class BoxView: UIView {
     
     //MARK: Gestures
     
-    func handleCornerPan(sender: UIPanGestureRecognizer) {
+    @objc func handleCornerPan(sender: UIPanGestureRecognizer) {
         switch sender.state{
         //state for when pan just started, create a new view to be maniuplated here
         case .began:
@@ -144,7 +144,7 @@ class BoxView: UIView {
         sender.setTranslation(CGPoint.zero, in: self);
     }
     
-    func handleBoxPan(sender: UIPanGestureRecognizer){
+    @objc func handleBoxPan(sender: UIPanGestureRecognizer){
         switch sender.state{
         //state for when pan just started, create a new view to be maniuplated here
         case .began:

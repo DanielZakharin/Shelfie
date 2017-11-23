@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1611" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G1036" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Chain" representedClassName=".Chain" syncable="YES">
         <attribute name="chainName" attributeType="String" syncable="YES"/>
         <attribute name="logoString" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,7 +15,7 @@
     </entity>
     <entity name="ProductBrand" representedClassName=".ProductBrand" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="products" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="brand" inverseEntity="Product" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="brand" inverseEntity="Product" syncable="YES"/>
     </entity>
     <entity name="ShelfBox" representedClassName=".ShelfBox" syncable="YES">
         <attribute name="coordX" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -50,7 +50,7 @@
     <elements>
         <element name="Chain" positionX="-54" positionY="18" width="128" height="88"/>
         <element name="Product" positionX="-153" positionY="180" width="128" height="133"/>
-        <element name="ProductBrand" positionX="-135" positionY="198" width="128" height="73"/>
+        <element name="ProductBrand" positionX="-135" positionY="198" width="128" height="75"/>
         <element name="ShelfBox" positionX="-153" positionY="225" width="128" height="118"/>
         <element name="ShelfPlan" positionX="-162" positionY="216" width="128" height="103"/>
         <element name="Store" positionX="-279" positionY="279" width="128" height="178"/>
