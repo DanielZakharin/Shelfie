@@ -10,31 +10,99 @@ import UIKit
 import SwiftCharts
 
 class DataBarChartViewController: UIViewController {
-
-    
-    
-    var iPadChartSettings: ChartSettings {
-        var chartSettings = ChartSettings()
-        chartSettings.leading = 20
-        chartSettings.top = 20
-        chartSettings.trailing = 20
-        chartSettings.bottom = 20
-        chartSettings.labelsToAxisSpacingX = 10
-        chartSettings.labelsToAxisSpacingY = 10
-        chartSettings.axisTitleLabelsToLabelsSpacing = 5
-        chartSettings.axisStrokeWidth = 1
-        chartSettings.spacingBetweenAxesX = 15
-        chartSettings.spacingBetweenAxesY = 15
-        chartSettings.labelsSpacing = 0
-        return chartSettings
+    struct ExamplesDefaults {
+        
+        static var chartSettings: ChartSettings {
+            return iPadChartSettings;
+        }
+        
+        static var chartSettingsWithPanZoom: ChartSettings {
+            return iPadChartSettingsWithPanZoom
+        }
+        
+        fileprivate static var iPadChartSettings: ChartSettings {
+            var chartSettings = ChartSettings()
+            chartSettings.leading = 20
+            chartSettings.top = 20
+            chartSettings.trailing = 20
+            chartSettings.bottom = 20
+            chartSettings.labelsToAxisSpacingX = 10
+            chartSettings.labelsToAxisSpacingY = 10
+            chartSettings.axisTitleLabelsToLabelsSpacing = 5
+            chartSettings.axisStrokeWidth = 1
+            chartSettings.spacingBetweenAxesX = 15
+            chartSettings.spacingBetweenAxesY = 15
+            chartSettings.labelsSpacing = 0
+            return chartSettings
+        }
+        
+        fileprivate static var iPhoneChartSettings: ChartSettings {
+            var chartSettings = ChartSettings()
+            chartSettings.leading = 10
+            chartSettings.top = 10
+            chartSettings.trailing = 10
+            chartSettings.bottom = 10
+            chartSettings.labelsToAxisSpacingX = 5
+            chartSettings.labelsToAxisSpacingY = 5
+            chartSettings.axisTitleLabelsToLabelsSpacing = 4
+            chartSettings.axisStrokeWidth = 0.2
+            chartSettings.spacingBetweenAxesX = 8
+            chartSettings.spacingBetweenAxesY = 8
+            chartSettings.labelsSpacing = 0
+            return chartSettings
+        }
+        
+        fileprivate static var iPadChartSettingsWithPanZoom: ChartSettings {
+            var chartSettings = iPadChartSettings
+            chartSettings.zoomPan.panEnabled = true
+            chartSettings.zoomPan.zoomEnabled = true
+            return chartSettings
+        }
+        
+        fileprivate static var iPhoneChartSettingsWithPanZoom: ChartSettings {
+            var chartSettings = iPhoneChartSettings
+            chartSettings.zoomPan.panEnabled = true
+            chartSettings.zoomPan.zoomEnabled = true
+            return chartSettings
+        }
+        
+        static func chartFrame(_ containerBounds: CGRect) -> CGRect {
+            return CGRect(x: 0, y: 70, width: containerBounds.size.width, height: containerBounds.size.height - 70)
+        }
+        
+        static var labelSettings: ChartLabelSettings {
+            return ChartLabelSettings(font: ExamplesDefaults.labelFont)
+        }
+        
+        static var labelFont: UIFont {
+            return ExamplesDefaults.fontWithSize(14)
+        }
+        
+        static var labelFontSmall: UIFont {
+            return ExamplesDefaults.fontWithSize(12)
+        }
+        
+        static func fontWithSize(_ size: CGFloat) -> UIFont {
+            return UIFont(name: "Helvetica", size: size) ?? UIFont.systemFont(ofSize: size)
+        }
+        
+        static var guidelinesWidth: CGFloat {
+            return 0.5
+        }
+        
+        static var minBarSpacing: CGFloat {
+            return 10
+        }
     }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        createBarCharts();
+        let c = createBarCharts();
+        self.view.addSubview(c.view);
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +110,23 @@ class DataBarChartViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func createBarCharts(){
+    func createBarCharts() -> Chart{
+        
+        var iPadChartSettings: ChartSettings {
+            var chartSettings = ChartSettings()
+            chartSettings.leading = 20
+            chartSettings.top = 20
+            chartSettings.trailing = 20
+            chartSettings.bottom = 20
+            chartSettings.labelsToAxisSpacingX = 10
+            chartSettings.labelsToAxisSpacingY = 10
+            chartSettings.axisTitleLabelsToLabelsSpacing = 5
+            chartSettings.axisStrokeWidth = 1
+            chartSettings.spacingBetweenAxesX = 15
+            chartSettings.spacingBetweenAxesY = 15
+            chartSettings.labelsSpacing = 0
+            return chartSettings
+        }
         
         let horizontal = true;
         
@@ -92,10 +176,10 @@ class DataBarChartViewController: UIViewController {
         let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings))
         let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings.defaultVertical()))
         
-        let frame = self.view.bounds;//ExamplesDefaults.chartFrame(view.bounds)
-        let chartFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
+        let frame = ExamplesDefaults.chartFrame(view.bounds)
+        let chartFrame = self.view.frame ?? CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
         
-        let chartSettings = iPadChartSettings;
+        let chartSettings = ExamplesDefaults.chartSettingsWithPanZoom
         
         let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
         let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
@@ -107,17 +191,17 @@ class DataBarChartViewController: UIViewController {
             
             let chartViewPoint = tappedBar.layer.contentToGlobalCoordinates(CGPoint(x: tappedBar.barView.frame.midX, y: stackFrameData.stackedItemViewFrameRelativeToBarParent.minY))!
             let viewPoint = CGPoint(x: chartViewPoint.x, y: chartViewPoint.y + 70)
-            let infoBubble = InfoBubble(point: viewPoint, preferredSize: CGSize(width: 50, height: 40), superview: self.view, text: "\(stackFrameData.stackedItemModel.quantity)", font: .systemFont(ofSize: 10.0) , textColor: UIColor.white, bgColor: UIColor.black)
+            let infoBubble = InfoBubble(point: viewPoint, preferredSize: CGSize(width: 50, height: 40), superview: self.view, text: "\(stackFrameData.stackedItemModel.quantity)", font: ExamplesDefaults.labelFont, textColor: UIColor.white, bgColor: UIColor.black)
             infoBubble.tapHandler = {
                 infoBubble.removeFromSuperview()
             }
             self.view.addSubview(infoBubble)
         }
         
-        let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: 1.0)
+        let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: ExamplesDefaults.guidelinesWidth)
         let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: settings)
         
-        let chart = Chart(
+        return Chart(
             frame: chartFrame,
             innerFrame: innerFrame,
             settings: chartSettings,
@@ -128,7 +212,6 @@ class DataBarChartViewController: UIViewController {
                 chartStackedBarsLayer
             ]
         )
-        view.addSubview(chart.view)
     }
 
     /*
