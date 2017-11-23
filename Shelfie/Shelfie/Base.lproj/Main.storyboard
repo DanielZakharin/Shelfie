@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="8q6-a6-KAe">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="8q6-a6-KAe">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgE-zq-ddH" userLabel="BSContainer">
-                                <rect key="frame" x="20" y="72" width="251" height="639"/>
+                                <rect key="frame" x="20" y="76" width="251" height="635"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Entries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hz-mR-etw">
                                         <rect key="frame" x="8" y="394.5" width="235" height="20.5"/>
@@ -41,17 +41,17 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-ed-Mm2">
-                                        <rect key="frame" x="0.0" y="385" width="251" height="216"/>
+                                        <rect key="frame" x="0.0" y="381" width="251" height="216"/>
                                     </pickerView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZzS-1B-kVM">
-                                        <rect key="frame" x="0.0" y="36.5" width="251" height="312"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="251" height="308"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoxStoreSelect" id="pw0-1Q-rRa" customClass="BoxStoreSelectTableViewCell" customModule="Shelfie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="251" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pw0-1Q-rRa" id="Xfd-2h-0FQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="251" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="251" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhV-l4-Tyo">
@@ -79,7 +79,7 @@
                                         </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnY-aq-cnz">
-                                        <rect key="frame" x="109" y="609" width="34" height="30"/>
+                                        <rect key="frame" x="109" y="605" width="34" height="30"/>
                                         <state key="normal" title="Load"/>
                                         <connections>
                                             <action selector="loadButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="NO8-Uh-VFb"/>
@@ -113,20 +113,20 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x72-wc-ES8" customClass="BoxViewController" customModule="Shelfie" customModuleProvider="target">
                                 <rect key="frame" x="287" y="143" width="717" height="576"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.4610445205479452" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KkX-II-Twp" userLabel="SaveNewContainer">
-                                <rect key="frame" x="287" y="72" width="729" height="63"/>
+                                <rect key="frame" x="287" y="76" width="729" height="59"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0f-Ru-4gm">
-                                        <rect key="frame" x="16" y="16" width="34" height="30"/>
+                                        <rect key="frame" x="16" y="14" width="34" height="30"/>
                                         <state key="normal" title="NEW"/>
                                         <connections>
                                             <action selector="newButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="Fw2-jv-jFO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFP-fD-uN3">
-                                        <rect key="frame" x="676" y="16" width="37" height="30"/>
+                                        <rect key="frame" x="676" y="14" width="37" height="30"/>
                                         <state key="normal" title="SAVE"/>
                                         <connections>
                                             <action selector="saveButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="gYi-HC-Cst"/>
@@ -183,7 +183,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="F9c-lj-fjz">
-                                <rect key="frame" x="307" y="80" width="410" height="29"/>
+                                <rect key="frame" x="307" y="84" width="410" height="29"/>
                                 <segments>
                                     <segment title="Create Store"/>
                                     <segment title="Create Product"/>
@@ -193,7 +193,7 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biB-Tv-3xe">
-                                <rect key="frame" x="0.0" y="124" width="1024" height="595"/>
+                                <rect key="frame" x="0.0" y="128" width="1024" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -366,7 +366,7 @@
                                         <rect key="frame" x="0.0" y="28" width="307" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9D4-zj-Le8" id="4rs-Dd-e8h">
-                                            <rect key="frame" x="0.0" y="0.0" width="307" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="307" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyf-JK-aWt">
@@ -483,7 +483,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8q6-a6-KAe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FpG-1m-A1w">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -604,7 +604,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qct-tp-Ene">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -625,7 +625,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zyw-J2-GXU">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -646,7 +646,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="EDb-Fo-xaf">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -663,11 +663,6 @@
         <image name="metsaBG" width="3072" height="2304"/>
         <image name="metsaLogo" width="943" height="363"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="aKr-LT-KrA"/>
     </inferredMetricsTieBreakers>

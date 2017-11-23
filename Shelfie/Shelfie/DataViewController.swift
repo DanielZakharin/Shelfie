@@ -87,9 +87,6 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //sort by brand
         //populate pies with sorted arrays
         populatePieChart(wcPapers, pie: pie1);
-        for i in wcPapers {
-            print(i.product?.brand?.name);
-        }
         populatePieChart(hoPapers, pie: pie2);
         populatePieChart(hankies, pie: pie3);
     }
@@ -127,9 +124,9 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let prod = box.product {
                 if let brand = box.product?.brand {
                     if var i = tempDict[brand] {
-                        i += 1;
+                        i += Double(box.width*box.height);
                     }else {
-                        tempDict[brand] = 1;
+                        tempDict[brand] = Double(box.width*box.height);
                     }
                 }
             }
@@ -242,7 +239,6 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func onSelected(slice: PieSlice, selected: Bool) {
         print(slice.data.percentage);
     }
-    
     
     /*
      // MARK: - Navigation

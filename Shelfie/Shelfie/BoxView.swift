@@ -21,7 +21,7 @@ class BoxView: UIView {
     //MARK: Variables
     var cornerDragView: UIView;
     var boxNameLabel: UILabel;
-    let cornerSize = 15;
+    let cornerSize = Double(Tools.increment);
     var currentTotalX:CGFloat = 0;
     var currentTotalY:CGFloat = 0;
     let increment:CGFloat = Tools.increment;
@@ -52,7 +52,7 @@ class BoxView: UIView {
         self.backgroundColor = UIColor.darkGray;
         self.layer.borderWidth = 3;
         self.layer.borderColor = UIColor.green.cgColor;
-        cornerDragView.frame = CGRect(x: Int(self.frame.width-CGFloat(cornerSize)), y: Int(self.frame.height-CGFloat(cornerSize)), width: cornerSize, height: cornerSize);
+        cornerDragView.frame = CGRect(x: Double(self.frame.width-CGFloat(cornerSize)), y: Double(self.frame.height-CGFloat(cornerSize)), width: cornerSize, height: cornerSize);
         cornerDragView.backgroundColor = UIColor.magenta;
         self.addSubview(cornerDragView);
         //bring views to front of the main view
