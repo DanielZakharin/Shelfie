@@ -93,9 +93,17 @@ class CoreDataSingleton {
         completion?();
     }
     
-    func createBrand(_ withName: String, completion: (() -> Void)?){
+    func createManufacturer(_ withName: String, completion: (()->Void)?){
+        let newMan = NSEntityDescription.insertNewObject(forEntityName: "Manufacturer", into: managedObjectContext) as! Manufacturer;
+        newMan.name = withName;
+        saveContext();
+        completion?();
+    }
+    
+    func createBrand(_ withName: String, withManufacturer: Manufacturer ,completion: (() -> Void)?){
         let newBrand = NSEntityDescription.insertNewObject(forEntityName: "ProductBrand", into: managedObjectContext) as! ProductBrand;
         newBrand.name = withName;
+        newBrand.manufacturer = withManufacturer;
         saveContext();
         completion?();
     }

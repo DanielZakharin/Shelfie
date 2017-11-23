@@ -26,15 +26,21 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     
     //MARK: Other outlets
     @IBOutlet weak var brandPicker: UIPickerView!
+    @IBOutlet weak var manufacturerPicker: UIPickerView!
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var categorySelector: UISegmentedControl!
     
     var brandArr : [ProductBrand] = [];
-
+    var manArr : [Manufacturer] = [];
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupSteppers();
+        manufacturerPicker.delegate = self;
+        manufacturerPicker.dataSource = self;
+        
         brandPicker.delegate = self;
         brandPicker.dataSource = self;
         fetchData();
@@ -43,7 +49,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     override func viewDidAppear(_ animated: Bool) {
         fetchData();
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -90,10 +96,21 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         showBrandCreationDialog();
     }
     
+    @IBAction func createManufacturerAction(_ sender: UIButton) {
+        showmanuFacturerDialog();
+    }
+    
+    
     //MARK: PickerView delegate methods
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return brandArr.count;
+        if(pickerView == brandPicker){
+            return brandArr.count;
+        }else if (pickerView == manufacturerPicker){
+            return manArr.count;
+        }else {
+            return manArr.count;
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -101,20 +118,80 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return brandArr[row].name;
+        if(pickerView == brandPicker){
+            return brandArr[row].name!;
+        }else if (pickerView == manufacturerPicker){
+            return manArr[row].name!;
+        }else {
+            return manArr[row].name!;
+        }
     }
     
     //MARK: popup
     func showBrandCreationDialog() {
+        //        //Creating UIAlertController and
+        //        //Setting title and message for the alert dialog
+        //        let alertController = UIAlertController(title: "Create a Brand", message: "Enter a name for the Brand", preferredStyle: .alert)
+        //
+        //        //the confirm action taking the inputs
+        //        let confirmAction = UIAlertAction(title: "Create", style: .default) { (_) in
+        //            //Handle creating and submitting to coredata here, completion block for button
+        //            if let name = alertController.textFields?[0].text {
+        //                CoreDataSingleton.sharedInstance.createBrand(name) { () in
+        //                    self.fetchData();
+        //                }
+        //            }
+        //        }
+        //
+        //        //the cancel action doing nothing
+        //        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        //
+        //        //adding textfields to our dialog box
+        //        alertController.addTextField { (textField) in
+        //            textField.placeholder = "Enter Brand Name"
+        //        }
+        //
+        //        //adding the action to dialogbox
+        //        alertController.addAction(confirmAction)
+        //        alertController.addAction(cancelAction)
+        //
+        //        //finally presenting the dialog box
+        //        self.present(alertController, animated: true, completion: nil)
+        
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: 250,height: 300)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        vc.view.addSubview(pickerView)
+        let alert = UIAlertController(title: "Create a new Brand", message: "Select Manufacturer and Name", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter Brand Name"
+        }
+        alert.setValue(vc, forKey: "contentViewController");
+        alert.addAction(UIAlertAction(title: "Create", style: .default){(_) in
+            if let name  = alert.textFields?[0].text {
+                CoreDataSingleton.sharedInstance.createBrand(name, withManufacturer: self.manArr[pickerView.selectedRow(inComponent: 0)]) { () in
+                    //self.brandPicker.reloadAllComponents();
+                    self.fetchData();
+                };
+            }
+        });
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+        
+    }
+    
+    func showmanuFacturerDialog(){
         //Creating UIAlertController and
         //Setting title and message for the alert dialog
-        let alertController = UIAlertController(title: "Create a Brand", message: "Enter a name for the Brand", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Create a Manufacturer", message: "Enter a name for the Manufacturer", preferredStyle: .alert)
         
         //the confirm action taking the inputs
         let confirmAction = UIAlertAction(title: "Create", style: .default) { (_) in
             //Handle creating and submitting to coredata here, completion block for button
             if let name = alertController.textFields?[0].text {
-                CoreDataSingleton.sharedInstance.createBrand(name) { () in
+                CoreDataSingleton.sharedInstance.createManufacturer(name) { () in
                     self.fetchData();
                 }
             }
@@ -125,7 +202,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         
         //adding textfields to our dialog box
         alertController.addTextField { (textField) in
-            textField.placeholder = "Enter Brand Name"
+            textField.placeholder = "Enter Manufacturer Name"
         }
         
         //adding the action to dialogbox
@@ -134,22 +211,30 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         
         //finally presenting the dialog box
         self.present(alertController, animated: true, completion: nil)
-        
     }
     
     func fetchData(){
-        brandArr = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("ProductBrand") as! [ProductBrand];
-        brandPicker.reloadAllComponents();
+        manArr = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Manufacturer") as! [Manufacturer];
+        manufacturerPicker.reloadAllComponents();
+        updateBrands();
+    }
+    
+    func updateBrands(){
+        if(manArr.count > 0){
+            brandArr = Array(manArr[manufacturerPicker.selectedRow(inComponent: 0)].brands!) as! [ProductBrand];
+            print("\(manArr[0].brands?.count) <- manarr \(brandArr.count) <--brandarr");
+            brandPicker.reloadAllComponents();
+        }
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
