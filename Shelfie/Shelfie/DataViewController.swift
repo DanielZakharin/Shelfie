@@ -120,15 +120,15 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        print("Hankies \(hankies.count) ho: \(hoPapers.count) wc: \(wcPapers.count)");
     }
     
-    func sortByBrand(_ boxes: [ShelfBox]) -> [ProductBrand:Double] {
-        var tempDict : [ProductBrand:Double] = [:];
+    func sortByManufacturer(_ boxes: [ShelfBox]) -> [Manufacturer:Double] {
+        var tempDict : [Manufacturer:Double] = [:];
         for box in boxes {
             if let prod = box.product {
-                if let brand = box.product?.brand {
-                    if var i = tempDict[brand] {
+                if let manu = box.product?.brand?.manufacturer {
+                    if var i = tempDict[manu] {
                         i += Double(box.width*box.height);
                     }else {
-                        tempDict[brand] = Double(box.width*box.height);
+                        tempDict[manu] = Double(box.width*box.height);
                     }
                 }
             }
@@ -137,7 +137,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func populatePieChart(_ boxes : [ShelfBox], pie: PieChart){
-        let dict = sortByBrand(boxes);
+        let dict = sortByManufacturer(boxes);
         var models: [PieSliceModel] = []
         var cols = [UIColor.red,UIColor.blue, UIColor.green, UIColor.brown, UIColor.yellow, UIColor.cyan];
         var i = 0;

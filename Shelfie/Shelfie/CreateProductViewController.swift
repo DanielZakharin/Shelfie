@@ -127,6 +127,12 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         }
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if(pickerView == manufacturerPicker){
+            updateBrands();
+        }
+    }
+    
     //MARK: popup
     func showBrandCreationDialog() {
         //        //Creating UIAlertController and
