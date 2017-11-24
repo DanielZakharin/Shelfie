@@ -6,9 +6,8 @@ target 'Shelfie' do
   use_frameworks!
 
   # Pods for Shelfie
-  pod 'SwiftCharts', '~> 0.6'
   pod 'PieCharts'
-  pod 'ChartLegends'
+  pod 'Charts'
 
   target 'ShelfieTests' do
     inherit! :search_paths

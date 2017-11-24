@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import PieCharts
-import ChartLegends
+import Charts
 
 class DataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PieChartDelegate{
     
@@ -17,7 +17,6 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var pie2: PieChart!
     @IBOutlet weak var pie3: PieChart!
     
-    @IBOutlet weak var pietestlegend: ChartLegendsView!
     
     @IBOutlet weak var storesTableView: UITableView!
     var storesArray: [Store] = [];
@@ -30,6 +29,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var wcPapers: [ShelfBox] = [];
     var hoPapers: [ShelfBox] = [];
     var hankies: [ShelfBox] = [];
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -256,14 +256,16 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         pie3.removeSlices();
     }
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        if(segue.identifier == "BarChartsSegue"){
+            let destinationCont = segue.destination as! DataBarChartViewController;
+            //destinationCont.dataz =
+        }
      }
-     */
-    
 }
