@@ -8,14 +8,13 @@
 
 import UIKit
 import CoreData
-import PieCharts
 import Charts
 
-class DataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PieChartDelegate{
+class DataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
-    @IBOutlet weak var pie1: PieChart!
-    @IBOutlet weak var pie2: PieChart!
-    @IBOutlet weak var pie3: PieChart!
+    @IBOutlet weak var pie1: PieChartView!
+    @IBOutlet weak var pie2: PieChartView!
+    @IBOutlet weak var pie3: PieChartView!
     
     
     @IBOutlet weak var storesTableView: UITableView!
@@ -36,13 +35,8 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Do any additional setup after loading the view.
         storesTableView.delegate = self;
         storesTableView.dataSource = self;
+        formatPieCharts();
         fetchData();
-        
-        formatPieChart(pie1);
-        formatPieChart(pie2);
-        formatPieChart(pie3);
-        
-        //pietestlegend.setLegends([("jeeben",UIColor.red)]);
         clearCharts();
     }
     
@@ -88,12 +82,15 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         sortByCategories(selectedStore);
         //sort by brand
         //populate pies with sorted arrays
-        populatePieChart(wcPapers, pie: pie1);
-        populatePieChart(hoPapers, pie: pie2);
-        populatePieChart(hankies, pie: pie3);
+        populatePieChart(hankies, pie: pie3, label:"Hankies");
+        populatePieChart(wcPapers, pie: pie1, label:"WC-Papers");
+        populatePieChart(hoPapers, pie: pie2, label: "Household Papers");
     }
     
     func sortByCategories(_ store: Store){
+        hoPapers = [];
+        wcPapers = [];
+        hankies = [];
         if let shelfPlans = store.shelfPlans!.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as? [ShelfPlan]{
             if shelfPlans.count > 0{
                 if let boxes = Array(shelfPlans[0].boxes!) as? [ShelfBox]{
@@ -117,7 +114,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
         }
-//        print("Hankies \(hankies.count) ho: \(hoPapers.count) wc: \(wcPapers.count)");
+        //        print("Hankies \(hankies.count) ho: \(hoPapers.count) wc: \(wcPapers.count)");
     }
     
     func sortByManufacturer(_ boxes: [ShelfBox]) -> [Manufacturer:Double] {
@@ -136,17 +133,36 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return tempDict;
     }
     
-    func populatePieChart(_ boxes : [ShelfBox], pie: PieChart){
+    func populatePieChart(_ boxes : [ShelfBox], pie: PieChartView, label: String){
         let dict = sortByManufacturer(boxes);
-        var models: [PieSliceModel] = []
-        var cols = [UIColor.red,UIColor.blue, UIColor.green, UIColor.brown, UIColor.yellow, UIColor.cyan];
-        var i = 0;
+        var entries:[PieChartDataEntry] = [];
         for (brand, value) in dict {
-            models.append(PieSliceModel(value: value, color: cols[i]))
-            i += 1;
-            //todo make legend for each brand
+            entries.append(PieChartDataEntry(value: value,
+                                             label: brand.name,
+                                             icon: nil));
         }
-        pie.models = models;
+        
+        let set = PieChartDataSet(values: entries, label: "")
+        set.drawIconsEnabled = false
+        set.sliceSpace = 2
+        set.colors = ChartColorTemplates.vordiplom()
+            + ChartColorTemplates.joyful()
+            + ChartColorTemplates.colorful()
+            + ChartColorTemplates.liberty()
+            + ChartColorTemplates.pastel()
+            + [UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)]
+        
+        let data = PieChartData(dataSet: set);
+        
+        let pFormatter = NumberFormatter()
+        pFormatter.numberStyle = .percent
+        pFormatter.maximumFractionDigits = 1
+        pFormatter.multiplier = 1
+        pFormatter.percentSymbol = " %"
+        data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
+        
+        pie.data = data
+        
     }
     
     //MARK: Calculations
@@ -219,53 +235,42 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return area;
     }
     
-    func formatPieChart(_ pieChart: PieChart) {
-        pieChart.outerRadius = (min(pieChart.frame.height, pieChart.frame.width) - 10)/2.2;
-        pieChart.innerRadius = 0;
-        let textLayerSettings = PiePlainTextLayerSettings();
-        textLayerSettings.viewRadius = pie2.outerRadius/2;
-        textLayerSettings.hideOnOverflow = false;
-        
-        let formatter = NumberFormatter();
-        formatter.maximumFractionDigits = 0;
-        textLayerSettings.label.textGenerator = {slice in
-            return formatter.string(from: slice.data.percentage * 100 as NSNumber).map{"\($0)%"} ?? ""
-        }
-        
-        let textLayer = PiePlainTextLayer();
-        //textLayer.animator = AlphaPieViewLayerAnimator();
-        textLayer.settings = textLayerSettings;
-        pieChart.layers = [textLayer];
-        pieChart.setNeedsDisplay();
-        pieChart.delegate = self;
-    }
-    
-    //MARK: pie delegate
-    func onSelected(slice: PieSlice, selected: Bool) {
-        print(slice.data.percentage);
-        performSegue(withIdentifier: "BarChartsSegue", sender: self);
+    func formatPieCharts() {
+        pie1.drawHoleEnabled = false;
+        pie1.usePercentValuesEnabled = true;
+        pie1.setNeedsDisplay();
+        pie2.drawHoleEnabled = false;
+        pie2.usePercentValuesEnabled = true;
+        pie2.setNeedsDisplay();
+        pie3.drawHoleEnabled = false;
+        pie3.usePercentValuesEnabled = true;
+        pie3.setNeedsDisplay();
     }
     
     func clearCharts(){
-        pie1.models = [];
-        pie2.models = [];
-        pie3.models = [];
+        pie1.data = nil;
+        pie2.data = nil;
+        pie3.data = nil;
         
-        pie1.removeSlices();
-        pie2.removeSlices();
-        pie3.removeSlices();
+        pie1.data = PieChartData(dataSet: PieChartDataSet(values: nil, label: nil));
+        pie2.data = PieChartData(dataSet: PieChartDataSet(values: nil, label: nil));
+        pie3.data = PieChartData(dataSet: PieChartDataSet(values: nil, label: nil));
+        
+        pie1.notifyDataSetChanged();
+        pie2.notifyDataSetChanged();
+        pie3.notifyDataSetChanged();
     }
     
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
         if(segue.identifier == "BarChartsSegue"){
             let destinationCont = segue.destination as! DataBarChartViewController;
             //destinationCont.dataz =
         }
-     }
+    }
 }
