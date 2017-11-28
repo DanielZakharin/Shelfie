@@ -69,9 +69,6 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         }
         newProdWrap.category = categorySelector.selectedSegmentIndex;
         newProdWrap.brand = brandArr[brandPicker.selectedRow(inComponent: 0)];
-        newProdWrap.width = Int(widthStepper.value);
-        newProdWrap.height = Int(heightStepper.value);
-        newProdWrap.depth = Int(depthStepper.value);
         if(!barcode.isEmpty){
             newProdWrap.barcode = barcode;
         }
@@ -95,11 +92,9 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     }
     
     @IBAction func scanBarcodeAction(_ sender: UIButton) {
-        
+        present(scanner!, animated: true, completion: nil);
     }
-    
-    
-    
+
     //MARK: PickerView delegate methods
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -140,7 +135,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     }
     
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
-        
+        barcode = code;
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
             controller.dismiss(animated: true, completion: nil);
         }

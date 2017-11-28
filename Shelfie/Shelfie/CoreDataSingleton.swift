@@ -72,7 +72,7 @@ class CoreDataSingleton {
         newProduct.name = fromProductWrapper.name;
         newProduct.category = Int16(fromProductWrapper.category!);
         newProduct.brand = fromProductWrapper.brand;
-        newProduct.
+        newProduct.barcode = fromProductWrapper.barcode;
         saveContext();
     }
     

@@ -12,7 +12,6 @@ class ProductWrapper{
     var name : String?;
     var barcode: String?;
     var category: Int?;
-    var width, height, depth : Int?;
     var brand : ProductBrand?;
     
     public init(){

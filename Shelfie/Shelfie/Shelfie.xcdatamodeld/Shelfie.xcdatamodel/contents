@@ -12,10 +12,7 @@
     <entity name="Product" representedClassName=".Product" syncable="YES">
         <attribute name="barcode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="depth" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="8" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="height" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="8" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="width" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="24" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="brand" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductBrand" inverseName="products" inverseEntity="ProductBrand" syncable="YES"/>
     </entity>
     <entity name="ProductBrand" representedClassName=".ProductBrand" syncable="YES">
@@ -56,7 +53,7 @@
     <elements>
         <element name="Chain" positionX="-54" positionY="18" width="128" height="88"/>
         <element name="Manufacturer" positionX="-162" positionY="171" width="128" height="75"/>
-        <element name="Product" positionX="-153" positionY="180" width="128" height="150"/>
+        <element name="Product" positionX="-153" positionY="180" width="128" height="105"/>
         <element name="ProductBrand" positionX="-135" positionY="198" width="128" height="90"/>
         <element name="ShelfBox" positionX="-153" positionY="225" width="128" height="118"/>
         <element name="ShelfPlan" positionX="-162" positionY="216" width="128" height="103"/>

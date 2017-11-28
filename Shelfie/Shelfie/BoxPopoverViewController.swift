@@ -34,7 +34,7 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        fetchProducts();
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -114,6 +114,9 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: barcode scanner
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
         print("CODE: \(code)");
+        productsArr = Array(CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Product", withSearchTerm: code, forVariable: "barcode")) as! [Product];
+        dump(productsArr);
+        popoverTable.reloadData();
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
             controller.dismiss(animated: true, completion: nil);
         }
