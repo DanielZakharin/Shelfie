@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import BarcodeScanner
 
-class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
+class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, BarcodeScannerDismissalDelegate, BarcodeScannerCodeDelegate {
     @IBOutlet weak var productNameField: UITextField!
     
     //MARK: Steppers
@@ -33,11 +34,16 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     
     var brandArr : [ProductBrand] = [];
     var manArr : [Manufacturer] = [];
+    var barcode: String = "";
+    var scanner: BarcodeScannerController?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setupSteppers();
+        scanner = BarcodeScannerController();
+        scanner?.codeDelegate = self;
+        scanner?.dismissalDelegate = self;
+        
         manufacturerPicker.delegate = self;
         manufacturerPicker.dataSource = self;
         
@@ -55,21 +61,6 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: Stepper functions
-    func setupSteppers(){
-        stepperArr = [widthStepper,heightStepper,depthStepper];
-        stepperDict = [widthStepper: widthLabel, heightStepper: heightLabel, depthStepper: depthLabel];
-        for stepper in stepperArr {
-            stepper.minimumValue = 1;
-            stepper.maximumValue = 8;
-            stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged);
-        }
-    }
-    
-    @objc func stepperValueChanged(_ sender: UIStepper){
-        let label = stepperDict[sender]!;
-        label.text = "\(label.text!.substring(to: label.text!.index(before: label.text!.endIndex)))\(Int(sender.value))"
-    }
     
     func constructProductFromFields() -> ProductWrapper{
         let newProdWrap = ProductWrapper();
@@ -81,6 +72,9 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         newProdWrap.width = Int(widthStepper.value);
         newProdWrap.height = Int(heightStepper.value);
         newProdWrap.depth = Int(depthStepper.value);
+        if(!barcode.isEmpty){
+            newProdWrap.barcode = barcode;
+        }
         return newProdWrap;
     }
     
@@ -99,6 +93,11 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     @IBAction func createManufacturerAction(_ sender: UIButton) {
         showmanuFacturerDialog();
     }
+    
+    @IBAction func scanBarcodeAction(_ sender: UIButton) {
+        
+    }
+    
     
     
     //MARK: PickerView delegate methods
@@ -133,37 +132,22 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         }
     }
     
+    //MARK: Barcode Scanner delegate
+    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
+            controller.dismiss(animated: true, completion: nil);
+        }
+    }
+    
+    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
+        
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
+            controller.dismiss(animated: true, completion: nil);
+        }
+    }
+    
     //MARK: popup
     func showBrandCreationDialog() {
-        //        //Creating UIAlertController and
-        //        //Setting title and message for the alert dialog
-        //        let alertController = UIAlertController(title: "Create a Brand", message: "Enter a name for the Brand", preferredStyle: .alert)
-        //
-        //        //the confirm action taking the inputs
-        //        let confirmAction = UIAlertAction(title: "Create", style: .default) { (_) in
-        //            //Handle creating and submitting to coredata here, completion block for button
-        //            if let name = alertController.textFields?[0].text {
-        //                CoreDataSingleton.sharedInstance.createBrand(name) { () in
-        //                    self.fetchData();
-        //                }
-        //            }
-        //        }
-        //
-        //        //the cancel action doing nothing
-        //        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-        //
-        //        //adding textfields to our dialog box
-        //        alertController.addTextField { (textField) in
-        //            textField.placeholder = "Enter Brand Name"
-        //        }
-        //
-        //        //adding the action to dialogbox
-        //        alertController.addAction(confirmAction)
-        //        alertController.addAction(cancelAction)
-        //
-        //        //finally presenting the dialog box
-        //        self.present(alertController, animated: true, completion: nil)
-        
         let vc = UIViewController()
         vc.preferredContentSize = CGSize(width: 250,height: 300)
         let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))

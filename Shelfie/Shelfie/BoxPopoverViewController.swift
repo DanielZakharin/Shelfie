@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import BarcodeScanner
 
-class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
+class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, BarcodeScannerCodeDelegate, BarcodeScannerDismissalDelegate{
     
     var selectedBoxView : BoxView?;
     var parentCtrl : BoxViewController?;
@@ -16,9 +17,14 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var delBtn: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     var productsArr : [Product] = [];
+    var scanner: BarcodeScannerController?;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        scanner = BarcodeScannerController();
+        scanner?.codeDelegate = self;
+        
         popoverTable.delegate = self;
         popoverTable.dataSource = self;
         searchBar.delegate = self;
@@ -90,6 +96,11 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         parentCtrl?.dismissPopOver(ctrl: self);
     }
     
+    @IBAction func barcodeAction(_ sender: UIButton) {
+        present(scanner!, animated: true, completion: nil);
+    }
+    
+    
     func fetchProducts(){
         productsArr = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Product") as! [Product];
         popoverTable.reloadData();
@@ -99,6 +110,21 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         productsArr = Array(CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Product", withSearchTerm: searchTerm, forVariable: "name")) as! [Product];
         popoverTable.reloadData();
     }
+    
+    //MARK: barcode scanner
+    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
+        print("CODE: \(code)");
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
+            controller.dismiss(animated: true, completion: nil);
+        }
+    }
+    
+    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
+            controller.dismiss(animated: true, completion: nil);
+        }
+    }
+    
     
     /*
      // MARK: - Navigation

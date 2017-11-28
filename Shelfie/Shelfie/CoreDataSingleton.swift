@@ -72,9 +72,7 @@ class CoreDataSingleton {
         newProduct.name = fromProductWrapper.name;
         newProduct.category = Int16(fromProductWrapper.category!);
         newProduct.brand = fromProductWrapper.brand;
-        newProduct.depth = Int16(fromProductWrapper.depth!);
-        newProduct.height = Int16(fromProductWrapper.height!);
-        newProduct.width = Int16(fromProductWrapper.width!);
+        newProduct.
         saveContext();
     }
     

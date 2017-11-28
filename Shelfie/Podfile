@@ -8,6 +8,7 @@ target 'Shelfie' do
   # Pods for Shelfie
   pod 'PieCharts'
   pod 'Charts'
+  pod 'BarcodeScanner'
 
   target 'ShelfieTests' do
     inherit! :search_paths
