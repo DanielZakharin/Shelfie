@@ -36,10 +36,13 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     
     func initialize(){
         //make scrollview the same size as container
-        let newFrame = self.bounds;
-        scrollView.frame = newFrame;
-        scrollView.backgroundColor = UIColor.blue;
+        //set this, or adding constraints doesnt work!
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(scrollView);
+        scrollView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true;
+        scrollView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true;
+        scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true;
+        scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true;
         //setup pan gesture recognizers for scrollview
         //allow the scrollviews native gesture to only work with 2 finger pans
         scrollView.panGestureRecognizer.minimumNumberOfTouches = 2;
@@ -52,9 +55,6 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         scrollView.addGestureRecognizer(panGesture);
         //tell the scrollviews gesturerecognizer that pangesture must first fail in order for it to be allowed to work
         scrollView.panGestureRecognizer.require(toFail: panGesture);
-        
-        //create a shelf for the background, change this later to be fetched from datasource
-        //makeBG(width: 9, height: 2);
     }
     
     //MARK: PangestureRecognizerDelegate Methods
@@ -171,25 +171,27 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     }
     
     //makes a background for drawing boxes on
-    func makeBG(width: Int, height: Int) {
+    func makeBG(width: Int) {
         for v in scrollView.subviews{
             if(v is UIImageView){
                 v.removeFromSuperview();
             }
         }
+        let offset = increment * 2;
         let shelfCellWidth = increment*8;
         let shelfCellHeight = increment*4;
         let cell = UIImage(named: "shelfCell");
-        for h in 0..<height {
+        for h in 0..<3 {
             for w in 0..<width{
-                let cellImgView = UIImageView(frame: CGRect(x: shelfCellWidth*CGFloat(w), y: shelfCellHeight*CGFloat(h), width: shelfCellWidth, height: shelfCellHeight));
+                let frame = CGRect(x: shelfCellWidth*CGFloat(w) + offset, y: shelfCellHeight*CGFloat(h) + offset, width: shelfCellWidth, height: shelfCellHeight)
+                let cellImgView = UIImageView(frame: frame);
                 cellImgView.image = cell;
                 scrollView.addSubview(cellImgView);
                 sendSubview(toBack: cellImgView);
             }
         }
         //SET CONTENTSIZE OF SCROLLVIEW, OTHERWISE IT WILL NOT SCROLL
-        scrollView.contentSize = CGSize(width: shelfCellWidth*CGFloat(width), height: shelfCellWidth*CGFloat(height));
+        scrollView.contentSize = CGSize(width: shelfCellWidth*CGFloat(width) + offset*2, height: shelfCellWidth*CGFloat(3) + offset*2);
     }
     
     func convertAllBoxesToWrappers() -> [BoxWrapper]{

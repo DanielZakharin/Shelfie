@@ -68,7 +68,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         lastSelectedRow = indexPath.row;
         //TODO: load selected stores shelfplans
         loadShelfPlansIntoPicker();
-        boxViewCont.makeBG(width: Int(storesArray[indexPath.row].shelfWidth), height: 3);
+        boxViewCont.makeBG(width: Int(storesArray[indexPath.row].shelfWidth));
     }
     
     //MARK: PickerView Methods
