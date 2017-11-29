@@ -17,7 +17,6 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     @IBOutlet weak var brandPicker: UIPickerView!
     @IBOutlet weak var manufacturerPicker: UIPickerView!
     
-    @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var categorySelector: UISegmentedControl!
     
     var brandArr : [ProductBrand] = [];
@@ -52,8 +51,8 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     
     func constructProductFromFields() -> ProductWrapper{
         let newProdWrap = ProductWrapper();
-        if(Tools.checkTextFieldValid(textField: nameField)){
-            newProdWrap.name = nameField.text!;
+        if(Tools.checkTextFieldValid(textField: productNameField)){
+            newProdWrap.name = productNameField.text!;
         }
         newProdWrap.category = categorySelector.selectedSegmentIndex;
         newProdWrap.brand = brandArr[brandPicker.selectedRow(inComponent: 0)];
@@ -68,11 +67,17 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
-        writeProductToCoreData(constructProductFromFields());
+        if(validateFields()){
+            writeProductToCoreData(constructProductFromFields());
+        }
     }
     @IBAction func createBrandAction(_ sender: UIButton) {
         //TODO: make a popup for adding a brand to coredata
+        if(manArr.count > 0){
         showBrandCreationDialog();
+        }else {
+            alert(message: "Please create a manufacturer first.")
+        }
     }
     
     @IBAction func createManufacturerAction(_ sender: UIButton) {
@@ -82,7 +87,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     @IBAction func scanBarcodeAction(_ sender: UIButton) {
         present(scanner!, animated: true, completion: nil);
     }
-
+    
     //MARK: PickerView delegate methods
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -117,7 +122,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     
     //MARK: Barcode Scanner delegate
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
-            controller.dismiss(animated: true, completion: nil);
+        controller.dismiss(animated: true, completion: nil);
     }
     
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
@@ -142,8 +147,8 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         }
         alert.setValue(vc, forKey: "contentViewController");
         alert.addAction(UIAlertAction(title: "Create", style: .default){(_) in
-            if let name  = alert.textFields?[0].text {
-                CoreDataSingleton.sharedInstance.createBrand(name, withManufacturer: self.manArr[pickerView.selectedRow(inComponent: 0)]) { () in
+            if (alert.textFields?[0] != nil && Tools.checkTextFieldValid(textField: alert.textFields![0], self))  {
+                CoreDataSingleton.sharedInstance.createBrand((alert.textFields?[0].text)!, withManufacturer: self.manArr[pickerView.selectedRow(inComponent: 0)]) { () in
                     //self.brandPicker.reloadAllComponents();
                     self.fetchData();
                 };
@@ -162,8 +167,8 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         //the confirm action taking the inputs
         let confirmAction = UIAlertAction(title: "Create", style: .default) { (_) in
             //Handle creating and submitting to coredata here, completion block for button
-            if let name = alertController.textFields?[0].text {
-                CoreDataSingleton.sharedInstance.createManufacturer(name) { () in
+            if (alertController.textFields?[0] != nil && Tools.checkTextFieldValid(textField: alertController.textFields![0], self))  {
+                CoreDataSingleton.sharedInstance.createManufacturer((alertController.textFields?[0].text)!) { () in
                     self.fetchData();
                 }
             }
@@ -194,11 +199,28 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     func updateBrands(){
         if(manArr.count > 0){
             brandArr = Array(manArr[manufacturerPicker.selectedRow(inComponent: 0)].brands!) as! [ProductBrand];
-            print("\(manArr[0].brands?.count) <- manarr \(brandArr.count) <--brandarr");
             brandPicker.reloadAllComponents();
         }
     }
     
+    func validateFields()->Bool{
+        clearInvalidFields();
+        var valid = Tools.checkTextFieldValid(textField: productNameField,self);
+        
+        if (!(brandArr.count > 0)){
+            valid = false;
+            self.alert(message: "Please select or create a new brand.");
+            brandPicker.layer.borderWidth = 2;
+            brandPicker.layer.borderColor = UIColor.red.cgColor;
+        }
+        return valid;
+        
+    }
+    
+    func clearInvalidFields(){
+        productNameField.layer.borderWidth = 0;
+        brandPicker.layer.borderWidth = 0;
+    }
     /*
      // MARK: - Navigation
      

@@ -36,7 +36,7 @@
                                         <rect key="frame" x="0.0" y="28" width="1366" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oz8-Eo-qap" id="f0b-Jj-a4B">
-                                            <rect key="frame" x="0.0" y="0.0" width="1366" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1366" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hPf-gz-4gr">
@@ -141,7 +141,7 @@
                                         <rect key="frame" x="0.0" y="28" width="400" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vRh-TE-6Ag" id="bDf-pT-IKj">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHJ-uS-Lac">
@@ -490,7 +490,7 @@
                                             <action selector="scanBarcodeAction:" destination="GSp-Yp-RCK" eventType="touchUpInside" id="aov-v5-xc3"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Barcode Scanned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmw-Ap-DeB">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmw-Ap-DeB">
                                         <rect key="frame" x="16" y="824" width="1294" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
@@ -526,7 +526,6 @@
                         <outlet property="brandPicker" destination="HJj-nC-dlK" id="3ur-vH-wzG"/>
                         <outlet property="categorySelector" destination="6JV-cU-aT5" id="kWc-Pd-zpx"/>
                         <outlet property="manufacturerPicker" destination="B57-Ev-x3M" id="Uri-X7-2J6"/>
-                        <outlet property="nameField" destination="f1D-Ih-ZM8" id="jmu-cI-ZkC"/>
                         <outlet property="productNameField" destination="f1D-Ih-ZM8" id="paU-NJ-ikb"/>
                     </connections>
                 </viewController>

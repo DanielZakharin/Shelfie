@@ -14,9 +14,14 @@ class Tools{
     
     static let increment : CGFloat = UIScreen.main.bounds.width/30;
     
-    static func checkTextFieldValid(textField: UITextField) -> Bool{
+    static func checkTextFieldValid(textField: UITextField, _ viewControllerForAlert: UIViewController? = nil) -> Bool{
         if((textField.text) != nil && !textField.text!.isEmpty){
             return true;
+        }
+        textField.layer.borderWidth = 2;
+        textField.layer.borderColor = UIColor.red.cgColor;
+        if(viewControllerForAlert != nil){
+            viewControllerForAlert?.alert(message: "Some fields are empty, or invalid.")
         }
         return false;
     }
