@@ -12,7 +12,7 @@ import AVFoundation
 /*
  Controller for view where boxes and shelf get drawn.
  */
-class BoxViewController: UIView, UIGestureRecognizerDelegate{
+class BoxViewController: UIView, UIGestureRecognizerDelegate, UIScrollViewDelegate{
     
     
     var newestView: BoxView?;
@@ -23,6 +23,7 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     var boxesArr : [BoxView] = [];
     var scrollView : UIScrollView = UIScrollView();
     var parentCtrl: UIViewController?;
+    var innerView : UIView?;
     
     override init(frame: CGRect) {
         super.init(frame: frame);
@@ -35,6 +36,10 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     }
     
     func initialize(){
+        scrollView.delegate = self;
+        //uncomment to enable zooming, zooming however breaks adding boxes, as the coordinates do not match on the zoomed shelf
+//        scrollView.maximumZoomScale = 2;
+//        scrollView.minimumZoomScale = 0.5;
         //make scrollview the same size as container
         //set this, or adding constraints doesnt work!
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,6 +72,7 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         return false;
     }
     
+    
     /*func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
      if(otherGestureRecognizer.view == scrollView){
      return true;
@@ -86,59 +92,63 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     //MARK: Gesture Handlind
     //Pan gesture handling when touching empty space on the scrollview
     @objc func handlePan(sender: UIPanGestureRecognizer!) {
-        switch sender.state{
-        //state for when pan just started, create a new view to be maniuplated here
-        case .began:
-            //get coordinate on screen where pan began
-            let coord = sender.location(in: sender.view);
-            makeBoxAtLocation(coord.x, coord.y);
-            break;
-            
-        //state when a pan movement has occured
-        case .changed:
-            //translation is the amount of movement that occured
-            let translation = sender.translation(in: scrollView)
-            if newestView != nil {
-                //add to total amount moved
-                currentTotalX += translation.x;
-                currentTotalY += translation.y;
-                //if total amount moved exceeds threshold, resize view, reset total moved when done
-                if(abs(currentTotalX) > increment && newestView!.frame.size.width + currentTotalX > 0){
-                    //newestView!.frame.size.width += roundToNearest(x: currentTotalX);
-                    if(currentTotalX > 0){
-                        newestView!.increaseSizeByX(1);
-                    }else {
-                        newestView!.increaseSizeByX(-1);
+        if(innerView != nil){
+            switch sender.state{
+            //state for when pan just started, create a new view to be maniuplated here
+            case .began:
+                //get coordinate on screen where pan began
+                let coord = sender.location(in: sender.view);
+                makeBoxAtLocation(coord.x, coord.y);
+                break;
+                
+            //state when a pan movement has occured
+            case .changed:
+                //translation is the amount of movement that occured
+                let translation = sender.translation(in: innerView!)
+                if newestView != nil {
+                    //add to total amount moved
+                    currentTotalX += translation.x;
+                    currentTotalY += translation.y;
+                    //if total amount moved exceeds threshold, resize view, reset total moved when done
+                    if(abs(currentTotalX) > increment && newestView!.frame.size.width + currentTotalX > 0){
+                        //newestView!.frame.size.width += roundToNearest(x: currentTotalX);
+                        if(currentTotalX > 0){
+                            newestView!.increaseSizeByX(1);
+                        }else {
+                            newestView!.increaseSizeByX(-1);
+                        }
+                        currentTotalX = 0;
                     }
-                    currentTotalX = 0;
-                }
-                if(abs(currentTotalY) > increment && newestView!.frame.size.height + currentTotalY > 0){
-                    if(currentTotalY > 0){
-                        newestView!.increaseSizeByY(1);
-                    }else {
-                        newestView!.increaseSizeByY(-1);
+                    if(abs(currentTotalY) > increment && newestView!.frame.size.height + currentTotalY > 0){
+                        if(currentTotalY > 0){
+                            newestView!.increaseSizeByY(1);
+                        }else {
+                            newestView!.increaseSizeByY(-1);
+                        }
+                        currentTotalY = 0;
                     }
-                    currentTotalY = 0;
                 }
+                break;
+                
+            //state when pan action has ended
+            case .ended:
+                /*newestView!.removeFromSuperview();
+                 newestView = nil;*/
+                currentTotalX = 0;
+                currentTotalY = 0;
+                break;
+            case .failed:
+                print("Other state");
+                break;
+            default:
+                print("!");
+                break;
             }
-            break;
+            //reset translation so it doesn't accumulate
+            sender.setTranslation(CGPoint.zero, in: innerView!);
             
-        //state when pan action has ended
-        case .ended:
-            /*newestView!.removeFromSuperview();
-             newestView = nil;*/
-            currentTotalX = 0;
-            currentTotalY = 0;
-            break;
-        case .failed:
-            print("Other state");
-            break;
-        default:
-            print("!");
-            break;
+            
         }
-        //reset translation so it doesn't accumulate
-        sender.setTranslation(CGPoint.zero, in: scrollView);
         
     }
     
@@ -146,6 +156,10 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         if let v = sender.view as? BoxView{
             showPopOver(sender: v);
         }
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return innerView;
     }
     
     //MARK: Methods
@@ -172,6 +186,9 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     
     //makes a background for drawing boxes on
     func makeBG(width: Int) {
+        if (innerView == nil){
+            innerView = UIView();
+        }
         for v in scrollView.subviews{
             if(v is UIImageView){
                 v.removeFromSuperview();
@@ -186,12 +203,16 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
                 let frame = CGRect(x: shelfCellWidth*CGFloat(w) + offset, y: shelfCellHeight*CGFloat(h) + offset, width: shelfCellWidth, height: shelfCellHeight)
                 let cellImgView = UIImageView(frame: frame);
                 cellImgView.image = cell;
-                scrollView.addSubview(cellImgView);
+                innerView!.addSubview(cellImgView);
                 sendSubview(toBack: cellImgView);
             }
         }
         //SET CONTENTSIZE OF SCROLLVIEW, OTHERWISE IT WILL NOT SCROLL
-        scrollView.contentSize = CGSize(width: shelfCellWidth*CGFloat(width) + offset*2, height: shelfCellWidth*CGFloat(3) + offset*2);
+        
+        let contentSize = CGSize(width: shelfCellWidth*CGFloat(width) + offset*2, height: shelfCellWidth*CGFloat(3) + offset*2);
+        innerView!.frame = CGRect(origin: CGPoint(x:0,y:0), size: contentSize);
+        scrollView.addSubview(innerView!);
+        scrollView.contentSize = innerView!.frame.size;
     }
     
     func convertAllBoxesToWrappers() -> [BoxWrapper]{
@@ -208,17 +229,21 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         return shelfWrapper;
     }
     
-    func makeBoxAtLocation(_ x : CGFloat, _ y : CGFloat, width:CGFloat = Tools.increment, height: CGFloat = Tools.increment) -> BoxView{
-        //create new view
-        let newView = BoxView(frame: CGRect(x: Tools.roundToNearest(x:x), y: Tools.roundToNearest(x:y), width: width, height: height));
-        //add a tap gesture recognizer
-        let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)));
-        newView.addGestureRecognizer(tapGesture);
-        //add view to superview
-        scrollView.addSubview(newView);
-        newestView = newView;
-        boxesArr.append(newView);
-        return newView;
+    func makeBoxAtLocation(_ x : CGFloat, _ y : CGFloat, width:CGFloat = Tools.increment, height: CGFloat = Tools.increment) -> BoxView?{
+        if(innerView != nil){
+            //create new view
+            let newView = BoxView(frame: CGRect(x: Tools.roundToNearest(x:x), y: Tools.roundToNearest(x:y), width: width, height: height));
+            //add a tap gesture recognizer
+            let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)));
+            newView.addGestureRecognizer(tapGesture);
+            //add view to superview
+            innerView!.addSubview(newView);
+            newestView = newView;
+            boxesArr.append(newView);
+            return newView;
+        }else {
+            return nil;
+        }
     }
     
     func populateShelfFromPlan(_ shelf: ShelfPlan){
@@ -227,15 +252,17 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
         for sb in boxes {
             let newBox = makeBoxAtLocation(Tools.intToIncrement(int: sb.coordX), Tools.intToIncrement(int: sb.coordY), width: Tools.intToIncrement(int: sb.width), height: Tools.intToIncrement(int: sb.height));
             if let p = sb.product{
-                newBox.setProducForBox(p);
+                newBox!.setProducForBox(p);
             }
         }
     }
     
     func clearShelf(){
-        for v in scrollView.subviews{
-            if(v is BoxView){
-                v.removeFromSuperview();
+        if(innerView != nil){
+            for v in innerView!.subviews{
+                if(v is BoxView){
+                    v.removeFromSuperview();
+                }
             }
         }
         boxesArr = [];
