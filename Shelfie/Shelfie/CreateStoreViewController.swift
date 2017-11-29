@@ -20,21 +20,21 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var nomberOfModulesLabel: UILabel!
     @IBOutlet weak var numberOfModulesStepper: UIStepper!
     
-    //var textFieldArr : [UITextField] = [];
+    var textFieldArr : [UITextField] = [];
     
     
     //array containing all Chains, when values change, update all components of storechainpickerview, since  section 1 also depends on contents of section 0
     //realoding of pickerview that is inside alert is not necessary, as it is remade each time the alert is presented
-    var arr1 : [Chain] = [] {
+    var chainArr : [Chain] = [] {
         didSet {
-            if(arr1.count != 0){
-                let sc = arr1[storeChainPickerView.selectedRow(inComponent: 0)].storeChains;
-                arr2 = Array(sc!) as! [StoreChain];
+            if(chainArr.count != 0){
+                let sc = chainArr[storeChainPickerView.selectedRow(inComponent: 0)].storeChains;
+                storeChainArr = Array(sc!) as! [StoreChain];
                 storeChainPickerView.reloadAllComponents();
             }
         }
     };
-    var arr2 : [StoreChain] = [] {
+    var storeChainArr : [StoreChain] = [] {
         didSet {
             
         }
@@ -44,6 +44,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // Do any additional setup after loading the view.
         //first fetch of chains
         fetchArrData();
+        setup();
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,14 +67,14 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if(pickerView == storeChainPickerView){
             switch component {
             case 0:
-                return arr1.count;
+                return chainArr.count;
             case 1:
-                return arr2.count;
+                return storeChainArr.count;
             default:
                 return 0;
             }
         }
-        return arr1.count;
+        return chainArr.count;
     }
     
     
@@ -81,22 +82,22 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if(pickerView == storeChainPickerView){
             switch component {
             case 0:
-                return arr1[row].chainName;
+                return chainArr[row].chainName;
             case 1:
-                return arr2[row].storeChainName;
+                return storeChainArr[row].storeChainName;
             default:
                 return "err";
             }
         }
-        return arr1[row].chainName;
+        return chainArr[row].chainName;
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(pickerView == storeChainPickerView){
             switch component {
             case 0:
-                if(arr1.count > 0){
-                    arr2 = Array(arr1[row].storeChains!) as! [StoreChain];
+                if(chainArr.count > 0){
+                    storeChainArr = Array(chainArr[row].storeChains!) as! [StoreChain];
                     storeChainPickerView.reloadComponent(1);
                 }
                 break;
@@ -120,7 +121,9 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     //MARK: Button actions
     @IBAction func submitButtonAction(_ sender: UIButton) {
-        addStoreToCoreData();
+        if(validateFields()){
+            addStoreToCoreData();
+        }
     }
     @IBAction func createChainAction(_ sender: UIButton) {
         showChainCreationDialog();
@@ -154,7 +157,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
             newStoreWrapper.contactNumber = storeContactNumber.text!;
         }
         newStoreWrapper.shelfWidth = Int(numberOfModulesStepper.value);
-        newStoreWrapper.storeChain = arr2[storeChainPickerView.selectedRow(inComponent: 1)];
+        newStoreWrapper.storeChain = storeChainArr[storeChainPickerView.selectedRow(inComponent: 1)];
         return newStoreWrapper;
     }
     
@@ -174,7 +177,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         alert.setValue(vc, forKey: "contentViewController");
         alert.addAction(UIAlertAction(title: "Create", style: .default){(_) in
             if let name  = alert.textFields?[0].text {
-                CoreDataSingleton.sharedInstance.createStoreChain(name, inChain: self.arr1[pickerView.selectedRow(inComponent: 0)]);
+                CoreDataSingleton.sharedInstance.createStoreChain(name, inChain: self.chainArr[pickerView.selectedRow(inComponent: 0)]);
                 self.realodComponent1();
             }
         });
@@ -216,17 +219,41 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     
     func fetchArrData(){
-        arr1 = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Chain") as! [Chain];
+        chainArr = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Chain") as! [Chain];
     }
     
     func realodComponent1(){
-        let sc = arr1[storeChainPickerView.selectedRow(inComponent: 0)].storeChains;
-        arr2 = Array(sc!) as! [StoreChain];
+        let sc = chainArr[storeChainPickerView.selectedRow(inComponent: 0)].storeChains;
+        storeChainArr = Array(sc!) as! [StoreChain];
         storeChainPickerView.reloadComponent(1);
     }
     
     func setup(){
-        //textFieldArr = [storeNameField,storeAddressField,storeContactNumber,storeContactPerson];
+        textFieldArr = [storeNameField,storeAddressField,storeContactNumber,storeContactPerson];
+    }
+    
+    func validateFields()->Bool{
+        clearInvalidFields();
+        var valid = true;
+        for field in textFieldArr {
+            if (!Tools.checkTextFieldValid(textField: field, self)){
+                valid = false;
+            }
+        }
+        if (!(storeChainArr.count > 0)){
+            alert(message: "Please select a store chain.");
+            storeChainPickerView.layer.borderColor = UIColor.red.cgColor;
+            storeChainPickerView.layer.borderWidth = 2;
+            valid = false;
+        }
+        return valid;
+    }
+    
+    func clearInvalidFields(){
+        for field in textFieldArr {
+            field.layer.borderWidth = 0;
+        }
+        storeChainPickerView.layer.borderWidth = 0;
     }
     
     

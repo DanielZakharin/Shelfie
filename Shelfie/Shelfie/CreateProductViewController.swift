@@ -69,6 +69,11 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     @IBAction func submitAction(_ sender: UIButton) {
         if(validateFields()){
             writeProductToCoreData(constructProductFromFields());
+            alert(message: "Success!");
+            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
+                let ctrl = self.parent as! CreateViewController;
+                ctrl.switchView(i: 1);
+            }
         }
     }
     @IBAction func createBrandAction(_ sender: UIButton) {
