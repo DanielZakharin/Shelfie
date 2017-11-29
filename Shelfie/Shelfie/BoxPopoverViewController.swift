@@ -123,9 +123,7 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
-        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
-            controller.dismiss(animated: true, completion: nil);
-        }
+        controller.dismiss(animated: true, completion: nil);
     }
     
     

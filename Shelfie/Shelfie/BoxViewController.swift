@@ -36,9 +36,9 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate{
     
     func initialize(){
         //make scrollview the same size as container
-        let c = self.frame;
-        let newFrame = CGRect(x: 0, y: 0, width: c.width, height: c.height);
+        let newFrame = self.bounds;
         scrollView.frame = newFrame;
+        scrollView.backgroundColor = UIColor.blue;
         self.addSubview(scrollView);
         //setup pan gesture recognizers for scrollview
         //allow the scrollviews native gesture to only work with 2 finger pans

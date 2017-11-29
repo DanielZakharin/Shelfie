@@ -127,7 +127,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
         storeSelectTable.reloadData();
         loadShelfPlansIntoPicker();
-        boxViewCont.makeBG(width: Int(storesArray[0].shelfWidth), height: 3);
+        //boxViewCont.makeBG(width: Int(storesArray[0].shelfWidth), height: 3);
     }
     
     func loadShelfPlansIntoPicker(){

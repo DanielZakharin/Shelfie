@@ -36,7 +36,7 @@
                                         <rect key="frame" x="0.0" y="28" width="1366" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oz8-Eo-qap" id="f0b-Jj-a4B">
-                                            <rect key="frame" x="0.0" y="0.0" width="1366" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1366" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hPf-gz-4gr">
@@ -141,7 +141,7 @@
                                         <rect key="frame" x="0.0" y="28" width="400" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vRh-TE-6Ag" id="bDf-pT-IKj">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHJ-uS-Lac">
@@ -429,7 +429,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-MS-akq">
-                                        <rect key="frame" x="0.0" y="259" width="1326" height="246"/>
+                                        <rect key="frame" x="0.0" y="229" width="1326" height="246"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4e4-4a-HSd">
                                                 <rect key="frame" x="0.0" y="0.0" width="663" height="246"/>
@@ -462,7 +462,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fxZ-ur-P5j">
-                                        <rect key="frame" x="0.0" y="622.5" width="1326" height="42"/>
+                                        <rect key="frame" x="0.0" y="563.5" width="1326" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttW-AX-00I">
                                                 <rect key="frame" x="0.0" y="0.0" width="663" height="42"/>
@@ -483,13 +483,19 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w1-nm-1l3">
-                                        <rect key="frame" x="588" y="782.5" width="150" height="42"/>
+                                        <rect key="frame" x="588" y="693.5" width="150" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Scan Barcode"/>
                                         <connections>
                                             <action selector="scanBarcodeAction:" destination="GSp-Yp-RCK" eventType="touchUpInside" id="aov-v5-xc3"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Barcode Scanned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmw-Ap-DeB">
+                                        <rect key="frame" x="16" y="824" width="1294" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-Mz-Re9">
                                         <rect key="frame" x="624.5" y="942" width="77" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -500,7 +506,9 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="lmw-Ap-DeB" secondAttribute="trailing" constant="16" id="H8g-yC-TK1"/>
                                     <constraint firstItem="i7q-MS-akq" firstAttribute="width" secondItem="hTB-v6-Cxp" secondAttribute="width" id="NfE-5O-SJD"/>
+                                    <constraint firstItem="lmw-Ap-DeB" firstAttribute="leading" secondItem="hTB-v6-Cxp" secondAttribute="leading" constant="16" id="bGk-0d-yAA"/>
                                     <constraint firstItem="fxZ-ur-P5j" firstAttribute="width" secondItem="hTB-v6-Cxp" secondAttribute="width" id="chM-Ly-hJB"/>
                                 </constraints>
                             </stackView>
@@ -514,6 +522,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="barcodeLabel" destination="lmw-Ap-DeB" id="PJG-BE-KT6"/>
                         <outlet property="brandPicker" destination="HJj-nC-dlK" id="3ur-vH-wzG"/>
                         <outlet property="categorySelector" destination="6JV-cU-aT5" id="kWc-Pd-zpx"/>
                         <outlet property="manufacturerPicker" destination="B57-Ev-x3M" id="Uri-X7-2J6"/>

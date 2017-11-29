@@ -129,7 +129,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         showStoreChainCreationDialog();
     }
     @IBAction func numberOfModulesChanged(_ sender: UIStepper) {
-        nomberOfModulesLabel.text = "\(nomberOfModulesLabel.text!.substring(to: nomberOfModulesLabel.text!.index(before: nomberOfModulesLabel.text!.endIndex)))\(Int(sender.value))";
+        nomberOfModulesLabel.text = "Number of Modules: \(Int(sender.value))";
     }
     
     
@@ -141,13 +141,6 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //collect values from fields
     func constructNewStoreWrapper() -> StoreWrapper{
         let newStoreWrapper = StoreWrapper();
-        /*var checkBool = false;
-         for txtFld in textFieldArr {
-         if(!Tools.checkTextFieldValid(textField: txtFld)){
-         break;
-         }
-         checkBool = true;
-         }*/
         if(Tools.checkTextFieldValid(textField: storeNameField)){
             newStoreWrapper.storeName = storeNameField.text!;
         }

@@ -12,20 +12,8 @@ import BarcodeScanner
 class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, BarcodeScannerDismissalDelegate, BarcodeScannerCodeDelegate {
     @IBOutlet weak var productNameField: UITextField!
     
-    //MARK: Steppers
-    @IBOutlet weak var widthLabel: UILabel!
-    @IBOutlet weak var widthStepper: UIStepper!
+    @IBOutlet weak var barcodeLabel: UILabel!
     
-    @IBOutlet weak var heightLabel: UILabel!
-    @IBOutlet weak var heightStepper: UIStepper!
-    
-    @IBOutlet weak var depthLabel: UILabel!
-    @IBOutlet weak var depthStepper: UIStepper!
-    
-    var stepperArr : [UIStepper] = [];
-    var stepperDict : [UIStepper: UILabel] = [:];
-    
-    //MARK: Other outlets
     @IBOutlet weak var brandPicker: UIPickerView!
     @IBOutlet weak var manufacturerPicker: UIPickerView!
     
@@ -129,13 +117,12 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     
     //MARK: Barcode Scanner delegate
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
-        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
             controller.dismiss(animated: true, completion: nil);
-        }
     }
     
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
         barcode = code;
+        barcodeLabel.text = "Barcode: \(code)";
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
             controller.dismiss(animated: true, completion: nil);
         }
