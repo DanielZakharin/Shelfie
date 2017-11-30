@@ -228,7 +228,7 @@ class BoxView: UIView {
     
     func setProducForBox(_ to: Product){
         self.product = to;
-        let bg = UIColor(patternImage:Tools.categoryImageDict[Int(to.category)]!);
+        let bg = Tools.categoryColorDict[Int(to.category)];//UIColor(patternImage:Tools.categoryImageDict[Int(to.category)]!);
         self.backgroundColor = bg;
         self.boxNameLabel.text = to.name;
     }

@@ -127,6 +127,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     
     //MARK: Barcode Scanner delegate
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
+        controller.reset();
         controller.dismiss(animated: true, completion: nil);
     }
     
@@ -134,6 +135,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         barcode = code;
         barcodeLabel.text = "Barcode: \(code)";
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
+            controller.reset();
             controller.dismiss(animated: true, completion: nil);
         }
     }

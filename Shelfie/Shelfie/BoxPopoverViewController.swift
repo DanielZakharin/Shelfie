@@ -24,6 +24,7 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view.
         scanner = BarcodeScannerController();
         scanner?.codeDelegate = self;
+        scanner?.dismissalDelegate = self;
         
         popoverTable.delegate = self;
         popoverTable.dataSource = self;
@@ -118,11 +119,13 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         dump(productsArr);
         popoverTable.reloadData();
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
+            controller.reset();
             controller.dismiss(animated: true, completion: nil);
         }
     }
     
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
+        controller.reset();
         controller.dismiss(animated: true, completion: nil);
     }
     
