@@ -77,8 +77,42 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return chainArr.count;
     }
     
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//        let label = view as! UILabel;
+//        label.textColor = Tools.colors.metsaDarkGray;
+//        label.backgroundColor = Tools.colors.metsaLighterGray;
+//        label.textAlignment = .center;
+//        label.font = UIFont(name: "BentonSans-Black", size: 18)
+//        return label;
+        
+        
+        
+        var pickerLabel = view as! UILabel!
+        if view == nil {  //if no label there yet
+            pickerLabel = UILabel()
+            pickerLabel?.textColor = Tools.colors.metsaDarkGray;
+                    pickerLabel?.textAlignment = .center;
+                    pickerLabel?.font = UIFont(name: "BentonSans-Black", size: 18)
+        }
+        
+        if(pickerView == storeChainPickerView){
+            switch component {
+            case 0:
+                pickerLabel?.text =  chainArr[row].chainName;
+            case 1:
+                pickerLabel?.text =  storeChainArr[row].storeChainName;
+            default:
+                pickerLabel?.text =  "err";
+            }
+        }else {
+            pickerLabel?.text =  chainArr[row].chainName;
+        }
+        
+        return pickerLabel!;
+    }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
         if(pickerView == storeChainPickerView){
             switch component {
             case 0:

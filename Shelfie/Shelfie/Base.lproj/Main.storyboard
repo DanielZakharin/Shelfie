@@ -43,7 +43,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-ed-Mm2">
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-ed-Mm2" customClass="MetsaPickerView" customModule="Shelfie" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="341" width="271" height="216"/>
                                     </pickerView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZzS-1B-kVM">
@@ -122,14 +122,16 @@
                                 <rect key="frame" x="307" y="72" width="709" height="19"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0f-Ru-4gm" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="0.0" width="34" height="18"/>
+                                        <rect key="frame" x="16" y="0.0" width="56" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="NEW"/>
                                         <connections>
                                             <action selector="newButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="Fw2-jv-jFO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFP-fD-uN3" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
-                                        <rect key="frame" x="656" y="-6" width="37" height="30"/>
+                                        <rect key="frame" x="632" y="-12" width="61" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="SAVE"/>
                                         <connections>
                                             <action selector="saveButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="gYi-HC-Cst"/>
@@ -290,14 +292,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="0eW-AH-4g8">
                                 <rect key="frame" x="307" y="496" width="410" height="172"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-sC-jFT">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-sC-jFT" customClass="MetsaTextField" customModule="Shelfie" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="410" height="36"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="t4O-eU-3jR">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="t4O-eU-3jR" customClass="MetsaTextField" customModule="Shelfie" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="68" width="410" height="36"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
@@ -709,6 +711,7 @@
         <image name="metsaLogo" width="943" height="363"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ShI-xS-UVq"/>
         <segue reference="1l8-pj-dCq"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -17,6 +17,7 @@ class Tools{
         let metsaGreenSecondary = UIColor(red: 123/255, green: 192/255, blue: 0, alpha: 0.9);
         let metsaDarkGray = UIColor(red: 54/255, green: 53/255, blue: 51/255, alpha: 1);
         let metsaLightGray = UIColor(red: 142/255, green: 144/255, blue: 143/255, alpha: 1);
+        let metsaLighterGray = UIColor(red: 200/255, green: 202/255, blue: 201/255, alpha: 1);
     }
         
     static let colors = Colors();
