@@ -71,7 +71,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quR-Yn-BlY">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quR-Yn-BlY" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
                                 <rect key="frame" x="661" y="994" width="45" height="30"/>
                                 <state key="normal" title="Delete"/>
                                 <connections>
@@ -167,7 +167,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jw7-RF-Zgv">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jw7-RF-Zgv" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
                                 <rect key="frame" x="20" y="408" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Delete"/>
@@ -209,20 +209,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wd8-hs-zF7">
-                                <rect key="frame" x="20" y="20" width="1326" height="1004"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wd8-hs-zF7">
+                                <rect key="frame" x="20" y="36" width="1326" height="972"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="q2k-0q-Lht">
-                                        <rect key="frame" x="0.0" y="0.0" width="1326" height="29.5"/>
+                                        <rect key="frame" x="531" y="0.0" width="264" height="29.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zv-YA-OAI">
-                                                <rect key="frame" x="0.0" y="0.0" width="662.5" height="29.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zv-YA-OAI" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="131.5" height="29.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Chain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfV-0S-fFg">
-                                                <rect key="frame" x="663.5" y="0.0" width="662.5" height="29.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Chain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfV-0S-fFg" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                <rect key="frame" x="132.5" y="0.0" width="131.5" height="29.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -230,34 +230,34 @@
                                         </subviews>
                                     </stackView>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hI4-4x-cc5">
-                                        <rect key="frame" x="0.0" y="125.5" width="1326" height="216"/>
+                                        <rect key="frame" x="503" y="123" width="320" height="216"/>
                                     </pickerView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="ZOg-pU-VgX">
-                                        <rect key="frame" x="0.0" y="437.5" width="1326" height="144"/>
+                                        <rect key="frame" x="394.5" y="433" width="537" height="144"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2FM-Tt-Tgx">
-                                                <rect key="frame" x="0.0" y="0.0" width="647" height="143"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="252.5" height="143"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5e-EL-kOq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="647" height="29.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5e-EL-kOq" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="252.5" height="29.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DgD-vB-8J1">
-                                                        <rect key="frame" x="0.0" y="37.5" width="647" height="30"/>
+                                                        <rect key="frame" x="0.0" y="37.5" width="252.5" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT6-8x-EOn">
-                                                        <rect key="frame" x="0.0" y="75.5" width="647" height="29.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT6-8x-EOn" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="75.5" width="252.5" height="29.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D6X-Of-WXG">
-                                                        <rect key="frame" x="0.0" y="113" width="647" height="30"/>
+                                                        <rect key="frame" x="0.0" y="113" width="252.5" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -265,28 +265,28 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zNM-Pq-qoN">
-                                                <rect key="frame" x="679" y="0.0" width="647" height="144"/>
+                                                <rect key="frame" x="284.5" y="0.0" width="252.5" height="144"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Contact Person" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMx-K1-2RR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="647" height="30"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Contact Person" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMx-K1-2RR" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="252.5" height="30"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1px-lT-2XE">
-                                                        <rect key="frame" x="0.0" y="38" width="647" height="30"/>
+                                                        <rect key="frame" x="0.0" y="38" width="252.5" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Contact Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyo-Gx-9mZ">
-                                                        <rect key="frame" x="0.0" y="76" width="647" height="30"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Contact Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyo-Gx-9mZ" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="76" width="252.5" height="30"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSu-1a-5tk">
-                                                        <rect key="frame" x="0.0" y="114" width="647" height="30"/>
+                                                        <rect key="frame" x="0.0" y="114" width="252.5" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -295,46 +295,36 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LDT-Ef-W6i">
-                                        <rect key="frame" x="0.0" y="678" width="1326" height="50"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="LDT-Ef-W6i">
+                                        <rect key="frame" x="482" y="670.5" width="362.5" height="30"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lkq-75-hsC">
-                                                <rect key="frame" x="0.0" y="0.0" width="663" height="50"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Number of Modules: 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGG-Ny-90t">
-                                                        <rect key="frame" x="210" y="9.5" width="244.5" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="iGG-Ny-90t" firstAttribute="centerX" secondItem="Lkq-75-hsC" secondAttribute="centerX" id="Pia-YY-x2E"/>
-                                                    <constraint firstItem="iGG-Ny-90t" firstAttribute="centerY" secondItem="Lkq-75-hsC" secondAttribute="centerY" id="TfF-iC-bl5"/>
-                                                </constraints>
-                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Modules: 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGG-Ny-90t" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="236.5" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Bsp-wC-8g7">
-                                                <rect key="frame" x="663" y="10.5" width="94" height="29"/>
+                                                <rect key="frame" x="268.5" y="0.5" width="94" height="29"/>
                                                 <connections>
                                                     <action selector="numberOfModulesChanged:" destination="dV8-9J-NSn" eventType="valueChanged" id="Yso-RV-dk6"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9I0-94-qbr">
-                                        <rect key="frame" x="0.0" y="824" width="1326" height="42"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="9I0-94-qbr">
+                                        <rect key="frame" x="474" y="794.5" width="378" height="42"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmW-Eg-3CA">
-                                                <rect key="frame" x="0.0" y="0.0" width="663" height="42"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmW-Eg-3CA" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="181" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="New Chain"/>
                                                 <connections>
                                                     <action selector="createChainAction:" destination="dV8-9J-NSn" eventType="touchUpInside" id="3sU-fD-5Sp"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGy-lQ-iAK">
-                                                <rect key="frame" x="663" y="0.0" width="663" height="42"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGy-lQ-iAK" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
+                                                <rect key="frame" x="197" y="0.0" width="181" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="New Store Chain"/>
                                                 <connections>
@@ -343,8 +333,8 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-mz-UYM">
-                                        <rect key="frame" x="0.0" y="962" width="1326" height="42"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-mz-UYM" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
+                                        <rect key="frame" x="624.5" y="930" width="77" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
@@ -354,11 +344,11 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Wd8-hs-zF7" firstAttribute="leading" secondItem="hUa-WH-cUh" secondAttribute="leadingMargin" id="DCG-DQ-JMT"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Wd8-hs-zF7" secondAttribute="bottom" id="Zyr-pm-Gb6"/>
-                            <constraint firstItem="Wd8-hs-zF7" firstAttribute="top" secondItem="hUa-WH-cUh" secondAttribute="topMargin" id="mZH-dD-NGN"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Wd8-hs-zF7" secondAttribute="bottom" constant="16" id="Zyr-pm-Gb6"/>
+                            <constraint firstItem="Wd8-hs-zF7" firstAttribute="top" secondItem="hUa-WH-cUh" secondAttribute="topMargin" constant="16" id="mZH-dD-NGN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wd8-hs-zF7" secondAttribute="trailing" id="pDi-rJ-nfH"/>
                         </constraints>
                     </view>
@@ -389,52 +379,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-v6-Cxp">
-                                <rect key="frame" x="20" y="40" width="1326" height="984"/>
+                                <rect key="frame" x="20" y="40" width="1326" height="968"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="di4-nh-Lt8">
-                                        <rect key="frame" x="513.5" y="0.0" width="299" height="141"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncV-ki-Rr7">
-                                                <rect key="frame" x="68.5" y="0.0" width="162" height="29.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f1D-Ih-ZM8">
-                                                <rect key="frame" x="8" y="37.5" width="283" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Du-Eu-Mpu">
-                                                <rect key="frame" x="50.5" y="75.5" width="198" height="29.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6JV-cU-aT5">
-                                                <rect key="frame" x="0.0" y="113" width="299" height="29"/>
-                                                <segments>
-                                                    <segment title="Tissue"/>
-                                                    <segment title="WC-Paper"/>
-                                                    <segment title="Kitchen Paper"/>
-                                                </segments>
-                                            </segmentedControl>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="f1D-Ih-ZM8" firstAttribute="top" secondItem="ncV-ki-Rr7" secondAttribute="bottom" id="BTf-cD-QWz"/>
-                                            <constraint firstAttribute="trailing" secondItem="f1D-Ih-ZM8" secondAttribute="trailing" constant="8" id="Ep6-Gx-nGb"/>
-                                            <constraint firstItem="f1D-Ih-ZM8" firstAttribute="leading" secondItem="di4-nh-Lt8" secondAttribute="leading" constant="8" id="knd-rY-7on"/>
-                                            <constraint firstItem="5Du-Eu-Mpu" firstAttribute="top" secondItem="f1D-Ih-ZM8" secondAttribute="bottom" id="rTv-Ut-GNM"/>
-                                        </constraints>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncV-ki-Rr7" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                        <rect key="frame" x="582" y="0.0" width="162" height="29.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f1D-Ih-ZM8">
+                                        <rect key="frame" x="200" y="85.5" width="926" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Du-Eu-Mpu" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                        <rect key="frame" x="564" y="172" width="198" height="29.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6JV-cU-aT5" customClass="MetsaSegmentedControl" customModule="Shelfie" customModuleProvider="target">
+                                        <rect key="frame" x="513.5" y="257.5" width="299" height="29"/>
+                                        <segments>
+                                            <segment title="Tissue"/>
+                                            <segment title="WC-Paper"/>
+                                            <segment title="Kitchen Paper"/>
+                                        </segments>
+                                    </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-MS-akq">
-                                        <rect key="frame" x="0.0" y="229" width="1326" height="246"/>
+                                        <rect key="frame" x="0.0" y="341.5" width="1326" height="246"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4e4-4a-HSd">
                                                 <rect key="frame" x="0.0" y="0.0" width="663" height="246"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manufacturer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oI-JQ-sly">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manufacturer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oI-JQ-sly" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="663" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <nil key="textColor"/>
@@ -448,7 +427,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mhS-7W-gAI">
                                                 <rect key="frame" x="663" y="0.0" width="663" height="246"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-QV-k2B">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-QV-k2B" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="663" height="29.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                         <nil key="textColor"/>
@@ -461,19 +440,19 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fxZ-ur-P5j">
-                                        <rect key="frame" x="0.0" y="563.5" width="1326" height="42"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fxZ-ur-P5j">
+                                        <rect key="frame" x="0.0" y="643.5" width="1326" height="42"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttW-AX-00I">
-                                                <rect key="frame" x="0.0" y="0.0" width="663" height="42"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttW-AX-00I" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="655" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="New Manufacturer"/>
                                                 <connections>
                                                     <action selector="createManufacturerAction:" destination="GSp-Yp-RCK" eventType="touchUpInside" id="HUZ-gA-ce7"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYl-G0-bln">
-                                                <rect key="frame" x="663" y="0.0" width="663" height="42"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYl-G0-bln" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
+                                                <rect key="frame" x="671" y="0.0" width="655" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="New Brand"/>
                                                 <connections>
@@ -482,22 +461,22 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w1-nm-1l3">
-                                        <rect key="frame" x="588" y="693.5" width="150" height="42"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w1-nm-1l3" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
+                                        <rect key="frame" x="588" y="742" width="150" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Scan Barcode"/>
                                         <connections>
                                             <action selector="scanBarcodeAction:" destination="GSp-Yp-RCK" eventType="touchUpInside" id="aov-v5-xc3"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmw-Ap-DeB">
-                                        <rect key="frame" x="16" y="824" width="1294" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmw-Ap-DeB" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="840" width="1294" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-Mz-Re9">
-                                        <rect key="frame" x="624.5" y="942" width="77" height="42"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-Mz-Re9" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
+                                        <rect key="frame" x="624.5" y="926" width="77" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
@@ -507,15 +486,17 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="lmw-Ap-DeB" secondAttribute="trailing" constant="16" id="H8g-yC-TK1"/>
+                                    <constraint firstItem="f1D-Ih-ZM8" firstAttribute="leading" secondItem="hTB-v6-Cxp" secondAttribute="leading" constant="200" id="LEH-ee-h9p"/>
                                     <constraint firstItem="i7q-MS-akq" firstAttribute="width" secondItem="hTB-v6-Cxp" secondAttribute="width" id="NfE-5O-SJD"/>
                                     <constraint firstItem="lmw-Ap-DeB" firstAttribute="leading" secondItem="hTB-v6-Cxp" secondAttribute="leading" constant="16" id="bGk-0d-yAA"/>
                                     <constraint firstItem="fxZ-ur-P5j" firstAttribute="width" secondItem="hTB-v6-Cxp" secondAttribute="width" id="chM-Ly-hJB"/>
+                                    <constraint firstAttribute="trailing" secondItem="f1D-Ih-ZM8" secondAttribute="trailing" constant="200" id="hFX-dn-6YD"/>
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="hTB-v6-Cxp" secondAttribute="bottom" id="Fqg-nF-oJV"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="hTB-v6-Cxp" secondAttribute="bottom" constant="16" id="Fqg-nF-oJV"/>
                             <constraint firstItem="hTB-v6-Cxp" firstAttribute="leading" secondItem="imp-RI-dA0" secondAttribute="leadingMargin" id="aIV-DR-NbA"/>
                             <constraint firstItem="hTB-v6-Cxp" firstAttribute="top" secondItem="imp-RI-dA0" secondAttribute="topMargin" constant="20" id="hOw-MP-9gc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hTB-v6-Cxp" secondAttribute="trailing" id="kWW-1M-MOr"/>

@@ -36,6 +36,7 @@
 		6A53E65E1FCD9D0B002EE346 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A53E65C1FCD9D0B002EE346 /* Product+CoreDataClass.swift */; };
 		6A53E65F1FCD9D0B002EE346 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A53E65D1FCD9D0B002EE346 /* Product+CoreDataProperties.swift */; };
 		6A53E6611FCF27EF002EE346 /* ViewCtrlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A53E6601FCF27EF002EE346 /* ViewCtrlExtension.swift */; };
+		6A53E6641FCFF6B9002EE346 /* MetsaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A53E6631FCFF6B9002EE346 /* MetsaButton.swift */; };
 		6A6531151FC44E0200A827C3 /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6531141FC44E0200A827C3 /* TestCollectionViewCell.swift */; };
 		6A6ED02F1FC6C9D400E74949 /* DataBarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6ED02E1FC6C9D400E74949 /* DataBarChartViewController.swift */; };
 		6A6ED0361FC6D03F00E74949 /* Manufacturer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6ED0341FC6D03F00E74949 /* Manufacturer+CoreDataClass.swift */; };
@@ -57,6 +58,9 @@
 		6A9CD4081FA77BD900816FC9 /* ShelfWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD4071FA77BD900816FC9 /* ShelfWrapper.swift */; };
 		6A9CD40B1FA7B37900816FC9 /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD4091FA7B37900816FC9 /* Store+CoreDataClass.swift */; };
 		6A9CD40C1FA7B37900816FC9 /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9CD40A1FA7B37900816FC9 /* Store+CoreDataProperties.swift */; };
+		6AD1302B1FD9D41400FA1CF4 /* MetsaLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD1302A1FD9D41400FA1CF4 /* MetsaLabel.swift */; };
+		6AD1302E1FD9D5FD00FA1CF4 /* MetsaLabelBold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD1302D1FD9D5FD00FA1CF4 /* MetsaLabelBold.swift */; };
+		6AD130301FDACC5900FA1CF4 /* MetsaSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD1302F1FDACC5900FA1CF4 /* MetsaSegmentedControl.swift */; };
 		6AE368111FB8D1950057FA89 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE368101FB8D1950057FA89 /* DataViewController.swift */; };
 		9C3EF5D1A06C5F62CD9F4A27 /* Pods_Shelfie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14083D7CE6AA2ADEDE7CE13D /* Pods_Shelfie.framework */; };
 /* End PBXBuildFile section */
@@ -109,6 +113,7 @@
 		6A53E65C1FCD9D0B002EE346 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6A53E65D1FCD9D0B002EE346 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6A53E6601FCF27EF002EE346 /* ViewCtrlExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCtrlExtension.swift; sourceTree = "<group>"; };
+		6A53E6631FCFF6B9002EE346 /* MetsaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetsaButton.swift; sourceTree = "<group>"; };
 		6A6531141FC44E0200A827C3 /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
 		6A6ED02E1FC6C9D400E74949 /* DataBarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBarChartViewController.swift; sourceTree = "<group>"; };
 		6A6ED0341FC6D03F00E74949 /* Manufacturer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manufacturer+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -136,6 +141,9 @@
 		6A9CD4071FA77BD900816FC9 /* ShelfWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelfWrapper.swift; sourceTree = "<group>"; };
 		6A9CD4091FA7B37900816FC9 /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6A9CD40A1FA7B37900816FC9 /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6AD1302A1FD9D41400FA1CF4 /* MetsaLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetsaLabel.swift; sourceTree = "<group>"; };
+		6AD1302D1FD9D5FD00FA1CF4 /* MetsaLabelBold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetsaLabelBold.swift; sourceTree = "<group>"; };
+		6AD1302F1FDACC5900FA1CF4 /* MetsaSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetsaSegmentedControl.swift; sourceTree = "<group>"; };
 		6AE368101FB8D1950057FA89 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		794BBAEA391C9A23B3302983 /* Pods-ShelfieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShelfieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShelfieTests/Pods-ShelfieTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C67E5FDD50B5DD920836891 /* Pods-Shelfie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shelfie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shelfie/Pods-Shelfie.release.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +302,14 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		6A53E6621FCFF689002EE346 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				6A53E6601FCF27EF002EE346 /* ViewCtrlExtension.swift */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
 		6A70BCD81F69181000AB4EE0 = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +335,8 @@
 		6A70BCE31F69181000AB4EE0 /* Shelfie */ = {
 			isa = PBXGroup;
 			children = (
+				6AD1302C1FD9D5C300FA1CF4 /* CustomViews */,
+				6A53E6621FCFF689002EE346 /* Misc */,
 				6AE3680F1FB8D1810057FA89 /* DataView */,
 				6A38BCD31F8E2A5A00233A3E /* WrapperClasses */,
 				6A38BCD01F8DFDF300233A3E /* TEST */,
@@ -335,7 +353,6 @@
 				6A70BCF01F69181000AB4EE0 /* LaunchScreen.storyboard */,
 				6A70BCF31F69181000AB4EE0 /* Info.plist */,
 				6A70BCEB1F69181000AB4EE0 /* Shelfie.xcdatamodeld */,
-				6A53E6601FCF27EF002EE346 /* ViewCtrlExtension.swift */,
 			);
 			path = Shelfie;
 			sourceTree = "<group>";
@@ -356,6 +373,17 @@
 				6A70BD091F69181000AB4EE0 /* Info.plist */,
 			);
 			path = ShelfieUITests;
+			sourceTree = "<group>";
+		};
+		6AD1302C1FD9D5C300FA1CF4 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				6A53E6631FCFF6B9002EE346 /* MetsaButton.swift */,
+				6AD1302A1FD9D41400FA1CF4 /* MetsaLabel.swift */,
+				6AD1302D1FD9D5FD00FA1CF4 /* MetsaLabelBold.swift */,
+				6AD1302F1FDACC5900FA1CF4 /* MetsaSegmentedControl.swift */,
+			);
+			name = CustomViews;
 			sourceTree = "<group>";
 		};
 		6AE3680F1FB8D1810057FA89 /* DataView */ = {
@@ -706,6 +734,7 @@
 				6A38BCD51F8E2A7500233A3E /* StoreWrapper.swift in Sources */,
 				6A70BCE51F69181000AB4EE0 /* AppDelegate.swift in Sources */,
 				6A53E65E1FCD9D0B002EE346 /* Product+CoreDataClass.swift in Sources */,
+				6AD1302E1FD9D5FD00FA1CF4 /* MetsaLabelBold.swift in Sources */,
 				6A3347A81F9B92D3001789E0 /* BoxCategoryViewController.swift in Sources */,
 				6A4631881F84C82500928873 /* BoxStoreSelectTableViewCell.swift in Sources */,
 				6A9CD3F21FA76C4500816FC9 /* BoxWrapper.swift in Sources */,
@@ -716,10 +745,13 @@
 				6A4631851F84C72C00928873 /* BoxContainerViewController.swift in Sources */,
 				6AE368111FB8D1950057FA89 /* DataViewController.swift in Sources */,
 				6A53E65F1FCD9D0B002EE346 /* Product+CoreDataProperties.swift in Sources */,
+				6AD130301FDACC5900FA1CF4 /* MetsaSegmentedControl.swift in Sources */,
 				6A6ED02F1FC6C9D400E74949 /* DataBarChartViewController.swift in Sources */,
 				6A14EC981F7E81AB00CF1B96 /* BoxViewController.swift in Sources */,
 				6A6ED03B1FC6D18E00E74949 /* ProductBrand+CoreDataProperties.swift in Sources */,
 				6A9CD4001FA7711100816FC9 /* ShelfPlan+CoreDataProperties.swift in Sources */,
+				6AD1302B1FD9D41400FA1CF4 /* MetsaLabel.swift in Sources */,
+				6A53E6641FCFF6B9002EE346 /* MetsaButton.swift in Sources */,
 				6A38BCD21F8DFE0100233A3E /* TESTViewController.swift in Sources */,
 				6A6ED0371FC6D03F00E74949 /* Manufacturer+CoreDataProperties.swift in Sources */,
 				6A6ED0361FC6D03F00E74949 /* Manufacturer+CoreDataClass.swift in Sources */,

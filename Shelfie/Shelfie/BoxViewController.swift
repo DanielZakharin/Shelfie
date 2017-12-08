@@ -188,9 +188,6 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate, UIScrollViewDelega
     
     //makes a background for drawing boxes on
     func makeBG(width: Int) {
-        if (innerView == nil){
-            innerView = UIView();
-        }
         for v in innerView.subviews{
             if(v is UIImageView){
                 v.removeFromSuperview();

@@ -51,7 +51,7 @@ class BoxView: UIView {
     func initialize(){
         self.backgroundColor = UIColor.darkGray;
         self.layer.borderWidth = 3;
-        self.layer.borderColor = UIColor.green.cgColor;
+        self.layer.borderColor = UIColor.black.cgColor;
         cornerDragView.frame = CGRect(x: Double(self.frame.width-CGFloat(cornerSize)), y: Double(self.frame.height-CGFloat(cornerSize)), width: cornerSize, height: cornerSize);
         cornerDragView.backgroundColor = UIColor.magenta;
         self.addSubview(cornerDragView);

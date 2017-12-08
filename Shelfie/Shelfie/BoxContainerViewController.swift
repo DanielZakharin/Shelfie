@@ -50,6 +50,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         // Configure the cell...
+        cell.backgroundColor = UIColor.clear;
         cell.labelUpper.text = storesArray[indexPath.row].storeName;
         var label2Text = "Unknown Store Chain";
         if let storeChainForRow = storesArray[indexPath.row].storeChain {

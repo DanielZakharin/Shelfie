@@ -41,6 +41,9 @@ class TESTViewController: UIViewController {
         coreSingleton.deleteAllData(entity: "Store");
         coreSingleton.deleteAllData(entity: "ShelfPlan");
         coreSingleton.deleteAllData(entity: "ShelfBox");
+        coreSingleton.deleteAllData(entity: "Manufacturer");
+        coreSingleton.deleteAllData(entity: "Product");
+        coreSingleton.deleteAllData(entity: "ProductBrand");
     }
     
     @IBAction func testBtn2(_ sender: Any) {
