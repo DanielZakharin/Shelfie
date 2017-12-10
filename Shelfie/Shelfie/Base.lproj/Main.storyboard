@@ -376,6 +376,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metsaBG" translatesAutoresizingMaskIntoConstraints="NO" id="O8w-zq-sna">
+                                <rect key="frame" x="0.0" y="64" width="1024" height="655"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8u4-YJ-uUU" customClass="MetsaLabelBold" customModule="Shelfie" customModuleProvider="target">
                                 <rect key="frame" x="28" y="72" width="299" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -384,7 +387,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N2N-sP-vPK">
                                 <rect key="frame" x="20" y="100.5" width="307" height="610.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.28999999999999998" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoxStoreSelect" id="Hpn-Jc-WO4" customClass="BoxStoreSelectTableViewCell" customModule="Shelfie" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="307" height="44"/>
@@ -439,14 +442,18 @@
                             <constraint firstItem="KU9-k6-CiS" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" constant="8" id="09g-nn-oCM"/>
                             <constraint firstItem="8u4-YJ-uUU" firstAttribute="trailing" secondItem="N2N-sP-vPK" secondAttribute="trailing" id="2aO-Hm-2oR"/>
                             <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="N2N-sP-vPK" secondAttribute="bottom" constant="8" id="3QY-WZ-G5k"/>
+                            <constraint firstItem="O8w-zq-sna" firstAttribute="leading" secondItem="qag-Te-9ec" secondAttribute="leading" id="9j4-bd-6p3"/>
                             <constraint firstItem="8u4-YJ-uUU" firstAttribute="leading" secondItem="qag-Te-9ec" secondAttribute="leadingMargin" constant="8" id="AFU-7p-FGq"/>
                             <constraint firstItem="KU9-k6-CiS" firstAttribute="leading" secondItem="N2N-sP-vPK" secondAttribute="trailing" constant="8" id="J7i-d5-9FJ"/>
                             <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="KU9-k6-CiS" secondAttribute="bottom" constant="8" id="RGI-uD-hxN"/>
                             <constraint firstItem="N2N-sP-vPK" firstAttribute="top" secondItem="8u4-YJ-uUU" secondAttribute="bottom" constant="8" id="T7L-Zp-XSW"/>
                             <constraint firstItem="N2N-sP-vPK" firstAttribute="width" secondItem="qag-Te-9ec" secondAttribute="width" multiplier="0.3" id="Wuc-MM-Chm"/>
                             <constraint firstItem="N2N-sP-vPK" firstAttribute="leading" secondItem="qag-Te-9ec" secondAttribute="leadingMargin" id="Y4k-Cx-onk"/>
+                            <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="O8w-zq-sna" secondAttribute="bottom" id="YV1-gM-UNC"/>
                             <constraint firstItem="8u4-YJ-uUU" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" constant="8" id="aPt-Ra-haM"/>
+                            <constraint firstItem="O8w-zq-sna" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" id="aVq-Nr-AsT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KU9-k6-CiS" secondAttribute="trailing" constant="8" id="h6g-1P-UbE"/>
+                            <constraint firstAttribute="trailing" secondItem="O8w-zq-sna" secondAttribute="trailing" id="xAe-rt-9Iz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BqQ-37-RPU"/>
