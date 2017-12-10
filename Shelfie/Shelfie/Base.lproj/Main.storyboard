@@ -37,7 +37,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgE-zq-ddH" userLabel="BSContainer">
                                 <rect key="frame" x="20" y="72" width="271" height="595"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hz-mR-etw" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hz-mR-etw" customClass="MetsaLabelBold" customModule="Shelfie" customModuleProvider="target">
                                         <rect key="frame" x="8" y="312.5" width="255" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -89,7 +89,7 @@
                                             <action selector="loadButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="NO8-Uh-VFb"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT4-Ea-GEp" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT4-Ea-GEp" customClass="MetsaLabelBold" customModule="Shelfie" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="8" width="271" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -122,17 +122,17 @@
                                 <rect key="frame" x="307" y="72" width="709" height="19"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0f-Ru-4gm" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="0.0" width="56" height="18"/>
+                                        <rect key="frame" x="16" y="0.0" width="50" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="NEW"/>
+                                        <state key="normal" title="New"/>
                                         <connections>
                                             <action selector="newButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="Fw2-jv-jFO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFP-fD-uN3" customClass="MetsaButton" customModule="Shelfie" customModuleProvider="target">
-                                        <rect key="frame" x="632" y="-12" width="61" height="42"/>
+                                        <rect key="frame" x="639" y="-12" width="54" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="SAVE"/>
+                                        <state key="normal" title="Save"/>
                                         <connections>
                                             <action selector="saveButtonAction:" destination="q47-vd-iCN" eventType="touchUpInside" id="gYi-HC-Cst"/>
                                         </connections>
@@ -376,101 +376,86 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metsaBG" translatesAutoresizingMaskIntoConstraints="NO" id="ulR-VZ-H5X">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                            </imageView>
-                            <tableView clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oU2-Fo-Mes">
-                                <rect key="frame" x="0.0" y="64" width="307" height="655"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.28999999999999998" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8u4-YJ-uUU" customClass="MetsaLabelBold" customModule="Shelfie" customModuleProvider="target">
+                                <rect key="frame" x="28" y="72" width="299" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N2N-sP-vPK">
+                                <rect key="frame" x="20" y="100.5" width="307" height="610.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoxStoreSelect" id="9D4-zj-Le8" customClass="BoxStoreSelectTableViewCell" customModule="Shelfie" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoxStoreSelect" id="Hpn-Jc-WO4" customClass="BoxStoreSelectTableViewCell" customModule="Shelfie" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="307" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9D4-zj-Le8" id="4rs-Dd-e8h">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hpn-Jc-WO4" id="KcB-P8-d3z">
                                             <rect key="frame" x="0.0" y="0.0" width="307" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyf-JK-aWt">
-                                                    <rect key="frame" x="8" y="0.0" width="229" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhc-Es-iGL" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="0.0" width="135" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNT-9F-vBd">
-                                                    <rect key="frame" x="8" y="14" width="229" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDd-LE-19O" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="22" width="203" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="labelLower" destination="ZNT-9F-vBd" id="8CV-JQ-WbK"/>
-                                            <outlet property="labelUpper" destination="qyf-JK-aWt" id="Pdy-pM-PL1"/>
+                                            <outlet property="labelLower" destination="qhc-Es-iGL" id="MPd-Xe-NLV"/>
+                                            <outlet property="labelUpper" destination="hDd-LE-19O" id="T2j-qy-t6A"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6KX-4A-BkO" userLabel="PieContainer">
-                                <rect key="frame" x="315" y="64" width="701" height="655"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KU9-k6-CiS">
+                                <rect key="frame" x="335" y="72" width="661" height="639"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yo-8u-OzM" customClass="PieChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="350.5" height="295"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cae-CK-SKF" customClass="PieChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="0.0" width="661" height="213"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p56-iq-nls" customClass="PieChartView" customModule="Charts">
-                                        <rect key="frame" x="105" y="319" width="491" height="328"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCj-nF-eAn" customClass="PieChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="213" width="661" height="213"/>
+                                        <color key="backgroundColor" red="1" green="0.20784313730000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daZ-Ai-kLi" customClass="PieChartView" customModule="Charts">
-                                        <rect key="frame" x="358.5" y="8" width="350.5" height="295"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhK-Ip-vfn" customClass="PieChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="426" width="661" height="213"/>
+                                        <color key="backgroundColor" red="0.56078431370000004" green="0.82745098039999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="daZ-Ai-kLi" secondAttribute="trailing" id="7vJ-KU-W6l"/>
-                                    <constraint firstItem="9yo-8u-OzM" firstAttribute="height" secondItem="6KX-4A-BkO" secondAttribute="height" multiplier="0.45" id="EgI-fm-kTM"/>
-                                    <constraint firstItem="9yo-8u-OzM" firstAttribute="width" secondItem="6KX-4A-BkO" secondAttribute="width" multiplier="0.5" id="HVO-Fx-JhF"/>
-                                    <constraint firstItem="9yo-8u-OzM" firstAttribute="top" secondItem="6KX-4A-BkO" secondAttribute="top" id="Mi0-A4-oq8"/>
-                                    <constraint firstAttribute="bottom" secondItem="p56-iq-nls" secondAttribute="bottom" constant="8" id="ODs-o7-AkO"/>
-                                    <constraint firstItem="daZ-Ai-kLi" firstAttribute="width" secondItem="6KX-4A-BkO" secondAttribute="width" multiplier="0.5" id="RWM-Nx-Z19"/>
-                                    <constraint firstItem="p56-iq-nls" firstAttribute="width" secondItem="6KX-4A-BkO" secondAttribute="width" multiplier="0.7" id="XP5-Zg-Xtc"/>
-                                    <constraint firstItem="daZ-Ai-kLi" firstAttribute="leading" secondItem="9yo-8u-OzM" secondAttribute="trailing" constant="8" id="XaH-7u-fIz"/>
-                                    <constraint firstItem="p56-iq-nls" firstAttribute="top" secondItem="daZ-Ai-kLi" secondAttribute="bottom" constant="16" id="gFY-Yw-lAa"/>
-                                    <constraint firstItem="p56-iq-nls" firstAttribute="centerX" secondItem="6KX-4A-BkO" secondAttribute="centerX" id="gVP-D3-1Mo"/>
-                                    <constraint firstItem="9yo-8u-OzM" firstAttribute="leading" secondItem="6KX-4A-BkO" secondAttribute="leading" id="ip6-Ba-Vpx"/>
-                                    <constraint firstItem="daZ-Ai-kLi" firstAttribute="height" secondItem="6KX-4A-BkO" secondAttribute="height" multiplier="0.45" id="kPQ-Hc-Ppb"/>
-                                    <constraint firstItem="daZ-Ai-kLi" firstAttribute="top" secondItem="6KX-4A-BkO" secondAttribute="top" constant="8" id="otw-7S-NgH"/>
-                                </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6KX-4A-BkO" secondAttribute="trailing" constant="8" id="7I3-ZN-u0a"/>
-                            <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="oU2-Fo-Mes" secondAttribute="bottom" id="AOw-AJ-JMk"/>
-                            <constraint firstItem="oU2-Fo-Mes" firstAttribute="leading" secondItem="qag-Te-9ec" secondAttribute="leading" id="C7s-Bz-ZEI"/>
-                            <constraint firstItem="ulR-VZ-H5X" firstAttribute="top" secondItem="qag-Te-9ec" secondAttribute="top" id="Pat-Mh-G6m"/>
-                            <constraint firstItem="oU2-Fo-Mes" firstAttribute="width" secondItem="qag-Te-9ec" secondAttribute="width" multiplier="0.3" id="Uh3-gJ-Fyf"/>
-                            <constraint firstItem="6KX-4A-BkO" firstAttribute="leading" secondItem="oU2-Fo-Mes" secondAttribute="trailing" constant="8" id="Vy0-PB-JJE"/>
-                            <constraint firstItem="ulR-VZ-H5X" firstAttribute="leading" secondItem="qag-Te-9ec" secondAttribute="leading" id="WQO-LJ-BvW"/>
-                            <constraint firstItem="oU2-Fo-Mes" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" id="XWy-xl-Yp4"/>
-                            <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="6KX-4A-BkO" secondAttribute="bottom" id="Ytc-Re-7t9"/>
-                            <constraint firstAttribute="bottom" secondItem="ulR-VZ-H5X" secondAttribute="bottom" id="ZJN-hM-y0m"/>
-                            <constraint firstItem="6KX-4A-BkO" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" id="iLg-Ak-YMJ"/>
-                            <constraint firstAttribute="trailing" secondItem="ulR-VZ-H5X" secondAttribute="trailing" id="uBU-sv-YHm"/>
+                            <constraint firstItem="KU9-k6-CiS" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" constant="8" id="09g-nn-oCM"/>
+                            <constraint firstItem="8u4-YJ-uUU" firstAttribute="trailing" secondItem="N2N-sP-vPK" secondAttribute="trailing" id="2aO-Hm-2oR"/>
+                            <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="N2N-sP-vPK" secondAttribute="bottom" constant="8" id="3QY-WZ-G5k"/>
+                            <constraint firstItem="8u4-YJ-uUU" firstAttribute="leading" secondItem="qag-Te-9ec" secondAttribute="leadingMargin" constant="8" id="AFU-7p-FGq"/>
+                            <constraint firstItem="KU9-k6-CiS" firstAttribute="leading" secondItem="N2N-sP-vPK" secondAttribute="trailing" constant="8" id="J7i-d5-9FJ"/>
+                            <constraint firstItem="NUC-FD-YkI" firstAttribute="top" secondItem="KU9-k6-CiS" secondAttribute="bottom" constant="8" id="RGI-uD-hxN"/>
+                            <constraint firstItem="N2N-sP-vPK" firstAttribute="top" secondItem="8u4-YJ-uUU" secondAttribute="bottom" constant="8" id="T7L-Zp-XSW"/>
+                            <constraint firstItem="N2N-sP-vPK" firstAttribute="width" secondItem="qag-Te-9ec" secondAttribute="width" multiplier="0.3" id="Wuc-MM-Chm"/>
+                            <constraint firstItem="N2N-sP-vPK" firstAttribute="leading" secondItem="qag-Te-9ec" secondAttribute="leadingMargin" id="Y4k-Cx-onk"/>
+                            <constraint firstItem="8u4-YJ-uUU" firstAttribute="top" secondItem="oLw-eE-aqg" secondAttribute="bottom" constant="8" id="aPt-Ra-haM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KU9-k6-CiS" secondAttribute="trailing" constant="8" id="h6g-1P-UbE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BqQ-37-RPU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="pie1" destination="9yo-8u-OzM" id="rz1-vd-PJn"/>
-                        <outlet property="pie2" destination="daZ-Ai-kLi" id="nyN-f0-oVW"/>
-                        <outlet property="pie3" destination="p56-iq-nls" id="8r8-uI-s2z"/>
-                        <outlet property="storesTableView" destination="oU2-Fo-Mes" id="rcg-0Q-0Q8"/>
+                        <outlet property="pie1" destination="BhK-Ip-vfn" id="2Hh-Ro-SWI"/>
+                        <outlet property="pie2" destination="dCj-nF-eAn" id="Hpd-z7-kdY"/>
+                        <outlet property="pie3" destination="cae-CK-SKF" id="AVC-c0-Hwz"/>
+                        <outlet property="storesTableView" destination="N2N-sP-vPK" id="cX4-20-ORX"/>
                         <segue destination="Shl-7A-CcG" kind="push" identifier="BarChartsSegue" id="SOD-MD-atl"/>
                     </connections>
                 </viewController>
@@ -711,7 +696,6 @@
         <image name="metsaLogo" width="943" height="363"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ShI-xS-UVq"/>
         <segue reference="1l8-pj-dCq"/>
     </inferredMetricsTieBreakers>
 </document>

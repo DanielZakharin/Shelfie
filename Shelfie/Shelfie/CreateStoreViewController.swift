@@ -84,31 +84,21 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
 //        label.textAlignment = .center;
 //        label.font = UIFont(name: "BentonSans-Black", size: 18)
 //        return label;
-        
-        
-        
-        var pickerLabel = view as! UILabel!
-        if view == nil {  //if no label there yet
-            pickerLabel = UILabel()
-            pickerLabel?.textColor = Tools.colors.metsaDarkGray;
-                    pickerLabel?.textAlignment = .center;
-                    pickerLabel?.font = UIFont(name: "BentonSans-Black", size: 18)
-        }
-        
+        var title = "";
         if(pickerView == storeChainPickerView){
             switch component {
             case 0:
-                pickerLabel?.text =  chainArr[row].chainName;
+                title = chainArr[row].chainName!;
             case 1:
-                pickerLabel?.text =  storeChainArr[row].storeChainName;
+                title = storeChainArr[row].storeChainName!;
             default:
-                pickerLabel?.text =  "err";
+                title = "err";
             }
         }else {
-            pickerLabel?.text =  chainArr[row].chainName;
+            title =  chainArr[row].chainName!;
         }
         
-        return pickerLabel!;
+        return Tools.formattedPickerLabel(view, withTitle: title);
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

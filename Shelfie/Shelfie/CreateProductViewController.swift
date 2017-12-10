@@ -108,15 +108,17 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;
     }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var title = "";
         if(pickerView == brandPicker){
-            return brandArr[row].name!;
+            title = brandArr[row].name!;
         }else if (pickerView == manufacturerPicker){
-            return manArr[row].name!;
+            title = manArr[row].name!;
         }else {
-            return manArr[row].name!;
+            title =  manArr[row].name!;
         }
+        return Tools.formattedPickerLabel(view, withTitle: title);
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -187,6 +189,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         //adding textfields to our dialog box
         alertController.addTextField { (textField) in
             textField.placeholder = "Enter Manufacturer Name"
+            //Tools.formatTextField(textField);
         }
         
         //adding the action to dialogbox

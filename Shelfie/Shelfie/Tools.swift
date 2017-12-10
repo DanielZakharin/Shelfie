@@ -36,6 +36,26 @@ class Tools{
         return false;
     }
     
+    static func formattedPickerLabel(_ view: UIView?, withTitle: String) -> UILabel{
+        var pickerLabel = view as! UILabel!
+        if view == nil {  //if no label there yet
+            pickerLabel = UILabel()
+            pickerLabel?.textColor = Tools.colors.metsaDarkGray;
+            pickerLabel?.textAlignment = .center;
+            pickerLabel?.font = UIFont(name: "BentonSans", size: 18)
+        }
+        pickerLabel?.text = withTitle;
+        return pickerLabel!;
+    }
+    
+    static func formatTextField(_ textField: UITextField) {
+        let font: UIFont = UIFont(name: "BentonSans", size: 18)!;
+        textField.layer.cornerRadius = 4;
+        textField.layer.masksToBounds = true;
+        textField.tintColor = Tools.colors.metsaGreenPrimary
+        textField.font = font;
+    }
+    
     static func roundToNearest(x : CGFloat) -> CGFloat {
         let jee = increment * CGFloat(round(x / increment));
         //print("Rounded \(x) to \(jee)");

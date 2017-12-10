@@ -73,12 +73,13 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     //MARK: PickerView Methods
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let formatter = DateFormatter();
         let format = "dd.MM.yyyy hh.mm";
         formatter.dateFormat = format;
         let date = shelfPlans[row].date! as Date;
-        return formatter.string(from: date);
+        return Tools.formattedPickerLabel(view, withTitle: formatter.string(from: date));
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

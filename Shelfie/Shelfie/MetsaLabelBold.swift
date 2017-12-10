@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MetsaLabelBold: UILabel {
+class MetsaLabelBold: MetsaLabel {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -18,17 +18,7 @@ class MetsaLabelBold: UILabel {
     }
     */
     
-    override init(frame: CGRect) {
-        super.init(frame: frame);
-        setup();
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
-        setup();
-    }
-    
-    func setup(){
+    override func setup(){
         self.font = UIFont(name: "BentonSans-Black", size: self.font.pointSize);
     }
 

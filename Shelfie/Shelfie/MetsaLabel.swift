@@ -28,7 +28,7 @@ class MetsaLabel: UILabel {
     }
     
     func setup(){
-        self.font = UIFont(name: "BentonSans-Black", size: self.font.pointSize);
+        self.font = UIFont(name: "BentonSans", size: self.font.pointSize);
     }
     
 }

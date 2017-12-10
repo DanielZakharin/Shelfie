@@ -28,13 +28,12 @@ class MetsaTextField: UITextField {
     }
     
     func setup(){
-        let font: UIFont = UIFont(name: "BentonSans-Black", size: 18)!;
+        let font: UIFont = UIFont(name: "BentonSans", size: 18)!;
         self.layer.cornerRadius = 4;
         self.layer.masksToBounds = true;
         self.backgroundColor = Tools.colors.metsaLighterGray;
         self.tintColor = Tools.colors.metsaGreenPrimary
         self.font = font;
-        
     }
     
 }
