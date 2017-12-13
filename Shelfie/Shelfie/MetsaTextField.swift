@@ -29,6 +29,7 @@ class MetsaTextField: UITextField {
     
     func setup(){
         let font: UIFont = UIFont(name: "BentonSans", size: 18)!;
+        //make a radius of 4, then mask to bounds to avoid backgroundcolor showing from under corners
         self.layer.cornerRadius = 4;
         self.layer.masksToBounds = true;
         self.backgroundColor = UIColor.white;//Tools.colors.metsaLighterGray;

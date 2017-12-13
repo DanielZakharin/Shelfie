@@ -29,9 +29,11 @@ class MetsaStepper: UIStepper {
     }
     
     func setup(){
+        //make a radius of 4, then mask to bounds to avoid backgroundcolor showing from under corners
         self.layer.cornerRadius = 4;
         self.layer.masksToBounds = true;
         self.backgroundColor = Tools.colors.metsaGreenPrimary;
+        //color of the border / separator
         self.tintColor = Tools.colors.metsaLightGray
     }
 

@@ -33,9 +33,7 @@ class MetsaButton: UIButton {
     func setup(){
             //if button has image, resize it to fit
             self.imageView?.contentMode = .scaleAspectFill;
-            self.backgroundColor = UIColor.gray;
             //setting the shape and color of the button
-            //self.layer.borderWidth = 0.5
             self.backgroundColor = Tools.colors.metsaGreenPrimary;
             //self.layer.borderColor = UIColor(red: 143/255, green: 212/255, blue: 0, alpha: 1).cgColor;
             self.layer.cornerRadius = 20;
@@ -54,6 +52,7 @@ class MetsaButton: UIButton {
         
     }
     
+    //method that resizes button to fit its labeltext
     override var intrinsicContentSize: CGSize {
         let labelSize = titleLabel?.sizeThatFits(CGSize(width: frame.width, height: .greatestFiniteMagnitude)) ?? .zero
         let desiredButtonSize = CGSize(width: labelSize.width + titleEdgeInsets.left + titleEdgeInsets.right, height: labelSize.height + titleEdgeInsets.top + titleEdgeInsets.bottom)

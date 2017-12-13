@@ -6,6 +6,12 @@
 //  Copyright © 2017 Group-6. All rights reserved.
 //
 
+
+/*
+ Class that displays more detailed data based on passed parameters
+ Data is displayed in four Bar Charts
+ */
+
 import UIKit
 import Charts
 
@@ -23,30 +29,16 @@ class DataBarChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        var l = BarChartView(frame: self.view.bounds);
-//        var i = BarChartDataEntry(x: 1.0, yValues: [1.0,2.0]);
-//        var asd = BarChartDataSet(values: [i], label: "test");
-//        var jjj = BarChartData(dataSet: asd);
-//        l.data = jjj;
-//        l.leftAxis.drawAxisLineEnabled = false;
-//        l.leftAxis.drawGridLinesEnabled = false;
-//        l.rightAxis.drawAxisLineEnabled = false;
-//        l.rightAxis.drawGridLinesEnabled = false;
-//        l.xAxis.drawAxisLineEnabled = false;
-//        l.xAxis.drawGridLinesEnabled = false;
-//        l.xAxis.drawAxisLineEnabled = false;
-//        l.xAxis.drawGridLinesEnabled = false;
         
-        //self.view.addSubview(l);
         formatBars(bar1, "Brand Shares of Most Recent Entry");
-        formatBars(bar2, "Total Share in all Stores");
-        formatBars(bar3, "Overall Share in this Store");
-        formatBars(bar4, "Share in All Recorded Stores");
+        formatBars(bar2, "Total Brand Share in all Stores");
+        formatBars(bar3, "Overall Brand Share in this Store");
+        formatBars(bar4, "Brand Share in All Recorded Stores");
         setDataForBar(bar1, data: sortByBrand(dataz));
         fetchAllBoxesForCategory();
         let shelfPlans = Array(store.shelfPlans!) as! [ShelfPlan];
         setDataForBar(bar3, data: sortCategoriesFromShelfPlans(shelfPlans));
-        setDataForBar(bar4, data: sortFromAllAStores());
+        //setDataForBar(bar4, data: sortFromAllAStores());
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +47,9 @@ class DataBarChartViewController: UIViewController {
     }
 
     
+    /*
+     Styles the bar charts and adds a label describing what they represent
+     */
     func formatBars(_ chartView: BarChartView, _ descriptionLabel: String){
         let xAxis = chartView.xAxis
         xAxis.labelPosition = .bottom
@@ -94,6 +89,9 @@ class DataBarChartViewController: UIViewController {
         chartView.chartDescription?.text = descriptionLabel;
     }
 
+    /*
+     Sorts an array of shelfboxes into brands and calculates the area for each
+     */
     func sortByBrand(_ boxes: [ShelfBox], appendTo: [ProductBrand:Double]? = nil) -> [ProductBrand:Double] {
         var tempDict : [ProductBrand:Double] = [:];
         if(appendTo != nil) {
@@ -103,24 +101,20 @@ class DataBarChartViewController: UIViewController {
             if let prod = box.product {
                 if let brand = prod.brand {
                     if var i = tempDict[brand] {
-                        print("current area for \(brand.name): \(i)");
-                        print("adding area with \(box.width) * \(box.height)")
                         i += Double(box.width*box.height);
+                        //vvvvv This is important, remember to set the value back into the dict vvvvv
                         tempDict[brand] = i;
-                        print("new area for \(brand.name): \(i)")
                     }else {
-                        print("NEW BRAND DETECTED ALERT ALERT");
                         tempDict[brand] = Double(box.width*box.height);
                     }
                 }
             }
         }
-        for (brand, value) in tempDict {
-            print("brand: \(brand.name) value: \(value)");
-        }
         return tempDict;
     }
-    
+    /*
+     creates a dataset for a given chart for a given dict of brands and values
+     */
     func setDataForBar(_ chart: BarChartView, data: [ProductBrand:Double]){
         var i: Double = 0;
         let set = BarChartDataSet(values: [], label: "");
@@ -149,6 +143,9 @@ class DataBarChartViewController: UIViewController {
         //let dataSet = BarChartDataSet(values: set, label: "Test");
     }
     
+    /*
+     Fetches all boxes that have a given category and calculates share percentages based on area
+     */
     func fetchAllBoxesForCategory()->[ShelfBox]{
         let pred = NSPredicate(format: "ANY product.category == %i", category);
         let all = Array(CoreDataSingleton.sharedInstance.fetchEntitiesWithCustomPredicate("ShelfBox", predicate: pred)) as! [ShelfBox];
@@ -160,6 +157,10 @@ class DataBarChartViewController: UIViewController {
         setDataForBar(bar2, data: sortByBrand(all));
         return all;
     }
+    
+    /*
+     Sorts all boxes by brand for all of a stores saved shelfplans for a given category
+     */
     
     func sortCategoriesFromShelfPlans(_ plans: [ShelfPlan], appendTo : [ProductBrand:Double]? = nil) -> [ProductBrand:Double] {
         var tempDict: [ProductBrand:Double] = [:];
@@ -177,18 +178,6 @@ class DataBarChartViewController: UIViewController {
             }
             tempDict = sortByBrand(b, appendTo: tempDict);
         }
-        return tempDict;
-    }
-    
-    func sortFromAllAStores() -> [ProductBrand:Double]{
-        var tempDict: [ProductBrand:Double] = [:];
-        let allStores = Array(CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store")) as! [Store];
-        print("size of fetch \(allStores.count)");
-        for storez in allStores {
-            let shelfPlansz = Array(storez.shelfPlans!) as! [ShelfPlan];
-            tempDict = sortCategoriesFromShelfPlans(shelfPlansz, appendTo: tempDict);
-        }
-        print("\(tempDict.count) <-- Size of allstores dict");
         return tempDict;
     }
     

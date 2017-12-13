@@ -6,6 +6,11 @@
 //  Copyright © 2017 Group-6. All rights reserved.
 //
 
+/*
+ Controller that calculates fair share percentages for a store based on its newest shelfplan
+ Displays data in piecharts that when tapped take the user to a more detailed view
+ */
+
 import UIKit
 import CoreData
 import Charts
@@ -16,8 +21,6 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var pie2: PieChartView!
     @IBOutlet weak var pie3: PieChartView!
     var selectionActive = false;
-    
-    
     @IBOutlet weak var storesTableView: UITableView!
     @IBOutlet weak var emptySpaceLabel: MetsaLabel!
     var storesArray: [Store] = [];
@@ -176,10 +179,6 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                              label: brand.name,
                                              icon: nil));
         }
-//        entries.append(PieChartDataEntry(value: calcEmptySpace(boxes: boxes),
-//                                         label: "Empty Space",
-//                                         icon: nil));
-//        colors.append(UIColor.black);
         
         let set = PieChartDataSet(values: entries, label: "")
         set.drawIconsEnabled = false
@@ -212,62 +211,6 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         totalShelfSpace = Int(store.shelfWidth) * 8 * 4 * 3;
     }
     
-    //    func calcNumberOfProducts(_ store: Store){
-    //        //sort shelfplans by newest
-    //        if let shelfPlans = store.shelfPlans!.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as? [ShelfPlan]{
-    //            if shelfPlans.count > 0{
-    //                calcAreaOfProductsIn(shelfPlans[0]);
-    //            }
-    //        }
-    //    }
-    
-    func calcFairShare(_ boxes : [ShelfBox]){
-        //        print("TotalAreaOfProducts: \(totalProductsArea)");
-        //        var col = [UIColor.blue, UIColor.red, UIColor.yellow, UIColor.brown];
-        //        var i = 0;
-        //        var
-        //        var modelData: [PieSliceModel] = [];
-        //        for (prod,area) in productAreaDict {
-        //            let shareOfTotalProductSpace = Double(Double(area) / Double(totalProductsArea));
-        //            print("Area: \(area)) + \(i)");
-        //            fairShare[prod] = shareOfTotalProductSpace;
-        //            modelData.append(PieSliceModel(value: shareOfTotalProductSpace, color: col[i]));
-        //            i = i + 1;
-        //        }
-        //        pie2.models = modelData;
-        let totalArea = calcAreaOfBoxes(boxes);
-        
-    }
-    
-    
-    
-    //    func calcAreaOfProducts(_ boxes: [ShelfBox]) -> [Product:Int]{
-    //        //empty the dict and reset emptiescount & totalProductsArea
-    //        var productAreaDictionary:[Product:Int] = [:];
-    //        emptiesArea = 0;
-    //        var totalProductsArea = 0;
-    //        //loop through all boxes
-    //        for sb in boxes {
-    //            //if the box has a product, proceed
-    //            if let prod = sb.product{
-    //                //if the product has been encountered before, increase the area it takes up on the shelf
-    //                if let val = productAreaDict[prod]{
-    //                    productAreaDictionary[prod] = val + Int(sb.width*sb.height);
-    //                }
-    //                    //if product has not been encountered before, make a new entry and set amount to its area
-    //                else {
-    //                    productAreaDictionary[prod] = Int(sb.width*sb.height);
-    //                }
-    //            }
-    //                //if box doesnt have a product, it is an empty space, increase empty counter
-    //            else{
-    //                emptiesArea = emptiesArea + Int(sb.width*sb.height);
-    //            }
-    //            totalProductsArea = totalProductsArea + Int(sb.width*sb.height);
-    //        }
-    //
-    //    }
-    
     func calcAreaOfBoxes(_ boxes : [ShelfBox]) -> Double{
         var area:Double = 0;
         for box in boxes {
@@ -276,6 +219,9 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return area;
     }
     
+    /*
+     Styles the  piecharts and adds a tap gesture to each one
+     */
     func formatPieCharts() {
         pie1.drawHoleEnabled = false;
         pie1.usePercentValuesEnabled = true;
@@ -297,6 +243,9 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
     
+    /*
+     Clears and resets the piecharts
+     */
     func clearCharts(){
         pie1.data = nil;
         pie2.data = nil;
@@ -311,6 +260,10 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         pie3.notifyDataSetChanged();
     }
     
+    /*
+     Tap handler for piecharts, switches screen to a detailed view, sets the passed data and other parameters
+     for the receiving controller
+     */
     @objc func handlePieTap(sender: UITapGestureRecognizer) {
         let v = sender.view;
         if(v == pie1){

@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+/*
+ Simple extension that allows easily showing simple alerts
+ */
 extension UIViewController {
     func alert(message: String, title: String = "") {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

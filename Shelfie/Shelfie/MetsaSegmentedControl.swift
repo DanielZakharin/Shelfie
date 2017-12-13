@@ -29,12 +29,14 @@ class MetsaSegmentedControl: UISegmentedControl {
     }
     
     func setup(){
+        //styling the segmentcontrol
         let font: UIFont = UIFont(name: "BentonSans-Black", size: 18)!;
+        //make a radius of 4, then mask to bounds to avoid backgroundcolor showing from under corners
         self.layer.cornerRadius = 4;
         self.layer.masksToBounds = true;
         self.backgroundColor = Tools.colors.metsaLightGray;
+        //color of the border / separator
         self.tintColor = Tools.colors.metsaGreenPrimary
-        //self.layer.cornerRadius = 20;
         self.setTitleTextAttributes(
             [
             NSAttributedStringKey.foregroundColor: UIColor.white,

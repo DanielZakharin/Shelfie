@@ -18,6 +18,12 @@ class MetsaPickerView: UIPickerView {
     }
     */
     
+    /*
+    currently the class is useless, as setting the style for labels in the picker is done from
+    viewforrow method of the delegage
+     
+     any future styling can be added here, as long as it works outside viewforrow
+    */
     override init(frame: CGRect) {
         super.init(frame: frame);
         setup();
