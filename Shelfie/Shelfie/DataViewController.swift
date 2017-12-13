@@ -29,6 +29,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var wcPapers: [ShelfBox] = [];
     var hoPapers: [ShelfBox] = [];
     var hankies: [ShelfBox] = [];
+    var selectedCat: Int16 = 0;
     
     var dataToPass : [ShelfBox] = [];
     
@@ -286,14 +287,17 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if(v == pie1){
             print("pie1");
             dataToPass = wcPapers;
+            selectedCat = 1;
         }
         else if (v == pie2){
             print("pie2");
             dataToPass = hoPapers;
+            selectedCat = 2;
         }
         else if (v == pie3){
             dataToPass = hankies;
             print("pie3");
+            selectedCat = 0;
         }
         if(selectionActive){
             self.performSegue(withIdentifier: "BarChartsSegue", sender: self);
@@ -310,6 +314,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if(segue.identifier == "BarChartsSegue"){
             let destinationCont = segue.destination as! DataBarChartViewController;
             destinationCont.dataz = dataToPass;
+            destinationCont.category = selectedCat;
         }
     }
 }

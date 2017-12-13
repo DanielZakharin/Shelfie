@@ -12,6 +12,7 @@ import Charts
 class DataBarChartViewController: UIViewController {
     
     var dataz : [ShelfBox] = [];
+    var category:Int16 = 0;
     
     @IBOutlet weak var bar1: BarChartView!
     @IBOutlet weak var bar2: BarChartView!
@@ -36,45 +37,112 @@ class DataBarChartViewController: UIViewController {
 //        l.xAxis.drawGridLinesEnabled = false;
         
         //self.view.addSubview(l);
-        setDataCount(10, range: 20, chartView: bar1);
+        formatBars(bar1, "Brand Shares of Most Recent Entry");
+        formatBars(bar2, "Total Share of Market")
+        setDataForBar(bar1, data: sortByBrand(dataz));
+        setDataForBar(bar2, data: sortByBrand(fetchAllBoxesForCategory()));
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
-    func setDataCount(_ count: Int, range: UInt32, chartView: BarChartView) {
-        let start = 1
+    func formatBars(_ chartView: BarChartView, _ descriptionLabel: String){
+        let xAxis = chartView.xAxis
+        xAxis.labelPosition = .bottom
+        xAxis.labelFont = .systemFont(ofSize: 10)
+        xAxis.granularity = 1
+        xAxis.labelCount = 7
+        //xAxis.valueFormatter = DayAxisValueFormatter(chart: chartView)
         
-        let yVals = (start..<start+count+1).map { (i) -> BarChartDataEntry in
-            let mult = range + 1
-            let val = Double(arc4random_uniform(mult))
-            if arc4random_uniform(100) < 25 {
-                return BarChartDataEntry(x: Double(i), y: val, icon: UIImage(named: "icon"))
-            } else {
-                return BarChartDataEntry(x: Double(i), y: val)
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.minimumFractionDigits = 0
+        leftAxisFormatter.maximumFractionDigits = 1
+        leftAxisFormatter.negativeSuffix = " %"
+        leftAxisFormatter.positiveSuffix = " %"
+        
+        let leftAxis = chartView.leftAxis
+        leftAxis.labelFont = .systemFont(ofSize: 10)
+        leftAxis.labelCount = 8
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: leftAxisFormatter)
+        leftAxis.labelPosition = .outsideChart
+        leftAxis.spaceTop = 0.15
+        leftAxis.axisMinimum = 0 // FIXME: HUH?? this replaces startAtZero = YES
+        
+        let rightAxis = chartView.rightAxis
+        rightAxis.enabled = false;
+        
+        let l = chartView.legend
+        l.enabled = false;
+        l.horizontalAlignment = .left
+        l.verticalAlignment = .bottom
+        l.orientation = .horizontal
+        l.drawInside = false
+        l.form = .circle
+        l.formSize = 9
+        l.font = UIFont(name: "HelveticaNeue-Light", size: 11)!
+        l.xEntrySpace = 4
+        
+        chartView.chartDescription?.text = descriptionLabel;
+    }
+
+    func sortByBrand(_ boxes: [ShelfBox]) -> [ProductBrand:Double] {
+        var tempDict : [ProductBrand:Double] = [:];
+        for box in boxes {
+            if let prod = box.product {
+                if let brand = prod.brand {
+                    if var i = tempDict[brand] {
+                        i += Double(box.width*box.height);
+                    }else {
+                        tempDict[brand] = Double(box.width*box.height);
+                    }
+                }
             }
         }
-        
-        var set1: BarChartDataSet! = nil
-        if let set = chartView.data?.dataSets.first as? BarChartDataSet {
-            set1 = set
-            set1.values = yVals
-            chartView.data?.notifyDataChanged()
-            chartView.notifyDataSetChanged()
-        } else {
-            set1 = BarChartDataSet(values: yVals, label: "The year 2017")
-            set1.colors = ChartColorTemplates.material()
-            set1.drawValuesEnabled = false
-            
-            let data = BarChartData(dataSet: set1)
-            data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
-            data.barWidth = 0.9
-            chartView.data = data
+        for (brand, value) in tempDict {
+            print("brand: \(brand.name) value: \(value)");
         }
-        
-                chartView.setNeedsDisplay()
+        return tempDict;
+    }
+    
+    func setDataForBar(_ chart: BarChartView, data: [ProductBrand:Double]){
+        var i: Double = 0;
+        let set = BarChartDataSet(values: [], label: "");
+        var colors: [UIColor] = [];
+        var labelStrings:[String] = [];
+        var total:Double = 0;
+        for (brand, value ) in data {
+            total += value;
+        }
+        for (brand, value) in data {
+            print("\(brand.name): \(value)" );
+            let brandi = brand as! ProductBrand
+            let entry = BarChartDataEntry(x: i, y: (value/total)*100);
+            set.addEntry(entry);
+            
+            colors.append(Tools.generateRandomColor());
+            labelStrings.append(brandi.name!);
+            i+=1;
+        }
+        set.colors = colors;
+        i = 0;
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(values:labelStrings);
+        let dattaz = BarChartData(dataSet: set);
+        dattaz.barWidth = 0.9;
+        chart.data = dattaz;
+        //let dataSet = BarChartDataSet(values: set, label: "Test");
+    }
+    
+    func fetchAllBoxesForCategory()->[ShelfBox]{
+        let pred = NSPredicate(format: "ANY product.category == %i", category);
+        let all = Array(CoreDataSingleton.sharedInstance.fetchEntitiesWithCustomPredicate("ShelfBox", predicate: pred)) as! [ShelfBox];
+        print("all \(all.count)")
+        for a in all {
+            print("\(category) <- category, gotten category ->\(a.product?.category)");
+        }
+        return all;
     }
     
     

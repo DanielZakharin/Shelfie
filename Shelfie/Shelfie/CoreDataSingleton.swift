@@ -178,6 +178,18 @@ class CoreDataSingleton {
         }
     }
     
+    func fetchEntitiesWithCustomPredicate(_ entityName: String,  predicate: NSPredicate) -> [NSManagedObject]{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName);
+        fetchRequest.predicate = predicate;
+        do {
+            let fetchrResult = try managedObjectContext.fetch(fetchRequest) as! [NSManagedObject];
+            return fetchrResult;
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+            return [];
+        }
+    }
+    
     
     //MARK: DANGER ZONE
     func deleteAllData(entity: String)
