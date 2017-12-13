@@ -13,12 +13,16 @@
 		6A14EC9A1F83DA3F00CF1B96 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC991F83DA3F00CF1B96 /* BoxView.swift */; };
 		6A14EC9C1F84109F00CF1B96 /* BoxPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC9B1F84109F00CF1B96 /* BoxPopoverViewController.swift */; };
 		6A14EC9E1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14EC9D1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift */; };
+		6A1F96ED1FE16E5300208EEF /* BentonSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A1F96EB1FE16E4900208EEF /* BentonSans-Regular.otf */; };
+		6A1F96EE1FE16E5300208EEF /* BentonSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A1F96EB1FE16E4900208EEF /* BentonSans-Regular.otf */; };
+		6A1F96EF1FE16E5300208EEF /* BentonSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A1F96EB1FE16E4900208EEF /* BentonSans-Regular.otf */; };
+		6A1F96F01FE16E5300208EEF /* BentonSans-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A1F96EC1FE16E4E00208EEF /* BentonSans-Black.otf */; };
+		6A1F96F11FE16E5300208EEF /* BentonSans-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A1F96EC1FE16E4E00208EEF /* BentonSans-Black.otf */; };
+		6A1F96F21FE16E5300208EEF /* BentonSans-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A1F96EC1FE16E4E00208EEF /* BentonSans-Black.otf */; };
 		6A2E36DB1F8629840045F6A9 /* CoreDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E36DA1F8629840045F6A9 /* CoreDataSingleton.swift */; };
 		6A2E37081F86341F0045F6A9 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E37071F86341F0045F6A9 /* CreateViewController.swift */; };
 		6A2E370B1F8638CF0045F6A9 /* CreateStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E370A1F8638CF0045F6A9 /* CreateStoreViewController.swift */; };
 		6A2E370D1F8638DE0045F6A9 /* CreateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E370C1F8638DE0045F6A9 /* CreateProductViewController.swift */; };
-		6A2E37111F863E900045F6A9 /* BentonSans-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E370F1F863E900045F6A9 /* BentonSans-Black.otf */; };
-		6A2E37121F863E900045F6A9 /* BentonSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E37101F863E900045F6A9 /* BentonSans-Regular.otf */; };
 		6A33479E1F8F7AD3001789E0 /* StoreChain+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3347981F8F7AD3001789E0 /* StoreChain+CoreDataClass.swift */; };
 		6A33479F1F8F7AD3001789E0 /* StoreChain+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3347991F8F7AD3001789E0 /* StoreChain+CoreDataProperties.swift */; };
 		6A3347A01F8F7AD3001789E0 /* Chain+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A33479A1F8F7AD3001789E0 /* Chain+CoreDataClass.swift */; };
@@ -93,12 +97,12 @@
 		6A14EC991F83DA3F00CF1B96 /* BoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		6A14EC9B1F84109F00CF1B96 /* BoxPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxPopoverViewController.swift; sourceTree = "<group>"; };
 		6A14EC9D1F84B23A00CF1B96 /* BoxPopOverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxPopOverTableViewCell.swift; sourceTree = "<group>"; };
+		6A1F96EB1FE16E4900208EEF /* BentonSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BentonSans-Regular.otf"; path = "Fonts/BentonSans-Regular.otf"; sourceTree = SOURCE_ROOT; };
+		6A1F96EC1FE16E4E00208EEF /* BentonSans-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BentonSans-Black.otf"; path = "Fonts/BentonSans-Black.otf"; sourceTree = SOURCE_ROOT; };
 		6A2E36DA1F8629840045F6A9 /* CoreDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSingleton.swift; sourceTree = "<group>"; };
 		6A2E37071F86341F0045F6A9 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		6A2E370A1F8638CF0045F6A9 /* CreateStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStoreViewController.swift; sourceTree = "<group>"; };
 		6A2E370C1F8638DE0045F6A9 /* CreateProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProductViewController.swift; sourceTree = "<group>"; };
-		6A2E370F1F863E900045F6A9 /* BentonSans-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BentonSans-Black.otf"; path = "../../../../Downloads/BentonSans Black/BentonSans-Black.otf"; sourceTree = "<group>"; };
-		6A2E37101F863E900045F6A9 /* BentonSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BentonSans-Regular.otf"; path = "../../../../Downloads/BentonSans Regular/BentonSans-Regular.otf"; sourceTree = "<group>"; };
 		6A3347981F8F7AD3001789E0 /* StoreChain+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoreChain+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6A3347991F8F7AD3001789E0 /* StoreChain+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoreChain+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6A33479A1F8F7AD3001789E0 /* Chain+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chain+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -243,8 +247,8 @@
 		6A2E370E1F863E590045F6A9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				6A2E370F1F863E900045F6A9 /* BentonSans-Black.otf */,
-				6A2E37101F863E900045F6A9 /* BentonSans-Regular.otf */,
+				6A1F96EC1FE16E4E00208EEF /* BentonSans-Black.otf */,
+				6A1F96EB1FE16E4900208EEF /* BentonSans-Regular.otf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -537,12 +541,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A2E37121F863E900045F6A9 /* BentonSans-Regular.otf in Resources */,
 				6A70BCF21F69181000AB4EE0 /* LaunchScreen.storyboard in Resources */,
+				6A1F96ED1FE16E5300208EEF /* BentonSans-Regular.otf in Resources */,
 				6A3347AD1F9B9AC7001789E0 /* Floating.storyboard in Resources */,
 				6A70BCEF1F69181000AB4EE0 /* Assets.xcassets in Resources */,
+				6A1F96F01FE16E5300208EEF /* BentonSans-Black.otf in Resources */,
 				6A70BCEA1F69181000AB4EE0 /* Main.storyboard in Resources */,
-				6A2E37111F863E900045F6A9 /* BentonSans-Black.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +554,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A1F96F11FE16E5300208EEF /* BentonSans-Black.otf in Resources */,
+				6A1F96EE1FE16E5300208EEF /* BentonSans-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +563,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A1F96F21FE16E5300208EEF /* BentonSans-Black.otf in Resources */,
+				6A1F96EF1FE16E5300208EEF /* BentonSans-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
