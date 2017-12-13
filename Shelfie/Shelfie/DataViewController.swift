@@ -30,6 +30,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var hoPapers: [ShelfBox] = [];
     var hankies: [ShelfBox] = [];
     var selectedCat: Int16 = 0;
+    var selectedStore: Store = Store();
     
     var dataToPass : [ShelfBox] = [];
     
@@ -69,7 +70,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedStore = storesArray[indexPath.row];
+        selectedStore = storesArray[indexPath.row];
         clearCharts();
         configPieCharts(selectedStore);
         selectionActive = true;
@@ -128,6 +129,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if let manu = box.product?.brand?.manufacturer {
                     if var i = tempDict[manu] {
                         i += Double(box.width*box.height);
+                        tempDict[manu] = i;
                     }else {
                         tempDict[manu] = Double(box.width*box.height);
                     }
@@ -315,6 +317,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let destinationCont = segue.destination as! DataBarChartViewController;
             destinationCont.dataz = dataToPass;
             destinationCont.category = selectedCat;
+            destinationCont.store = selectedStore;
         }
     }
 }

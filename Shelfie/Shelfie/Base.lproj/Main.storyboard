@@ -466,31 +466,31 @@
                             <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metsaBG" translatesAutoresizingMaskIntoConstraints="NO" id="Bxk-1W-dfG">
                                 <rect key="frame" x="0.0" y="64" width="1024" height="655"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2nH-3R-vPT">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="2nH-3R-vPT">
                                 <rect key="frame" x="20" y="64" width="984" height="655"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yJp-2m-H6T">
-                                        <rect key="frame" x="0.0" y="0.0" width="984" height="327.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="yJp-2m-H6T">
+                                        <rect key="frame" x="0.0" y="0.0" width="984" height="319.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4XL-EX-na7" customClass="BarChartView" customModule="Charts">
-                                                <rect key="frame" x="0.0" y="0.0" width="492" height="327.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="484" height="319.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lG2-Ht-uAc" customClass="BarChartView" customModule="Charts">
-                                                <rect key="frame" x="492" y="0.0" width="492" height="327.5"/>
+                                                <rect key="frame" x="500" y="0.0" width="484" height="319.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JCn-Sq-mEU">
-                                        <rect key="frame" x="0.0" y="327.5" width="984" height="327.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JCn-Sq-mEU">
+                                        <rect key="frame" x="0.0" y="335.5" width="984" height="319.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mw-QT-gk6" customClass="BarChartView" customModule="Charts">
-                                                <rect key="frame" x="0.0" y="0.0" width="492" height="327.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="484" height="319.5"/>
                                                 <color key="backgroundColor" red="0.56078431370000004" green="0.82745098039999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laS-45-ifc" customClass="BarChartView" customModule="Charts">
-                                                <rect key="frame" x="492" y="0.0" width="492" height="327.5"/>
+                                                <rect key="frame" x="500" y="0.0" width="484" height="319.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
@@ -709,7 +709,6 @@
         <image name="stats" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ShI-xS-UVq"/>
         <segue reference="1l8-pj-dCq"/>
     </inferredMetricsTieBreakers>
 </document>

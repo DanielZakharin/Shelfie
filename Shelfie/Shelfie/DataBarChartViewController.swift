@@ -13,6 +13,7 @@ class DataBarChartViewController: UIViewController {
     
     var dataz : [ShelfBox] = [];
     var category:Int16 = 0;
+    var store: Store = Store();
     
     @IBOutlet weak var bar1: BarChartView!
     @IBOutlet weak var bar2: BarChartView!
@@ -38,9 +39,14 @@ class DataBarChartViewController: UIViewController {
         
         //self.view.addSubview(l);
         formatBars(bar1, "Brand Shares of Most Recent Entry");
-        formatBars(bar2, "Total Share of Market")
+        formatBars(bar2, "Total Share in all Stores");
+        formatBars(bar3, "Overall Share in this Store");
+        formatBars(bar4, "Share in All Recorded Stores");
         setDataForBar(bar1, data: sortByBrand(dataz));
-        setDataForBar(bar2, data: sortByBrand(fetchAllBoxesForCategory()));
+        fetchAllBoxesForCategory();
+        let shelfPlans = Array(store.shelfPlans!) as! [ShelfPlan];
+        setDataForBar(bar3, data: sortCategoriesFromShelfPlans(shelfPlans));
+        setDataForBar(bar4, data: sortFromAllAStores());
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,14 +94,22 @@ class DataBarChartViewController: UIViewController {
         chartView.chartDescription?.text = descriptionLabel;
     }
 
-    func sortByBrand(_ boxes: [ShelfBox]) -> [ProductBrand:Double] {
+    func sortByBrand(_ boxes: [ShelfBox], appendTo: [ProductBrand:Double]? = nil) -> [ProductBrand:Double] {
         var tempDict : [ProductBrand:Double] = [:];
+        if(appendTo != nil) {
+            tempDict = appendTo!;
+        }
         for box in boxes {
             if let prod = box.product {
                 if let brand = prod.brand {
                     if var i = tempDict[brand] {
+                        print("current area for \(brand.name): \(i)");
+                        print("adding area with \(box.width) * \(box.height)")
                         i += Double(box.width*box.height);
+                        tempDict[brand] = i;
+                        print("new area for \(brand.name): \(i)")
                     }else {
+                        print("NEW BRAND DETECTED ALERT ALERT");
                         tempDict[brand] = Double(box.width*box.height);
                     }
                 }
@@ -141,8 +155,41 @@ class DataBarChartViewController: UIViewController {
         print("all \(all.count)")
         for a in all {
             print("\(category) <- category, gotten category ->\(a.product?.category)");
+            print("\(a.width) * \(a.height)");
         }
+        setDataForBar(bar2, data: sortByBrand(all));
         return all;
+    }
+    
+    func sortCategoriesFromShelfPlans(_ plans: [ShelfPlan], appendTo : [ProductBrand:Double]? = nil) -> [ProductBrand:Double] {
+        var tempDict: [ProductBrand:Double] = [:];
+        if(appendTo != nil){
+            tempDict = appendTo!;
+        }
+        for plan in plans {
+            var b = Array(plan.boxes!) as! [ShelfBox];
+            for box in b {
+                if (box.product?.category != category) {
+                    if let index = b.index(of: box) {
+                        b.remove(at: index)
+                    }
+                }
+            }
+            tempDict = sortByBrand(b, appendTo: tempDict);
+        }
+        return tempDict;
+    }
+    
+    func sortFromAllAStores() -> [ProductBrand:Double]{
+        var tempDict: [ProductBrand:Double] = [:];
+        let allStores = Array(CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store")) as! [Store];
+        print("size of fetch \(allStores.count)");
+        for storez in allStores {
+            let shelfPlansz = Array(storez.shelfPlans!) as! [ShelfPlan];
+            tempDict = sortCategoriesFromShelfPlans(shelfPlansz, appendTo: tempDict);
+        }
+        print("\(tempDict.count) <-- Size of allstores dict");
+        return tempDict;
     }
     
     
