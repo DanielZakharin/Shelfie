@@ -196,7 +196,7 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate, UIScrollViewDelega
         let offset = increment * 2;
         let shelfCellWidth = increment*8;
         let shelfCellHeight = increment*4;
-        let cell = UIImage(named: "shelfCell");
+        let cell = UIImage(named: "hylly");
         for h in 0..<3 {
             for w in 0..<width{
                 let frame = CGRect(x: shelfCellWidth*CGFloat(w) + offset, y: shelfCellHeight*CGFloat(h) + offset, width: shelfCellWidth, height: shelfCellHeight)

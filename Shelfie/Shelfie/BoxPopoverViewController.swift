@@ -16,6 +16,8 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var popoverTable: UITableView!
     @IBOutlet weak var delBtn: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var scannerBtn: MetsaButton!
+    
     var productsArr : [Product] = [];
     var scanner: BarcodeScannerController?;
     
@@ -31,6 +33,8 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         searchBar.delegate = self;
         searchBar.returnKeyType = .search;
         searchBar.showsCancelButton = true;
+        scannerBtn.layer.cornerRadius = 0;
+        scannerBtn.backgroundColor = UIColor(red: 199/255, green: 197/255, blue: 201/255, alpha: 1)
         fetchProducts();
     }
     
@@ -52,6 +56,9 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.titleLabel.text = productsArr[indexPath.row].name;
         let b = productsArr[indexPath.row].brand;
         cell.subtitleLabel.text = b?.name;
+        cell.categoryImageView.image = Tools.categoryImageDict[productsArr[indexPath.row].category];
+        
+        cell.categoryImageView.contentMode = .scaleAspectFit;
         return cell;
         
     }

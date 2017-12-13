@@ -31,7 +31,7 @@ class MetsaTextField: UITextField {
         let font: UIFont = UIFont(name: "BentonSans", size: 18)!;
         self.layer.cornerRadius = 4;
         self.layer.masksToBounds = true;
-        self.backgroundColor = Tools.colors.metsaLighterGray;
+        self.backgroundColor = UIColor.white;//Tools.colors.metsaLighterGray;
         self.tintColor = Tools.colors.metsaGreenPrimary
         self.font = font;
     }

@@ -43,31 +43,40 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hPf-gz-4gr">
-                                                    <rect key="frame" x="23" y="11" width="1320" height="70"/>
+                                                    <rect key="frame" x="23" y="11" width="1167.5" height="70"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5M-rz-p7H">
-                                                            <rect key="frame" x="0.0" y="0.0" width="1320" height="53"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5M-rz-p7H" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="1167.5" height="53"/>
                                                             <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sns-Xj-VW4">
-                                                            <rect key="frame" x="0.0" y="53" width="1320" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sns-Xj-VW4" customClass="MetsaLabel" customModule="Shelfie" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="53" width="1167.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r86-fT-a6k">
+                                                    <rect key="frame" x="1206.5" y="13" width="136.5" height="74"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="r86-fT-a6k" firstAttribute="width" secondItem="f0b-Jj-a4B" secondAttribute="width" multiplier="0.1" id="7cK-wk-uI8"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="hPf-gz-4gr" secondAttribute="bottom" constant="8" id="Vbn-WT-otF"/>
                                                 <constraint firstItem="hPf-gz-4gr" firstAttribute="top" secondItem="f0b-Jj-a4B" secondAttribute="topMargin" id="WUw-Eg-VSy"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hPf-gz-4gr" secondAttribute="trailing" constant="8" id="tVn-ok-Elc"/>
+                                                <constraint firstItem="r86-fT-a6k" firstAttribute="leading" secondItem="hPf-gz-4gr" secondAttribute="trailing" constant="16" id="gXO-9i-qkH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="r86-fT-a6k" secondAttribute="bottom" constant="2" id="oRI-uv-jAG"/>
+                                                <constraint firstItem="r86-fT-a6k" firstAttribute="centerY" secondItem="f0b-Jj-a4B" secondAttribute="centerY" id="sIK-QF-YvD"/>
+                                                <constraint firstItem="r86-fT-a6k" firstAttribute="top" secondItem="f0b-Jj-a4B" secondAttribute="topMargin" constant="2" id="uQp-oV-9TO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="r86-fT-a6k" secondAttribute="trailing" constant="8" id="y1c-Wr-tZG"/>
                                                 <constraint firstItem="hPf-gz-4gr" firstAttribute="leading" secondItem="f0b-Jj-a4B" secondAttribute="leadingMargin" constant="8" id="zzF-AO-SZj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="categoryImageView" destination="r86-fT-a6k" id="B0k-NY-Cv5"/>
                                             <outlet property="subtitleLabel" destination="sns-Xj-VW4" id="4Bl-pa-JM8"/>
                                             <outlet property="titleLabel" destination="G5M-rz-p7H" id="u9d-uf-Xn7"/>
                                         </connections>
@@ -116,6 +125,7 @@
                     <connections>
                         <outlet property="delBtn" destination="quR-Yn-BlY" id="qV5-3l-soO"/>
                         <outlet property="popoverTable" destination="nWZ-Ku-kxz" id="hbI-G7-naQ"/>
+                        <outlet property="scannerBtn" destination="aiC-YF-s23" id="EPl-IM-m9M"/>
                         <outlet property="searchBar" destination="wLm-I1-x4w" id="5c6-h4-lTM"/>
                     </connections>
                 </viewController>
@@ -161,9 +171,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="suH-pQ-nKk">
+                                                    <rect key="frame" x="296" y="25" width="89" height="49.5"/>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="suH-pQ-nKk" firstAttribute="trailing" secondItem="bDf-pT-IKj" secondAttribute="trailingMargin" id="0xF-cC-aab"/>
+                                                <constraint firstItem="suH-pQ-nKk" firstAttribute="height" secondItem="bDf-pT-IKj" secondAttribute="height" multiplier="0.5" id="BRd-bx-len"/>
+                                                <constraint firstItem="suH-pQ-nKk" firstAttribute="centerY" secondItem="bDf-pT-IKj" secondAttribute="centerY" id="But-ux-ysN"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="categoryImageView" destination="suH-pQ-nKk" id="KpR-9d-6gG"/>
                                             <outlet property="subtitleLabel" destination="Pyc-Rr-qAU" id="KgH-3s-XOd"/>
                                             <outlet property="titleLabel" destination="SHJ-uS-Lac" id="jgK-7x-Qzw"/>
                                         </connections>
@@ -198,7 +217,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3083" y="-4655"/>
+            <point key="canvasLocation" x="3082.5768667642751" y="-4655.2734375"/>
         </scene>
         <!--Create Store View Controller-->
         <scene sceneID="vwo-NE-Mgh">

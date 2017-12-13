@@ -15,6 +15,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var pie1: PieChartView!
     @IBOutlet weak var pie2: PieChartView!
     @IBOutlet weak var pie3: PieChartView!
+    var selectionActive = false;
     
     
     @IBOutlet weak var storesTableView: UITableView!
@@ -29,6 +30,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var hoPapers: [ShelfBox] = [];
     var hankies: [ShelfBox] = [];
     
+    var dataToPass : [ShelfBox] = [];
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +71,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let selectedStore = storesArray[indexPath.row];
         clearCharts();
         configPieCharts(selectedStore);
+        selectionActive = true;
     }
     
     func fetchData(){
@@ -136,7 +139,13 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func populatePieChart(_ boxes : [ShelfBox], pie: PieChartView, label: String){
         let dict = sortByManufacturer(boxes);
         var entries:[PieChartDataEntry] = [];
+        var colors:[NSUIColor] = [];
         for (brand, value) in dict {
+            if(brand.name?.lowercased() == "metsä" || brand.name?.lowercased() == "metsa"){
+                colors.append(Tools.colors.metsaGreenPrimary);
+            }else {
+                colors.append(Tools.generateRandomColor());
+            }
             entries.append(PieChartDataEntry(value: value,
                                              label: brand.name,
                                              icon: nil));
@@ -145,12 +154,13 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let set = PieChartDataSet(values: entries, label: "")
         set.drawIconsEnabled = false
         set.sliceSpace = 2
-        set.colors = ChartColorTemplates.vordiplom()
-            + ChartColorTemplates.joyful()
-            + ChartColorTemplates.colorful()
-            + ChartColorTemplates.liberty()
-            + ChartColorTemplates.pastel()
-            + [UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)]
+        set.colors = colors;
+//        set.colors = ChartColorTemplates.vordiplom()
+//            + ChartColorTemplates.joyful()
+//            + ChartColorTemplates.colorful()
+//            + ChartColorTemplates.liberty()
+//            + ChartColorTemplates.pastel()
+//            + [UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)]
         
         let data = PieChartData(dataSet: set);
         
@@ -162,7 +172,8 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         
         pie.data = data
-        
+        pie.chartDescription?.enabled = true;
+        pie.chartDescription?.text = label;
     }
     
     //MARK: Calculations
@@ -238,13 +249,22 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func formatPieCharts() {
         pie1.drawHoleEnabled = false;
         pie1.usePercentValuesEnabled = true;
+        pie1.chartDescription?.text = "WC-Papers";
         pie1.setNeedsDisplay();
         pie2.drawHoleEnabled = false;
         pie2.usePercentValuesEnabled = true;
+        pie2.chartDescription?.text = "Household Papers";
         pie2.setNeedsDisplay();
         pie3.drawHoleEnabled = false;
         pie3.usePercentValuesEnabled = true;
+        pie3.chartDescription?.text = "Hankies";
         pie3.setNeedsDisplay();
+        
+        //each pie needs its own gesture recognizer because apple
+        pie1.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePieTap(sender:))));
+        pie2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePieTap(sender:))));
+        pie3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePieTap(sender:))));
+
     }
     
     func clearCharts(){
@@ -261,6 +281,25 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         pie3.notifyDataSetChanged();
     }
     
+    @objc func handlePieTap(sender: UITapGestureRecognizer) {
+        let v = sender.view;
+        if(v == pie1){
+            print("pie1");
+            dataToPass = wcPapers;
+        }
+        else if (v == pie2){
+            print("pie2");
+            dataToPass = hoPapers;
+        }
+        else if (v == pie3){
+            dataToPass = hankies;
+            print("pie3");
+        }
+        if(selectionActive){
+            self.performSegue(withIdentifier: "BarChartsSegue", sender: self);
+        }
+    }
+    
     
     // MARK: - Navigation
     
@@ -270,7 +309,7 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Pass the selected object to the new view controller.
         if(segue.identifier == "BarChartsSegue"){
             let destinationCont = segue.destination as! DataBarChartViewController;
-            //destinationCont.dataz =
+            destinationCont.dataz = dataToPass;
         }
     }
 }

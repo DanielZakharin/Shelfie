@@ -13,6 +13,12 @@ class DataBarChartViewController: UIViewController {
     
     var dataz : [ShelfBox] = [];
     
+    @IBOutlet weak var bar1: BarChartView!
+    @IBOutlet weak var bar2: BarChartView!
+    @IBOutlet weak var bar3: BarChartView!
+    @IBOutlet weak var bar4: BarChartView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        var l = BarChartView(frame: self.view.bounds);
@@ -30,11 +36,45 @@ class DataBarChartViewController: UIViewController {
 //        l.xAxis.drawGridLinesEnabled = false;
         
         //self.view.addSubview(l);
+        setDataCount(10, range: 20, chartView: bar1);
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setDataCount(_ count: Int, range: UInt32, chartView: BarChartView) {
+        let start = 1
+        
+        let yVals = (start..<start+count+1).map { (i) -> BarChartDataEntry in
+            let mult = range + 1
+            let val = Double(arc4random_uniform(mult))
+            if arc4random_uniform(100) < 25 {
+                return BarChartDataEntry(x: Double(i), y: val, icon: UIImage(named: "icon"))
+            } else {
+                return BarChartDataEntry(x: Double(i), y: val)
+            }
+        }
+        
+        var set1: BarChartDataSet! = nil
+        if let set = chartView.data?.dataSets.first as? BarChartDataSet {
+            set1 = set
+            set1.values = yVals
+            chartView.data?.notifyDataChanged()
+            chartView.notifyDataSetChanged()
+        } else {
+            set1 = BarChartDataSet(values: yVals, label: "The year 2017")
+            set1.colors = ChartColorTemplates.material()
+            set1.drawValuesEnabled = false
+            
+            let data = BarChartData(dataSet: set1)
+            data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
+            data.barWidth = 0.9
+            chartView.data = data
+        }
+        
+                chartView.setNeedsDisplay()
     }
     
     

@@ -19,7 +19,7 @@ class BoxView: UIView {
      */
     
     //MARK: Variables
-    var cornerDragView: UIView;
+    var cornerDragView: UIImageView;
     var boxNameLabel: UILabel;
     let cornerSize = Double(Tools.increment);
     var currentTotalX:CGFloat = 0;
@@ -33,7 +33,7 @@ class BoxView: UIView {
     
     override init(frame: CGRect) {
         //programatically init
-        cornerDragView = UIView();
+        cornerDragView = UIImageView();
         boxNameLabel = UILabel();
         super.init(frame: frame);
         initialize();
@@ -41,7 +41,7 @@ class BoxView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         //storyboard init
-        cornerDragView = UIView();
+        cornerDragView = UIImageView();
         boxNameLabel = UILabel();
         super.init(coder: aDecoder)
         initialize();
@@ -52,8 +52,11 @@ class BoxView: UIView {
         self.backgroundColor = UIColor.darkGray;
         self.layer.borderWidth = 3;
         self.layer.borderColor = UIColor.black.cgColor;
+        cornerDragView.isUserInteractionEnabled = true;
         cornerDragView.frame = CGRect(x: Double(self.frame.width-CGFloat(cornerSize)), y: Double(self.frame.height-CGFloat(cornerSize)), width: cornerSize, height: cornerSize);
-        cornerDragView.backgroundColor = UIColor.magenta;
+        var cornerImage = UIImage(named: "rescale")!;
+        cornerDragView.image = cornerImage;
+        cornerDragView.contentMode = .scaleAspectFit;
         self.addSubview(cornerDragView);
         //bring views to front of the main view
         self.bringSubview(toFront: cornerDragView);

@@ -208,7 +208,7 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biB-Tv-3xe">
-                                <rect key="frame" x="0.0" y="124" width="1024" height="595"/>
+                                <rect key="frame" x="0.0" y="124" width="1024" height="644"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -482,37 +482,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Fea-co-06T">
+                            <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="metsaBG" translatesAutoresizingMaskIntoConstraints="NO" id="Bxk-1W-dfG">
                                 <rect key="frame" x="0.0" y="64" width="1024" height="655"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZDP-Of-Irt">
+                                <rect key="frame" x="512" y="64" width="100" height="655"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ia9-fK-coH">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="207.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wme-9l-6VX" customClass="BarChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="655"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bfv-qa-uO6">
-                                        <rect key="frame" x="0.0" y="223.5" width="1024" height="208"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aGN-0n-TRr" customClass="BarChartView" customModule="Charts">
+                                        <rect key="frame" x="50" y="0.0" width="50" height="655"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuQ-AU-0i9">
-                                        <rect key="frame" x="0.0" y="447.5" width="1024" height="207.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="szv-Ny-DIz">
+                                <rect key="frame" x="20" y="72" width="984" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="15k-lr-bEj" customClass="BarChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="0.0" width="492" height="647"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MGc-W2-hRP" customClass="BarChartView" customModule="Charts">
+                                        <rect key="frame" x="492" y="0.0" width="492" height="647"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Fea-co-06T" firstAttribute="leading" secondItem="aGl-n7-s1j" secondAttribute="leading" id="Dcx-xF-Elg"/>
-                            <constraint firstAttribute="trailing" secondItem="Fea-co-06T" secondAttribute="trailing" id="MGP-jN-bBy"/>
-                            <constraint firstItem="ncv-cy-owi" firstAttribute="top" secondItem="Fea-co-06T" secondAttribute="bottom" id="ToP-qL-LID"/>
-                            <constraint firstItem="Fea-co-06T" firstAttribute="top" secondItem="NbL-9e-ELE" secondAttribute="bottom" id="X7Q-MA-29g"/>
+                            <constraint firstItem="szv-Ny-DIz" firstAttribute="top" secondItem="NbL-9e-ELE" secondAttribute="bottom" constant="8" id="TWA-Ov-xIV"/>
+                            <constraint firstItem="szv-Ny-DIz" firstAttribute="leading" secondItem="aGl-n7-s1j" secondAttribute="leading" id="c8B-EE-a00"/>
+                            <constraint firstItem="ncv-cy-owi" firstAttribute="top" secondItem="szv-Ny-DIz" secondAttribute="bottom" id="qQ2-Jx-Jts"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="R8p-oZ-wE6"/>
+                    <connections>
+                        <outlet property="bar1" destination="15k-lr-bEj" id="Mp0-Q8-bZp"/>
+                        <outlet property="bar2" destination="MGc-W2-hRP" id="S4z-D9-BGF"/>
+                        <outlet property="bar3" destination="Wme-9l-6VX" id="G0f-Sv-oKq"/>
+                        <outlet property="bar4" destination="aGN-0n-TRr" id="5Da-yE-cz0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JyE-Fh-wu2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5222" y="1035"/>
+            <point key="canvasLocation" x="5204" y="544"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tCC-el-hcx">
@@ -636,9 +655,7 @@
         <scene sceneID="MZL-dh-yVo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zKR-cl-3lY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" id="E0L-n8-a66">
-                        <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Create" image="add" selectedImage="add" id="E0L-n8-a66"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qct-tp-Ene">
                         <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
@@ -657,8 +674,7 @@
         <scene sceneID="Qeg-0Y-VxQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w3D-so-8wH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Shelf View" largeContentSizeImage="flashOff.png" id="Z9X-Xd-mSn">
-                        <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                    <tabBarItem key="tabBarItem" title="Shelf View" image="shelf" largeContentSizeImage="flashOff.png" id="Z9X-Xd-mSn">
                         <color key="badgeColor" red="0.56078431370000004" green="0.82745098039999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -679,9 +695,7 @@
         <scene sceneID="UI3-hw-fG6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CD7-Pm-aE4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Data" id="6y7-lb-bce">
-                        <inset key="imageInsets" minX="20" minY="20" maxX="20" maxY="20"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Data" image="stats" selectedImage="stats" id="6y7-lb-bce"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="EDb-Fo-xaf">
                         <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
@@ -698,11 +712,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="48" height="48"/>
         <image name="flashOff.png" width="41" height="41"/>
         <image name="metsaBG" width="3072" height="2304"/>
         <image name="metsaLogo" width="943" height="363"/>
+        <image name="shelf" width="48" height="48"/>
+        <image name="stats" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="UfQ-09-xNZ"/>
         <segue reference="1l8-pj-dCq"/>
     </inferredMetricsTieBreakers>
 </document>
