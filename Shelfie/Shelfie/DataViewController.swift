@@ -19,16 +19,18 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     @IBOutlet weak var storesTableView: UITableView!
+    @IBOutlet weak var emptySpaceLabel: MetsaLabel!
     var storesArray: [Store] = [];
     //    var productAreaDict: [Product: Int] = [:];
     //    var fairShare: [Product: Double] = [:];
     //    var emptiesArea: Int = 0;
     var totalShelfSpace = 0;
-    //    var totalProductsArea = 0;
+    var totalProductsArea: Double = 0;
     
     var wcPapers: [ShelfBox] = [];
     var hoPapers: [ShelfBox] = [];
     var hankies: [ShelfBox] = [];
+    var empties: [ShelfBox] = [];
     var selectedCat: Int16 = 0;
     var selectedStore: Store = Store();
     
@@ -72,16 +74,17 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedStore = storesArray[indexPath.row];
         clearCharts();
-        configPieCharts(selectedStore);
+        displayData(selectedStore);
         selectionActive = true;
     }
     
     func fetchData(){
         storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
         storesTableView.reloadData();
+    
     }
     
-    func configPieCharts(_ selectedStore: Store){
+    func displayData(_ selectedStore: Store){
         calcTotalSpaceOnShelf(selectedStore);
         //sort by type of product
         sortByCategories(selectedStore);
@@ -90,12 +93,15 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
         populatePieChart(hankies, pie: pie3, label:"Hankies");
         populatePieChart(wcPapers, pie: pie1, label:"WC-Papers");
         populatePieChart(hoPapers, pie: pie2, label: "Household Papers");
+        
+        emptySpaceLabel.text = "Percentage of shelf empty:\n\(Int((calcEmptySpace(boxes: empties)/Double(totalProductsArea))*100))%"
     }
     
     func sortByCategories(_ store: Store){
         hoPapers = [];
         wcPapers = [];
         hankies = [];
+        empties = [];
         if let shelfPlans = store.shelfPlans!.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as? [ShelfPlan]{
             if shelfPlans.count > 0{
                 if let boxes = Array(shelfPlans[0].boxes!) as? [ShelfBox]{
@@ -114,7 +120,10 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             default:
                                 break;
                             }
+                        }else {
+                            empties.append(box);
                         }
+                        totalProductsArea += Double(box.width + box.height);
                     }
                 }
             }
@@ -134,9 +143,23 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         tempDict[manu] = Double(box.width*box.height);
                     }
                 }
+            }else {
+                
             }
         }
         return tempDict;
+    }
+    
+    func calcEmptySpace(boxes: [ShelfBox])-> Double {
+        var emptySpace: Double = 0;
+        for box in boxes {
+            if let product = box.product {
+            }else {
+                print("found empty space");
+                emptySpace += Double(box.width * box.height);
+            }
+        }
+        return emptySpace;
     }
     
     func populatePieChart(_ boxes : [ShelfBox], pie: PieChartView, label: String){
@@ -153,6 +176,10 @@ class DataViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                              label: brand.name,
                                              icon: nil));
         }
+//        entries.append(PieChartDataEntry(value: calcEmptySpace(boxes: boxes),
+//                                         label: "Empty Space",
+//                                         icon: nil));
+//        colors.append(UIColor.black);
         
         let set = PieChartDataSet(values: entries, label: "")
         set.drawIconsEnabled = false
