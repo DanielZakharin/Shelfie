@@ -5,7 +5,9 @@
 //  Created by iosdev on 5.10.2017.
 //  Copyright © 2017 Group-6. All rights reserved.
 //
-
+/*
+ Controller for adding new products to coredata
+ */
 import UIKit
 import BarcodeScanner
 
@@ -27,6 +29,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //initialize the barcode scanner to be used later, set delegate to self
         scanner = BarcodeScannerController();
         scanner?.codeDelegate = self;
         scanner?.dismissalDelegate = self;
@@ -48,7 +51,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         // Dispose of any resources that can be recreated.
     }
     
-    
+    //gather data from fields and construct a wrapper class
     func constructProductFromFields() -> ProductWrapper{
         let newProdWrap = ProductWrapper();
         if(Tools.checkTextFieldValid(textField: productNameField)){
@@ -62,22 +65,27 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         return newProdWrap;
     }
     
+    //save constructed wrapper to coredata
     func writeProductToCoreData(_ wrapper: ProductWrapper){
         CoreDataSingleton.sharedInstance.createProduct(wrapper);
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
+        //if fields are valid save make a wrapper and save it to coradata
         if(validateFields()){
             writeProductToCoreData(constructProductFromFields());
+            //display a message to let the user know the product has been added succesfully
             alert(message: "Success!");
+            //after 2 seconds, clear the screen
             Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
                 let ctrl = self.parent as! CreateViewController;
                 ctrl.switchView(i: 1);
             }
         }
     }
+    //displays the brand creation dialog
+    //if not manufacturers exist, shows an error
     @IBAction func createBrandAction(_ sender: UIButton) {
-        //TODO: make a popup for adding a brand to coredata
         if(manArr.count > 0){
         showBrandCreationDialog();
         }else {
@@ -108,7 +116,8 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;
     }
-        
+    
+    //custom styling for picker label
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var title = "";
         if(pickerView == brandPicker){

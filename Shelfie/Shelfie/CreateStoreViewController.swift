@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+/*
+ Controller for handling creation of store objects for storing in coredata
+ */
+
 class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //MARK: Data Fields
@@ -25,6 +29,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     //array containing all Chains, when values change, update all components of storechainpickerview, since  section 1 also depends on contents of section 0
     //realoding of pickerview that is inside alert is not necessary, as it is remade each time the alert is presented
+    var storeChainArr : [StoreChain] = [];
     var chainArr : [Chain] = [] {
         didSet {
             if(chainArr.count != 0){
@@ -34,21 +39,15 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
             }
         }
     };
-    var storeChainArr : [StoreChain] = [] {
-        didSet {
-            
-        }
-    };
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //first fetch of chains
-        fetchArrData();
         setup();
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //arr1 needs to be loaded twice for some reason, set delegate only here, when the values are actually present
         fetchArrData();
         storeChainPickerView.delegate = self;
         storeChainPickerView.dataSource = self;
@@ -77,13 +76,8 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return chainArr.count;
     }
     
+    //Custom styling for pickerview labels, setting label text
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-//        let label = view as! UILabel;
-//        label.textColor = Tools.colors.metsaDarkGray;
-//        label.backgroundColor = Tools.colors.metsaLighterGray;
-//        label.textAlignment = .center;
-//        label.font = UIFont(name: "BentonSans-Black", size: 18)
-//        return label;
         var title = "";
         if(pickerView == storeChainPickerView){
             switch component {
@@ -101,25 +95,12 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return Tools.formattedPickerLabel(view, withTitle: title);
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if(pickerView == storeChainPickerView){
-            switch component {
-            case 0:
-                return chainArr[row].chainName;
-            case 1:
-                return storeChainArr[row].storeChainName;
-            default:
-                return "err";
-            }
-        }
-        return chainArr[row].chainName;
-    }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(pickerView == storeChainPickerView){
             switch component {
             case 0:
+                //if a value in the first picker is selected, update second picker to reflect selection
                 if(chainArr.count > 0){
                     storeChainArr = Array(chainArr[row].storeChains!) as! [StoreChain];
                     storeChainPickerView.reloadComponent(1);
@@ -136,6 +117,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        //storechain picker is made up of two components, popup picker only has one
         if(pickerView == storeChainPickerView){
             return 2;
         }
@@ -165,7 +147,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         CoreDataSingleton.sharedInstance.createStore(constructNewStoreWrapper());
     }
     
-    //collect values from fields
+    //collect values from fields and construct a wrapper class
     func constructNewStoreWrapper() -> StoreWrapper{
         let newStoreWrapper = StoreWrapper();
         if(Tools.checkTextFieldValid(textField: storeNameField)){
@@ -190,6 +172,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func showStoreChainCreationDialog() {
         let vc = UIViewController()
         vc.preferredContentSize = CGSize(width: 250,height: 300)
+        //inserting a pickerview with chains into the dialog
         let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -201,6 +184,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         alert.setValue(vc, forKey: "contentViewController");
         alert.addAction(UIAlertAction(title: "Create", style: .default){(_) in
             if let name  = alert.textFields?[0].text {
+                //save the storechain into coredata, refetch all data and update pickers so they contain new data
                 CoreDataSingleton.sharedInstance.createStoreChain(name, inChain: self.chainArr[pickerView.selectedRow(inComponent: 0)]);
                 self.realodComponent1();
             }
@@ -216,9 +200,9 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         //the confirm action taking the inputs
         let confirmAction = UIAlertAction(title: "Create", style: .default) { (_) in
-            //Handle creating and submitting to coredata here
             if let name = alertController.textFields?[0].text {
                 CoreDataSingleton.sharedInstance.createChain(name) {() in
+                    //refetch data and update pickers
                     self.fetchArrData();
                 };
             }
@@ -252,10 +236,13 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         storeChainPickerView.reloadComponent(1);
     }
     
+    //put all textfields into an array so they can be looped through easily
     func setup(){
         textFieldArr = [storeNameField,storeAddressField,storeContactNumber,storeContactPerson];
     }
     
+    //see if input in fields is valid before submitting to coredata
+    //mark invalid fields with red outline
     func validateFields()->Bool{
         clearInvalidFields();
         var valid = true;
@@ -273,6 +260,7 @@ class CreateStoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return valid;
     }
     
+    //clear all fields from being marked invalid
     func clearInvalidFields(){
         for field in textFieldArr {
             field.layer.borderWidth = 0;

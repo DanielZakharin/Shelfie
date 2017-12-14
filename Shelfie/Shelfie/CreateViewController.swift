@@ -6,6 +6,10 @@
 //  Copyright © 2017 Group-6. All rights reserved.
 //
 
+/*
+ Controller that displays and switches between product and store creation screens
+ */
+
 import UIKit
 
 class CreateViewController: UIViewController {
@@ -29,6 +33,7 @@ class CreateViewController: UIViewController {
     
     
     //MARK: Methods
+    //Switches between displaying create view for product and store
     func switchView(i:Int) {
         let storyboard = UIStoryboard(name: "Floating", bundle: nil);
         var viewCtrl: UIViewController? = nil;
@@ -50,73 +55,23 @@ class CreateViewController: UIViewController {
         
     }
     
-    func addViewWithAnimation(viewNew: UIView) {/*
-         if (self.creationContainer.subviews.count > 0){
-         let viewInitial = self.creationContainer.subviews[0];
-         if viewInitial != nil{
-         // Fade out to set the text
-         UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-         viewInitial.alpha = 0.0
-         }, completion: {
-         (finished: Bool) -> Void in
-         //When fully faded, remove the view
-         viewInitial.removeFromSuperview();
-         });
-         }
-         
-         }
-         //add new view, set view to invisible
-         self.creationContainer.addSubview(viewNew);
-         viewNew.frame = CGRect(x: 0, y: 0, width: 100, height: 100);//self.creationContainer.frame;
-         viewNew.alpha = 0;
-         // Fade in new View
-         UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-         viewNew.alpha = 1.0
-         }, completion: nil);*/
-        /*if let oldView = currentView{
-            self.creationContainer.addSubview(viewNew);
-            /*viewNew.addConstraints([
-                NSLayoutConstraint(item: viewNew, attribute: .top, relatedBy: .equal, toItem: storeProductSegment, attribute: .bottom, multiplier: 1.0, constant: 16),
-                NSLayoutConstraint(item: viewNew, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottomMargin, multiplier: 1.0, constant: 8),
-                NSLayoutConstraint(item: viewNew, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 8),
-                NSLayoutConstraint(item: viewNew, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 8)
-                ]);*/
-            viewNew.frame = oldView.frame;
-            oldView.removeFromSuperview();
-            currentView = viewNew;
-        }*/
-        
-        print("CC dimension before: \(viewNew.frame.width) x \(viewNew.frame.height)");
+    func addViewWithAnimation(viewNew: UIView) {
+        //clear container of views
         for sv in creationContainer.subviews {
             sv.removeFromSuperview();
         }
-        //viewNew.autoresizingMask = [.flexibleWidth, .flexibleHeight];
+        //add the new view
         creationContainer.addSubview(viewNew);
+        //constrain the added view to be same size as container
         constrainViewEqual(holderView: creationContainer, view: viewNew);
         
-        /*
-        creationContainer.addConstraints([
-            NSLayoutConstraint(item: viewNew, attribute: .height, relatedBy: .equal, toItem: creationContainer, attribute: .height, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: viewNew, attribute: .width, relatedBy: .equal, toItem: creationContainer, attribute: .width, multiplier: 1.0, constant: 0)
-            ]);
-       
-        print("CC dimension after: \(viewNew.frame.width) x \(viewNew.frame.height)");
-        */
- 
-        /*let testView = UIView();
-        testView.backgroundColor = UIColor.green;
-        creationContainer.addSubview(testView);
-        creationContainer.addConstraints([
-            NSLayoutConstraint(item: testView, attribute: .height, relatedBy: .equal, toItem: creationContainer, attribute: .height, multiplier: 0.5, constant: 0),
-            NSLayoutConstraint(item: testView, attribute: .width, relatedBy: .equal, toItem: creationContainer, attribute: .width, multiplier: 0.5, constant: 0)
-            ])*/
     }
     
     @IBAction func storeProductSwitch(_ sender: UISegmentedControl) {
         switchView(i: sender.selectedSegmentIndex);
-        
     }
     
+    //function that adds constraints so that a view is the same size as a superview and in the middle
     func constrainViewEqual(holderView: UIView, view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         //pin 100 points from the top of the super
