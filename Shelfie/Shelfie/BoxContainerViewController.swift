@@ -110,6 +110,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
             let shelfWrapper = boxViewCont.convertSelfToWrapper(store: storesArray[lastSelectedRow]);
             CoreDataSingleton.sharedInstance.createShelfPlan(shelfWrapper);
         }else {
+            //if there are no boxes to save, prompt the user if this is what they really want
             let confirmAlert = UIAlertController(title: "Shelf is empty", message: "The shelf is empty, save anyway?", preferredStyle: UIAlertControllerStyle.alert)
             
             confirmAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
@@ -127,7 +128,6 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
         storeSelectTable.reloadData();
         loadShelfPlansIntoPicker();
-        //boxViewCont.makeBG(width: Int(storesArray[0].shelfWidth), height: 3);
     }
     
     func loadShelfPlansIntoPicker(){
