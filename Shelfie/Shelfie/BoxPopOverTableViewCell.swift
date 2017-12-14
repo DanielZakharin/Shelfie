@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ Cell for boxpopovertableview
+ */
+
 class BoxPopOverTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: MetsaLabel!

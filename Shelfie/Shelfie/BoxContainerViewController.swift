@@ -9,7 +9,7 @@
 import UIKit
 
 /*
- View Where BoxViewController is a subview, also has store selection
+ View Where BoxViewController is a subview, also has store selection and saving and loading functinality
  */
 
 class BoxContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -35,6 +35,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //fetch stores to display on the tableview
         storesArray = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Store") as! [Store];
         storeSelectTable.reloadData();
     }
@@ -67,7 +68,6 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         lastSelectedRow = indexPath.row;
-        //TODO: load selected stores shelfplans
         loadShelfPlansIntoPicker();
         boxViewCont.makeBG(width: Int(storesArray[indexPath.row].shelfWidth));
     }
@@ -75,6 +75,7 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
     //MARK: PickerView Methods
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        //format saved date to a readable format, display in picker
         let formatter = DateFormatter();
         let format = "dd.MM.yyyy hh.mm";
         formatter.dateFormat = format;
@@ -86,9 +87,6 @@ class BoxContainerViewController: UIViewController, UITableViewDelegate, UITable
         return shelfPlans.count;
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;

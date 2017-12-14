@@ -86,18 +86,17 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searching");
         fetchProductsWithSearch(searchBar.text!);
     }
     
+    //cancel clears any search results
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("clear");
         searchBar.text = "";
         fetchProducts();
     }
     
+    //if user removes all text from the serach field, clear search results
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("jee \(searchBar.text)");
         if(searchBar.text?.isEmpty)!{
             print("clear search");
         }
@@ -105,7 +104,7 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     @IBAction func delBtnAction(_ sender: UIButton) {
-        //delete the view from here
+        //delete the box
         selectedBoxView!.removeFromSuperview();
         selectedBoxView = nil;
         parentCtrl?.dismissPopOver(ctrl: self);
@@ -115,12 +114,13 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         present(scanner!, animated: true, completion: nil);
     }
     
-    
+    //fetches all products to displa initially
     func fetchProducts(){
         productsArr = CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Product") as! [Product];
         popoverTable.reloadData();
     }
     
+    //fetch products with a searchterm and update table to show only results
     func fetchProductsWithSearch(_ searchTerm: String){
         productsArr = Array(CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Product", withSearchTerm: searchTerm, forVariable: "name")) as! [Product];
         popoverTable.reloadData();
@@ -128,16 +128,18 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //MARK: barcode scanner
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
-        print("CODE: \(code)");
+        //find any products matching the barcode, update table with results
         productsArr = Array(CoreDataSingleton.sharedInstance.fetchEntitiesFromCoreData("Product", withSearchTerm: code, forVariable: "barcode")) as! [Product];
         dump(productsArr);
         popoverTable.reloadData();
+        //dismiss the barcode scanned after a short delay, instant dismissal is very jarring
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
             controller.reset();
             controller.dismiss(animated: true, completion: nil);
         }
     }
     
+    //dismiss scanner when cancel is pressed
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
         controller.reset();
         controller.dismiss(animated: true, completion: nil);
