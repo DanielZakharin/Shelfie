@@ -130,6 +130,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         return Tools.formattedPickerLabel(view, withTitle: title);
     }
     
+    //when a manufacturer is selected in the picker, update data in brand picker to relfect the change
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(pickerView == manufacturerPicker){
             updateBrands();
@@ -137,11 +138,16 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     }
     
     //MARK: Barcode Scanner delegate
+    
+    //this function is called when the barcodescanners cancel button is pressed
+    //the bracode scanner must be dismissed manually, the cancel button does nothing on its own
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
         controller.reset();
         controller.dismiss(animated: true, completion: nil);
     }
     
+    //this function is called when the barcode succesfully reads a code
+    //save code in variable, dismiss the barcode scanner
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
         barcode = code;
         barcodeLabel.text = "Barcode: \(code)";
@@ -152,6 +158,8 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
     }
     
     //MARK: popup
+    
+    //shows a dialog with a pickerview for creatin new brands
     func showBrandCreationDialog() {
         let vc = UIViewController()
         vc.preferredContentSize = CGSize(width: 250,height: 300)
@@ -177,6 +185,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         
     }
     
+    //shows a dialog with a textinput for creating new manufacturers
     func showmanuFacturerDialog(){
         //Creating UIAlertController and
         //Setting title and message for the alert dialog
@@ -215,6 +224,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         updateBrands();
     }
     
+    //updates the brands picker with the brands of the currently selected manufacturer
     func updateBrands(){
         if(manArr.count > 0){
             brandArr = Array(manArr[manufacturerPicker.selectedRow(inComponent: 0)].brands!) as! [ProductBrand];
@@ -222,6 +232,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         }
     }
     
+    //validetes all fields in the controller, marks invalid ones with a red border
     func validateFields()->Bool{
         clearInvalidFields();
         var valid = Tools.checkTextFieldValid(textField: productNameField,self);
@@ -236,6 +247,7 @@ class CreateProductViewController: UIViewController,UIPickerViewDelegate,UIPicke
         
     }
     
+    //clears all fields that have been marked invalid
     func clearInvalidFields(){
         productNameField.layer.borderWidth = 0;
         brandPicker.layer.borderWidth = 0;

@@ -32,7 +32,7 @@ class BoxView: UIView {
     //MARK: Init
     
     override init(frame: CGRect) {
-        //programatically init
+        //programatical init
         cornerDragView = UIImageView();
         boxNameLabel = UILabel();
         super.init(frame: frame);
@@ -49,13 +49,15 @@ class BoxView: UIView {
     
     //initialize BoxView and add cornerDragView to it
     func initialize(){
+        //default color of the box is gray, meaning an empty space
         self.backgroundColor = UIColor.darkGray;
         self.layer.borderWidth = 3;
         self.layer.borderColor = UIColor.black.cgColor;
+        //set the userinteraction to enabled, uiimageviews have this set to disabled as default
         cornerDragView.isUserInteractionEnabled = true;
+        //set the size of the corner piece, it is at minimum 1x1 increments, so that if the box is at its smallest size, it can still be resized
         cornerDragView.frame = CGRect(x: Double(self.frame.width-CGFloat(cornerSize)), y: Double(self.frame.height-CGFloat(cornerSize)), width: cornerSize, height: cornerSize);
-        var cornerImage = UIImage(named: "rescale")!;
-        cornerDragView.image = cornerImage;
+        cornerDragView.image = UIImage(named: "rescale")!;
         cornerDragView.contentMode = .scaleAspectFit;
         self.addSubview(cornerDragView);
         //bring views to front of the main view
@@ -100,7 +102,7 @@ class BoxView: UIView {
     }
     
     //MARK: Gestures
-    
+    //triggered when corner is panned, resizes box
     @objc func handleCornerPan(sender: UIPanGestureRecognizer) {
         switch sender.state{
         //state for when pan just started, create a new view to be maniuplated here
@@ -147,6 +149,7 @@ class BoxView: UIView {
         sender.setTranslation(CGPoint.zero, in: self);
     }
     
+    //triggered when box view itself is panned, moves box around
     @objc func handleBoxPan(sender: UIPanGestureRecognizer){
         switch sender.state{
         //state for when pan just started, create a new view to be maniuplated here
@@ -188,6 +191,8 @@ class BoxView: UIView {
         print("Size off this box is \(incrementX) x \(incrementY)");
     }
     
+    
+    //helper methods for resizing consistantly
     func increaseSizeByX(_ xIncrements: CGFloat){
         self.frame.size.width += CGFloat(xIncrements)*increment;
         incrementX += Int(xIncrements);
@@ -210,6 +215,7 @@ class BoxView: UIView {
         currentTotalY = 0;
     }
     
+    //converts self to a wrapper
     func convertToWrapper() -> BoxWrapper{
         let wrapper = BoxWrapper();
         wrapper.size = convertSizeToIncrements();
@@ -217,11 +223,15 @@ class BoxView: UIView {
         return wrapper;
     }
     
+    //converts coordinates and size to a multiple of increments, since actual size and place may differ
+    //depending on device screen size
+    //this is then used to reconvert to increments sizes when loaded from memeory
     func convertCoordinatesToIncrements() -> CGPoint{
         let x = Int(self.frame.origin.x/increment);
         let y = Int(self.frame.origin.y/increment);
         return CGPoint(x: x, y: y);
     }
+    
     
     func convertSizeToIncrements() -> CGRect{
         let w = Int(self.frame.width/increment);
@@ -229,6 +239,7 @@ class BoxView: UIView {
         return CGRect(origin: convertCoordinatesToIncrements(), size: CGSize(width: w, height: h));
     }
     
+    //sets a product for a box and styles it accordingly
     func setProducForBox(_ to: Product){
         self.product = to;
         let bg = Tools.categoryColorDict[Int(to.category)];//UIColor(patternImage:Tools.categoryImageDict[Int(to.category)]!);

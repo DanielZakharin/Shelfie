@@ -75,13 +75,6 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate, UIScrollViewDelega
     }
     
     
-    /*func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-     if(otherGestureRecognizer.view == scrollView){
-     return true;
-     }
-     return false;
-     }*/
-    
     //tells the pangesture that it must fail before another gesture recognizer can be activated, in this case we only care about the
     //scrollviews built in one
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -214,6 +207,7 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate, UIScrollViewDelega
         scrollView.contentSize = innerView.frame.size;
     }
     
+    //converts all boxes into wrappers
     func convertAllBoxesToWrappers() -> [BoxWrapper]{
         var wrapperArr: [BoxWrapper] = [];
         for box in boxesArr {
@@ -222,12 +216,16 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate, UIScrollViewDelega
         return wrapperArr;
     }
     
+    //makes a wrapper class of self
     func convertSelfToWrapper(store: Store) -> ShelfWrapper{
         let shelfWrapper = ShelfWrapper(stoure: store);
         shelfWrapper.boxes = convertAllBoxesToWrappers();
         return shelfWrapper;
     }
     
+    //draw a boxview at a given location, with optional width and height
+    //if no height and width are specified, the box will be a 1x1 size, based on increment
+    //returns the drawn box so that changes can be made to its properties later
     func makeBoxAtLocation(_ x : CGFloat, _ y : CGFloat, width:CGFloat = Tools.increment, height: CGFloat = Tools.increment) -> BoxView?{
         if(innerView != nil){
             //create new view
@@ -245,17 +243,20 @@ class BoxViewController: UIView, UIGestureRecognizerDelegate, UIScrollViewDelega
         }
     }
     
+    //draws boxes onto the view from a shelfplan that comes from coredata
     func populateShelfFromPlan(_ shelf: ShelfPlan){
         clearShelf();
         let boxes:[ShelfBox] = Array(shelf.boxes!) as! [ShelfBox];
         for sb in boxes {
             let newBox = makeBoxAtLocation(Tools.intToIncrement(int: sb.coordX), Tools.intToIncrement(int: sb.coordY), width: Tools.intToIncrement(int: sb.width), height: Tools.intToIncrement(int: sb.height));
+            //if the box had a product, set it
             if let p = sb.product{
                 newBox!.setProducForBox(p);
             }
         }
     }
     
+    //clears all boxes from the view and resets the box array
     func clearShelf(){
         if(innerView != nil){
             for v in innerView.subviews{

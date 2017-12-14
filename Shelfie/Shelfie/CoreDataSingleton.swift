@@ -9,6 +9,11 @@
 import UIKit
 import CoreData
 
+/*
+ This class handles all operations that have to do with coredata
+ It is a singleton since having multiple nsmanagedcontexts will break the app
+ */
+
 class CoreDataSingleton {
     var persistentContainer : NSPersistentContainer?;
     var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType);
@@ -16,6 +21,9 @@ class CoreDataSingleton {
     
     static let sharedInstance = CoreDataSingleton();
     
+    
+    //Initializes everything needed for coredata operation
+    //Don't really understand much of this, it was made using apples coredata tutorial, modified for this purpose
     private init(){
         //make init private so that no other class can initialize it
         persistentContainer = NSPersistentContainer(name: "Shelfie");
@@ -56,6 +64,9 @@ class CoreDataSingleton {
     };
     
     //MARK: Adding entities to coredata
+    //any object that require more than 2 variables to save, use a wrapper class to read the variables from
+    
+    
     func createStore(_ fromStoreWrapper: StoreWrapper) {
         let testStore = NSEntityDescription.insertNewObject(forEntityName: "Store", into: managedObjectContext) as! Store;
         testStore.storeName = fromStoreWrapper.storeName;
@@ -117,6 +128,7 @@ class CoreDataSingleton {
         return newBox;
     }
     
+    //helper method for creating multiple shelfboxes at once
     func createShelfBoxes(_ fromBoxWrapperArray: [BoxWrapper]) -> [ShelfBox]{
         var shelfBoxes: [ShelfBox] = [];
         for boxWrpr in fromBoxWrapperArray{
@@ -140,6 +152,9 @@ class CoreDataSingleton {
         print("Created a shelfplan!");
         saveContext();
     }
+    
+    //MARK: fetching entities from coredata
+    //fetching always returns an array of NSManagedObjects, needs to be downcast to whatever needed
     
     func fetchEntitiesFromCoreData(_ withEntityName: String, withSearchTerm: String? = nil, forVariable: String? = nil) -> [NSManagedObject]{
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: withEntityName);
@@ -192,6 +207,7 @@ class CoreDataSingleton {
     
     
     //MARK: DANGER ZONE
+    //deletes all data for a given entity type
     func deleteAllData(entity: String)
     {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)

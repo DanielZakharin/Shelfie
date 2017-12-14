@@ -9,6 +9,11 @@
 import UIKit
 import BarcodeScanner
 
+/*
+ A controller that is shown when a box is clicked
+ Shows a selection of products for the user to assign to that box
+ */
+
 class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, BarcodeScannerCodeDelegate, BarcodeScannerDismissalDelegate{
     
     var selectedBoxView : BoxView?;
@@ -33,6 +38,8 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
         searchBar.delegate = self;
         searchBar.returnKeyType = .search;
         searchBar.showsCancelButton = true;
+        //override default metsabutton styling so that button is flush with searchbar
+        //color not exact, couldnt find color values for the searchbar background
         scannerBtn.layer.cornerRadius = 0;
         scannerBtn.backgroundColor = UIColor(red: 199/255, green: 197/255, blue: 201/255, alpha: 1)
         fetchProducts();
@@ -64,15 +71,15 @@ class BoxPopoverViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //temporary dataset, change to products / categories later
         return productsArr.count;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //change selected box color to matching color from list
+        //change selected box product to selected one, recolors box accordingly
         if(selectedBoxView != nil){
             selectedBoxView!.setProducForBox(productsArr[indexPath.row]);
         }
+        //dismiss the popover, since it has served its purpose
         parentCtrl!.dismissPopOver(ctrl: self);
         //need to manually deselect row
         tableView.deselectRow(at: indexPath, animated: false);

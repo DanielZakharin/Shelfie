@@ -9,6 +9,13 @@
 import Foundation
 import CoreData
 
+/*
+ #######################################################
+ #               FOR FUTURE KNOWLEDGE                  #
+ #    to get correct coredata classes, set module to   #
+ #      current project and codegen to manual/none     #
+ #######################################################
+ */
 
 extension Store {
 

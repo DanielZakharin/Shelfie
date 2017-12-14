@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ Login controller, currently does nothing, since it would need to be implemented with metsäs own systems in mind
+ */
+
 class LoginViewController: UIViewController {
 
     override func viewDidLoad() {

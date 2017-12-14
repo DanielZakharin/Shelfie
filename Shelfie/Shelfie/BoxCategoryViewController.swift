@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ Planned and unfinished version of boxviewcontroller, where user would only paint categories and not products
+ */
+
 class BoxCategoryViewController: BoxViewController {
 
     

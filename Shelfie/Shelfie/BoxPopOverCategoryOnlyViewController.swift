@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ Popover for unfinished category only boxviewcontroller, would display a list of only categories
+ */
+
 class BoxPopOverCategoryOnlyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     var selectedBoxView : BoxView?;
